@@ -1,0 +1,19 @@
+[project]
+name = "xanadu-extract"
+version = "0.1.0"
+description = "Asset extractor for Xanadu Next (Falcom, 2005)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=12.2.0",
+]
+
+[project.scripts]
+xanadu-extract = "xanadu_extract.cli:main"
+xanadu-viewer = "xanadu_extract.viewer:main"
+xanadu-debug = "xanadu_extract.debug:main"
+xanadu-monsters = "xanadu_extract.monsters:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

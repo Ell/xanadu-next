@@ -34,6 +34,22 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 REC_SIZE = 1108
+EQUIP_REC_SIZE = 692
+
+
+@dataclass
+class EquipRecord:
+    """One row of DATA/equip/equip/EQUIP.tbl, the item registry that monster
+    drop ids index into."""
+
+    idx: int
+    id: str  # eg "SL1_0020", "ITM_0000", "ARM_0002"
+    en: str  # eg "Gladius", "Heal Potion S"
+    desc: str
+
+    @property
+    def kind(self) -> str:
+        return self.id.split("_", 1)[0] if "_" in self.id else "?"
 
 
 @dataclass
@@ -136,6 +152,33 @@ def special_drop_label(neg_id: int) -> str:
 
 def index_by_id(records: list[ObjRecord]) -> dict[str, ObjRecord]:
     return {r.id: r for r in records}
+
+
+def parse_equip_tbl(path: Path) -> list[EquipRecord]:
+    """Parse the item registry. Record stride is 692 bytes; the alphanumeric
+    item id sits at +0x06, the English name at +0x17, the description at
+    +0x53.  Drop ids are direct indices into this list."""
+    raw = path.read_bytes()
+    out: list[EquipRecord] = []
+    n = len(raw) // EQUIP_REC_SIZE
+    for i in range(n):
+        off = i * EQUIP_REC_SIZE
+        rec = raw[off : off + EQUIP_REC_SIZE]
+        rid = rec[6:18].split(b"\x00", 1)[0].decode("cp932", "replace").strip()
+        en = (
+            rec[0x17 : 0x17 + 24]
+            .split(b"\x00", 1)[0]
+            .decode("cp932", "replace")
+            .strip()
+        )
+        desc = (
+            rec[0x53 : 0x53 + 200]
+            .split(b"\x00", 1)[0]
+            .decode("cp932", "replace")
+            .strip()
+        )
+        out.append(EquipRecord(idx=i, id=rid, en=en, desc=desc))
+    return out
 
 
 def lookup_drop_object(item_id: int, by_id: dict[str, ObjRecord]) -> ObjRecord | None:

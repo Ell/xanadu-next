@@ -24,14 +24,35 @@ from pathlib import Path
 
 from . import _layout
 from .objects import (
+    EquipRecord,
     ObjRecord,
     index_by_id,
     lookup_drop_object,
     normalize_drops,
     parse_drop_table,
+    parse_equip_tbl,
     parse_object_tbl,
     special_drop_label,
 )
+
+
+_KIND_LABELS = {
+    "SL1": "1H Sword",
+    "SL2": "2H Sword",
+    "AX1": "1H Axe",
+    "AX2": "2H Axe",
+    "HMR": "Hammer",
+    "THR": "Throwing",
+    "SHT": "Bow / Shot",
+    "ARM": "Armor",
+    "HLM": "Helmet",
+    "SHD": "Shield",
+    "BTS": "Boots",
+    "GLB": "Gloves",
+    "ACS": "Accessory",
+    "MAG": "Spell",
+    "ITM": "Item",
+}
 
 
 @dataclass
@@ -139,7 +160,7 @@ def _build_area_blocks(out_root: Path) -> list[dict]:
 # ---------------------------------------------------------------------------
 # Per-monster detail rendering
 
-def _render_drops(rec: ObjRecord, by_id: dict[str, ObjRecord]) -> str:
+def _render_drops(rec: ObjRecord, equips: list[EquipRecord]) -> str:
     drops = parse_drop_table(rec.drops)
     if not drops:
         return '<div class="empty">— no recorded drop table —</div>'
@@ -147,39 +168,38 @@ def _render_drops(rec: ObjRecord, by_id: dict[str, ObjRecord]) -> str:
     rows = []
     for (did, w), (_, pct) in zip(drops, norm):
         sub = ""
+        kind_pill = ""
         if did < 0:
             label = special_drop_label(did)
             cls = "drop-tier"
+        elif 0 <= did < len(equips):
+            it = equips[did]
+            label = it.en or it.id or f"item #{did:03d}"
+            kind = _KIND_LABELS.get(it.kind, it.kind)
+            if kind:
+                kind_pill = f'<span class="d-kind">{html.escape(kind)}</span>'
+            if it.desc and it.desc != label and "？" not in it.desc:
+                sub = it.desc
+            cls = "drop-item"
         else:
-            obj = lookup_drop_object(did, by_id)
-            if obj:
-                # Object.tbl O_xxxx records carry the JP description in the
-                # English-name slot (no proper English string exists).
-                jp = obj.en.replace("　", " ").strip()
-                label = f"item #{did:03d}"
-                if jp:
-                    sub = jp
-            else:
-                label = f"item #{did:03d}"
-                sub = "(no entry in Object.tbl)"
+            label = f"item #{did:03d} (out of range)"
             cls = "drop-item"
         bar_w = max(3, min(100, int(pct)))
-        sub_html = (
-            f'<div class="d-sub">{html.escape(sub)}</div>' if sub else ""
-        )
+        sub_html = f'<div class="d-sub">{html.escape(sub)}</div>' if sub else ""
         rows.append(
             f'<tr class="{cls}">'
             f'<td class="d-bar"><div style="width:{bar_w}%"></div></td>'
             f'<td class="d-pct">{pct:.1f}%</td>'
             f'<td class="d-lbl"><div class="d-name">'
-            f'<span class="d-id">{did:>+4}</span> {html.escape(label)}</div>'
+            f'{kind_pill}{html.escape(label)}'
+            f'<span class="d-id">#{did:+04d}</span></div>'
             f"{sub_html}</td>"
             f"</tr>"
         )
     return f'<table class="drops"><tbody>{"".join(rows)}</tbody></table>'
 
 
-def _render_one(m: Monster, by_id: dict[str, ObjRecord], areas_for: dict[str, list[str]]) -> str:
+def _render_one(m: Monster, equips: list[EquipRecord], areas_for: dict[str, list[str]]) -> str:
     rec = m.rec
     sprite = (
         f'<img src="{html.escape(m.sprite_rel)}" alt="{html.escape(rec.id)}" />'
@@ -198,7 +218,7 @@ def _render_one(m: Monster, by_id: dict[str, ObjRecord], areas_for: dict[str, li
             stat("Gold", rec.gold or "—"),
         ]
     )
-    drops_html = _render_drops(rec, by_id)
+    drops_html = _render_drops(rec, equips)
     areas = sorted(a for a, names in areas_for.items() if rec.jp_name in names) if False else []
     # match by JP name to area inf
     if m.jp:
@@ -328,8 +348,13 @@ table.drops { border-collapse: collapse; width: 100%;
                 font-weight: 600; width: 56px; text-align: right; }
 .drops .d-lbl { color: var(--fg); padding-left: 12px; line-height: 1.35; }
 .drops .d-name { font-size: 13px; color: var(--fg); }
-.drops .d-id { display: inline-block; min-width: 40px; color: var(--muted);
-               font: 11px ui-monospace, monospace; margin-right: 6px; }
+.drops .d-id { color: var(--muted); font: 10px ui-monospace, monospace;
+               margin-left: 8px; }
+.drops .d-kind { display: inline-block; padding: 1px 6px; margin-right: 8px;
+                 background: var(--bg); border: 1px solid var(--border);
+                 border-radius: 2px; font: 10px ui-monospace, monospace;
+                 color: var(--muted); text-transform: uppercase;
+                 letter-spacing: 0.04em; }
 .drops .d-sub { font-size: 11px; color: var(--muted);
                 font-family: "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
                 margin-top: 2px; }
@@ -384,7 +409,9 @@ rows.forEach(r => obs.observe(r));
 
 def render_monsters_page(out_root: Path) -> str:
     obj_path = out_root / "DATA" / "chr" / "Object.tbl"
+    equip_path = out_root / "DATA" / "equip" / "equip" / "EQUIP.tbl"
     records = parse_object_tbl(obj_path)
+    equips = parse_equip_tbl(equip_path)
     by_id = index_by_id(records)
     monsters = _build_monsters(out_root, records)
     monsters.sort(key=lambda m: m.rec.id)
@@ -407,7 +434,7 @@ def render_monsters_page(out_root: Path) -> str:
             f"</span></a>"
         )
 
-    bestiary = "\n".join(_render_one(m, by_id, areas_for) for m in monsters)
+    bestiary = "\n".join(_render_one(m, equips, areas_for) for m in monsters)
     body = f"""
 <div class="layout">
   <aside class="sidebar">

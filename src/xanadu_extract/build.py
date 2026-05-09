@@ -10,6 +10,7 @@ from pathlib import Path
 from PIL import Image
 
 from . import _layout
+from .chr_gltf import emit_all as emit_models
 from .items import render_items_page
 from .monsters import render_areas_page, render_monsters_page
 
@@ -87,6 +88,8 @@ def _keep_file(rel: Path) -> bool:
         return True
     if s.startswith("icons/"):
         return True
+    if s.startswith("models/"):
+        return True
     return False
 
 
@@ -148,6 +151,9 @@ def main(argv: list[str] | None = None) -> int:
 
     n_icons = extract_item_icons(out)
     print(f"icons: {n_icons}")
+
+    n_models = len(emit_models(out))
+    print(f"models: {n_models}")
 
     # Render the three core pages + a landing index.
     (out / "monsters.html").write_text(render_monsters_page(out), encoding="utf-8")

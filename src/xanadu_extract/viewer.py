@@ -28,9 +28,26 @@ PAGE = """<!doctype html>
   * {{ box-sizing: border-box; }}
   html, body {{ margin: 0; padding: 0; background: var(--bg); color: var(--fg);
                 font: 13px/1.4 ui-sans-serif, system-ui, sans-serif; }}
+  .topnav {{ display: flex; align-items: center; gap: 18px;
+             padding: 10px 18px; background: var(--panel);
+             border-bottom: 1px solid var(--border);
+             position: sticky; top: 0; z-index: 50; }}
+  .topnav h1 {{ margin: 0; font-size: 14px; font-weight: 600;
+                letter-spacing: 0.02em; color: var(--fg); }}
+  .topnav-pages {{ display: flex; gap: 4px; flex: 1; }}
+  .topnav-pages a {{ color: var(--muted); padding: 6px 14px;
+                     border-radius: 4px; font-size: 13px;
+                     text-decoration: none; }}
+  .topnav-pages a:hover {{ color: var(--fg); background: var(--panel-2); }}
+  .topnav-pages a.active {{ color: var(--accent); background: var(--panel-2); }}
+  .topnav-pages .hot {{ display: inline-block; padding: 0 6px;
+                        margin-left: 4px; background: var(--accent);
+                        color: var(--bg); border-radius: 8px;
+                        font-size: 10px; font-weight: 700; }}
+  .topnav .meta {{ color: var(--muted); font-size: 11px; }}
+  :root {{ --panel-2: #1f222b; }}
   header {{ padding: 14px 18px; background: var(--panel);
-            border-bottom: 1px solid var(--border); display: flex;
-            align-items: baseline; gap: 16px; flex-wrap: wrap; }}
+            border-bottom: 1px solid var(--border); }}
   header h1 {{ margin: 0; font-size: 16px; font-weight: 600; }}
   header .meta {{ color: var(--muted); font-size: 12px; }}
   nav {{ display: flex; gap: 6px; padding: 10px 18px; background: var(--panel);
@@ -94,15 +111,22 @@ PAGE = """<!doctype html>
 </style>
 </head>
 <body>
-<header>
+<div class="topnav">
   <h1>Xanadu Next</h1>
-  <nav style="display:flex;gap:4px;margin-left:14px">
-    <a href="index.html" style="color:var(--accent);padding:4px 10px;border-radius:4px;background:var(--bg);font-size:12px">Assets</a>
-    <a href="monsters.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px">Bestiary</a>
-    <a href="areas.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px">Areas</a>
-    <a href="debug.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px">Debug</a>
+  <nav class="topnav-pages">
+    <a href="index.html" class="active">Assets</a>
+    <a href="monsters.html">Bestiary <span class="hot">138 mobs</span></a>
+    <a href="areas.html">Areas</a>
+    <a href="debug.html">Debug</a>
   </nav>
-  <div class="meta" style="margin-left:auto">{counts}</div>
+  <div class="meta">{counts}</div>
+</div>
+<header>
+  <h1 style="font-size:14px;color:var(--muted);font-weight:500;margin:0 0 4px">Asset browser</h1>
+  <div style="font-size:12px;color:var(--muted)">
+    Looking for monster stats &amp; loot tables?
+    Jump to <a href="monsters.html" style="color:var(--accent);font-weight:600;text-decoration:underline">Bestiary →</a>
+  </div>
 </header>
 <nav>
   <button data-view="images" class="active">Images</button>

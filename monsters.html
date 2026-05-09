@@ -78,10 +78,11 @@ h2 .count { color: var(--muted); font-weight: 400; }
             border-radius: 4px; padding: 14px 16px; }
 .m-head { display: grid; grid-template-columns: auto 1fr; gap: 16px;
           align-items: center; }
-.m-sprite { width: 120px; min-height: 96px; background: #0c0d10; border-radius: 3px;
+.m-sprite { width: 200px; height: 200px; background: #0c0d10; border-radius: 3px;
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden; padding: 4px; }
-.m-sprite img { max-width: 100%; max-height: 96px;
+            overflow: hidden; padding: 0; }
+.m-sprite model-viewer { width: 100%; height: 100%; }
+.m-sprite img { max-width: 100%; max-height: 192px;
                 image-rendering: pixelated; object-fit: contain; }
 .m-sprite .no-sprite { color: var(--muted); font-size: 10px;
                        text-align: center; line-height: 1.4;
@@ -161,6 +162,7 @@ pre.ai { margin: 0; white-space: pre-wrap; font: 11px/1.55 ui-monospace, monospa
 <body>
 <div class="top"><h1><a href="monsters.html">Xanadu Next</a></h1><nav><a href="monsters.html" class="active">Enemies</a><a href="areas.html" class="">Map</a><a href="items.html" class="">Items</a></nav><div class="spacer"></div><span class="meta"><span id="count">88</span>&nbsp;monsters</span></div>
 <main>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <div class="layout">
   <aside class="sidebar">
     <input id="search" placeholder="filter by name, id, drop, area..." autofocus>
@@ -176,7 +178,7 @@ pre.ai { margin: 0; white-space: pre-wrap; font: 11px/1.55 ui-monospace, monospa
     each <code>M_xxxx.alg</code> file.</p>
     <section class="m-detail" id="m-M_0000" data-id="M_0000">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0000/M_0000.png" alt="M_0000" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0000.glb" alt="M_0000" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0000</div>
       <h2 class="m-name">Goblin <span class="t-jp">ゴブリン</span></h2>
@@ -216,7 +218,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0001" data-id="M_0001">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0001/M_0001.png" alt="M_0001" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0001.glb" alt="M_0001" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0001</div>
       <h2 class="m-name">Goblin Archer <span class="t-jp">ゴブリンアーチャー</span></h2>
@@ -261,7 +263,7 @@ ATK2：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0002" data-id="M_0002">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0002/M_0002.png" alt="M_0002" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0002.glb" alt="M_0002" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0002</div>
       <h2 class="m-name">Goblin Warrior <span class="t-jp">ゴブリンウォーリア</span></h2>
@@ -300,7 +302,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0003" data-id="M_0003">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0003/M_0003.png" alt="M_0003" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0003.glb" alt="M_0003" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0003</div>
       <h2 class="m-name">Goblin Shaman <span class="t-jp">ゴブリンシャーマン</span></h2>
@@ -341,7 +343,7 @@ and the village.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div sty
 </section>
 <section class="m-detail" id="m-M_0004" data-id="M_0004">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0004/M_0004.png" alt="M_0004" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0004.glb" alt="M_0004" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0004</div>
       <h2 class="m-name">Master Goblin <span class="t-jp">マスターゴブリン</span></h2>
@@ -375,7 +377,7 @@ MAGIC：なんかの魔法</pre>
 </section>
 <section class="m-detail" id="m-M_0005" data-id="M_0005">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0005/M_0005.png" alt="M_0005" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0005.glb" alt="M_0005" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0005</div>
       <h2 class="m-name">Goblin Healer <span class="t-jp">ゴブリンヒーラー</span></h2>
@@ -417,7 +419,7 @@ MAGIC：回復弾</pre>
 </section>
 <section class="m-detail" id="m-M_0010" data-id="M_0010">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0010/M_0010b.png" alt="M_0010" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0010.glb" alt="M_0010" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0010</div>
       <h2 class="m-name">Jumbo Green Slime <span class="t-jp">スライム</span></h2>
@@ -446,7 +448,7 @@ in a green bottle.
 </section>
 <section class="m-detail" id="m-M_0011" data-id="M_0011">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0011/M_0011b.png" alt="M_0011" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0011.glb" alt="M_0011" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0011</div>
       <h2 class="m-name">Red Slime <span class="t-jp">レッドスライム</span></h2>
@@ -477,7 +479,7 @@ ATK9：自爆（死亡時に必ず発生）</pre>
 </section>
 <section class="m-detail" id="m-M_0012" data-id="M_0012">
   <div class="m-head">
-    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0012/M_0012a.png" alt="M_0012 variant" title="M_0012a.png" /><img src="DATA/chr/monster/M_0012/M_0012b.png" alt="M_0012 variant" title="M_0012b.png" /></div></div>
+    <div class="m-sprite"><model-viewer src="models/M_0012.glb" alt="M_0012" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0012</div>
       <h2 class="m-name">Poison Slime <span class="t-jp">ポイズンスライム</span></h2>
@@ -508,7 +510,7 @@ ATK2：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0013" data-id="M_0013">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0013/M_0013b.png" alt="M_0013" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0013.glb" alt="M_0013" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0013</div>
       <h2 class="m-name">Black Slime <span class="t-jp">ブラックスライム</span></h2>
@@ -538,7 +540,7 @@ ATK2：黒炎まきちらし（未使用）</pre>
 </section>
 <section class="m-detail" id="m-M_0014" data-id="M_0014">
   <div class="m-head">
-    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0014/M_0014a.png" alt="M_0014 variant" title="M_0014a.png" /><img src="DATA/chr/monster/M_0014/M_0014b.png" alt="M_0014 variant" title="M_0014b.png" /></div></div>
+    <div class="m-sprite"><model-viewer src="models/M_0014.glb" alt="M_0014" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0014</div>
       <h2 class="m-name">Virus Slime <span class="t-jp">ウィルススライム</span></h2>
@@ -573,7 +575,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0015" data-id="M_0015">
   <div class="m-head">
-    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0015/M_0015a.png" alt="M_0015 variant" title="M_0015a.png" /><img src="DATA/chr/monster/M_0015/M_0015b.png" alt="M_0015 variant" title="M_0015b.png" /></div></div>
+    <div class="m-sprite"><model-viewer src="models/M_0015.glb" alt="M_0015" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0015</div>
       <h2 class="m-name">Giant Slime <span class="t-jp">ジャイアントスライム</span></h2>
@@ -604,7 +606,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0020" data-id="M_0020">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0020/M_0020.png" alt="M_0020" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0020.glb" alt="M_0020" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0020</div>
       <h2 class="m-name">Bat <span class="t-jp">バット</span></h2>
@@ -637,7 +639,7 @@ in a green bottle.
 </section>
 <section class="m-detail" id="m-M_0021" data-id="M_0021">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0021/M_0021.png" alt="M_0021" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0021.glb" alt="M_0021" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0021</div>
       <h2 class="m-name">Flame Bat <span class="t-jp">フレイムバット</span></h2>
@@ -666,7 +668,7 @@ aside...</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="widt
 </section>
 <section class="m-detail" id="m-M_0022" data-id="M_0022">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0022/M_0022.png" alt="M_0022" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0022.glb" alt="M_0022" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0022</div>
       <h2 class="m-name">Vampire Bat <span class="t-jp">ヴァンパイアバット</span></h2>
@@ -700,7 +702,7 @@ ATK2：超音波</pre>
 </section>
 <section class="m-detail" id="m-M_0030" data-id="M_0030">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0030/M_0030.png" alt="M_0030" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0030.glb" alt="M_0030" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0030</div>
       <h2 class="m-name">Skeleton <span class="t-jp">スケルトン</span></h2>
@@ -733,7 +735,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0031" data-id="M_0031">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0031/M_0031.png" alt="M_0031" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0031.glb" alt="M_0031" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0031</div>
       <h2 class="m-name">Skeleton Archer <span class="t-jp">スケルトンアーチャー</span></h2>
@@ -769,7 +771,7 @@ ATK1：弓矢攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0032" data-id="M_0032">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0032/M_0032.png" alt="M_0032" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0032.glb" alt="M_0032" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0032</div>
       <h2 class="m-name">Bone <span class="t-jp">ボーン</span></h2>
@@ -808,7 +810,7 @@ ATK1：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0033" data-id="M_0033">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0033/M_0033.png" alt="M_0033" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0033.glb" alt="M_0033" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0033</div>
       <h2 class="m-name">Skeleton Priest <span class="t-jp">スケルトンプリースト</span></h2>
@@ -845,7 +847,7 @@ EMPTY3：召還</pre>
 </section>
 <section class="m-detail" id="m-M_0041" data-id="M_0041">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0041/M_0041a.png" alt="M_0041" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0041.glb" alt="M_0041" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0041</div>
       <h2 class="m-name">Frozen Salamander <span class="t-jp">フローズンサラマンダー</span></h2>
@@ -879,7 +881,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0042" data-id="M_0042">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0042/M_0042a.png" alt="M_0042" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0042.glb" alt="M_0042" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0042</div>
       <h2 class="m-name">Dark Salamander <span class="t-jp">ダークサラマンダー</span></h2>
@@ -913,7 +915,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0043" data-id="M_0043">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0043/M_0040a.png" alt="M_0043" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0043.glb" alt="M_0043" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0043</div>
       <h2 class="m-name">Salamander <span class="t-jp">サラマンダー</span></h2>
@@ -947,7 +949,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0044" data-id="M_0044">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0044/M_0040a.png" alt="M_0044" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0044.glb" alt="M_0044" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0044</div>
       <h2 class="m-name">Salamander <span class="t-jp">サラマンダー</span></h2>
@@ -985,7 +987,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0045" data-id="M_0045">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0045/M_0040a.png" alt="M_0045" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0045.glb" alt="M_0045" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0045</div>
       <h2 class="m-name">Salamander <span class="t-jp">サラマンダー</span></h2>
@@ -1019,7 +1021,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0050" data-id="M_0050">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0050/M_0050.png" alt="M_0050" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0050.glb" alt="M_0050" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0050</div>
       <h2 class="m-name">Lizardman <span class="t-jp">リザードマン</span></h2>
@@ -1058,7 +1060,7 @@ ATK2：飛び込み</pre>
 </section>
 <section class="m-detail" id="m-M_0051" data-id="M_0051">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0051/M_0051.png" alt="M_0051" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0051.glb" alt="M_0051" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0051</div>
       <h2 class="m-name">Lizard Shaman <span class="t-jp">リザードシャーマン</span></h2>
@@ -1098,7 +1100,7 @@ MAGIC:魔法</pre>
 </section>
 <section class="m-detail" id="m-M_0052" data-id="M_0052">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0052/M_0052.png" alt="M_0052" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0052.glb" alt="M_0052" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0052</div>
       <h2 class="m-name">Elder Lizardman <span class="t-jp">エルダーリザードマン</span></h2>
@@ -1127,7 +1129,7 @@ ATK2：飛び込み</pre>
 </section>
 <section class="m-detail" id="m-M_0060" data-id="M_0060">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0060/M_0060.png" alt="M_0060" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0060.glb" alt="M_0060" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0060</div>
       <h2 class="m-name">Hippogriff <span class="t-jp">ヒポグリフ</span></h2>
@@ -1162,7 +1164,7 @@ ATK4：つめ（空中）</pre>
 </section>
 <section class="m-detail" id="m-M_0061" data-id="M_0061">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0061/M_0061.png" alt="M_0061" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0061.glb" alt="M_0061" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0061</div>
       <h2 class="m-name">Griffon <span class="t-jp">グリフォン</span></h2>
@@ -1199,7 +1201,7 @@ ATK4：つめ（空中）</pre>
 </section>
 <section class="m-detail" id="m-M_0070" data-id="M_0070">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0070/M_0070.png" alt="M_0070" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0070.glb" alt="M_0070" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0070</div>
       <h2 class="m-name">Zombie <span class="t-jp">ゾンビ</span></h2>
@@ -1230,7 +1232,7 @@ ATTACK4:毒霧</pre>
 </section>
 <section class="m-detail" id="m-M_0071" data-id="M_0071">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0071/M_0071.png" alt="M_0071" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0071.glb" alt="M_0071" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0071</div>
       <h2 class="m-name">Ghoul <span class="t-jp">グール</span></h2>
@@ -1265,7 +1267,7 @@ ATTACK4:毒霧（未使用）</pre>
 </section>
 <section class="m-detail" id="m-M_0072" data-id="M_0072">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0072/M_0072.png" alt="M_0072" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0072.glb" alt="M_0072" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0072</div>
       <h2 class="m-name">Wight <span class="t-jp">ワイト</span></h2>
@@ -1291,7 +1293,7 @@ ATTACK4:毒霧</pre>
 </section>
 <section class="m-detail" id="m-M_0090" data-id="M_0090">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0090/M_0090.png" alt="M_0090" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0090.glb" alt="M_0090" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0090</div>
       <h2 class="m-name">Mummy <span class="t-jp">マミー</span></h2>
@@ -1324,7 +1326,7 @@ ailments.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="wid
 </section>
 <section class="m-detail" id="m-M_0091" data-id="M_0091">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0091/M_0091.png" alt="M_0091" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0091.glb" alt="M_0091" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0091</div>
       <h2 class="m-name">Quick Mummy <span class="t-jp">クイックドマミー</span></h2>
@@ -1358,7 +1360,7 @@ ATK3：最大3連コンボ</pre>
 </section>
 <section class="m-detail" id="m-M_0092" data-id="M_0092">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0092/M_0092.png" alt="M_0092" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0092.glb" alt="M_0092" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0092</div>
       <h2 class="m-name">Armed Mummy <span class="t-jp">アームドマミー</span></h2>
@@ -1392,7 +1394,7 @@ ATK3：最大3連コンボ</pre>
 </section>
 <section class="m-detail" id="m-M_0100" data-id="M_0100">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0100/M_0100.png" alt="M_0100" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0100.glb" alt="M_0100" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0100</div>
       <h2 class="m-name">未使用 <span class="t-jp">ガーゴイル</span></h2>
@@ -1427,7 +1429,7 @@ magic.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:
 </section>
 <section class="m-detail" id="m-M_0101" data-id="M_0101">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0101/M_0101.png" alt="M_0101" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0101.glb" alt="M_0101" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0101</div>
       <h2 class="m-name">Spend Devil <span class="t-jp">ガルシスの手下（スペルガーゴイルを流用）</span></h2>
@@ -1452,7 +1454,7 @@ magic.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:
 </section>
 <section class="m-detail" id="m-M_0102" data-id="M_0102">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0102/M_0102.png" alt="M_0102" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0102.glb" alt="M_0102" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0102</div>
       <h2 class="m-name">Gatekeeper <span class="t-jp">ガーディアン</span></h2>
@@ -1558,7 +1560,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0140" data-id="M_0140">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0140/M_0140.png" alt="M_0140" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0140.glb" alt="M_0140" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0140</div>
       <h2 class="m-name">Harpy <span class="t-jp">ハーピー</span></h2>
@@ -1587,7 +1589,7 @@ in a green bottle.
 </section>
 <section class="m-detail" id="m-M_0160" data-id="M_0160">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0160/M_0160.png" alt="M_0160" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0160.glb" alt="M_0160" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0160</div>
       <h2 class="m-name">Minotaur <span class="t-jp">ミノタウロス</span></h2>
@@ -1626,7 +1628,7 @@ and the village.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div sty
 </section>
 <section class="m-detail" id="m-M_0161" data-id="M_0161">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0161/M_0161.png" alt="M_0161" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0161.glb" alt="M_0161" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0161</div>
       <h2 class="m-name">Berserk Minotaur <span class="t-jp">バーサークミノタウロス</span></h2>
@@ -1654,7 +1656,7 @@ and the village.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div sty
 </section>
 <section class="m-detail" id="m-M_0170" data-id="M_0170">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0170/M_0170.png" alt="M_0170" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0170.glb" alt="M_0170" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0170</div>
       <h2 class="m-name">Chimera <span class="t-jp">キマイラ</span></h2>
@@ -1684,7 +1686,7 @@ EMP1：炎撒き散らしⅡ</pre>
 </section>
 <section class="m-detail" id="m-M_0171" data-id="M_0171">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0171/M_0171.png" alt="M_0171" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0171.glb" alt="M_0171" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0171</div>
       <h2 class="m-name">Crimson Chimera <span class="t-jp">クリムゾンキマイラ</span></h2>
@@ -1715,7 +1717,7 @@ ATK3：炎撒き散らし</pre>
 </section>
 <section class="m-detail" id="m-M_0172" data-id="M_0172">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0172/M_0172.png" alt="M_0172" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0172.glb" alt="M_0172" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0172</div>
       <h2 class="m-name">Chimera Zombie <span class="t-jp">キマイラゾンビ</span></h2>
@@ -1750,7 +1752,7 @@ EMP1：炎撒き散らしⅡ</pre>
 </section>
 <section class="m-detail" id="m-M_0173" data-id="M_0173">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0173/M_0172.png" alt="M_0173" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0173.glb" alt="M_0173" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0173</div>
       <h2 class="m-name">Chimera Zombie <span class="t-jp">キマイラゾンビ</span></h2>
@@ -1780,7 +1782,7 @@ EMP1：炎撒き散らしⅡ</pre>
 </section>
 <section class="m-detail" id="m-M_0180" data-id="M_0180">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0180/M_0180.png" alt="M_0180" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0180.glb" alt="M_0180" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0180</div>
       <h2 class="m-name">Mud Golem <span class="t-jp">マッドゴーレム</span></h2>
@@ -1817,7 +1819,7 @@ ATK3：長距離どーん（&quot;ストーンゴーレム&quot;との差別化�
 </section>
 <section class="m-detail" id="m-M_0181" data-id="M_0181">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0181/M_0181.png" alt="M_0181" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0181.glb" alt="M_0181" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0181</div>
       <h2 class="m-name">Stone Golem <span class="t-jp">ストーンゴーレム</span></h2>
@@ -1850,7 +1852,7 @@ ATK3：長距離どーん
 </section>
 <section class="m-detail" id="m-M_0190" data-id="M_0190">
   <div class="m-head">
-    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0190/M_0190.png" alt="M_0190 variant" title="M_0190.png" /><img src="DATA/chr/monster/M_0190/THR_0100.png" alt="M_0190 variant" title="THR_0100.png" /></div></div>
+    <div class="m-sprite"><model-viewer src="models/M_0190.glb" alt="M_0190" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0190</div>
       <h2 class="m-name">Lich <span class="t-jp">リッチ</span></h2>
@@ -1877,7 +1879,7 @@ EMPTY2：デスセンテンス</pre>
 </section>
 <section class="m-detail" id="m-M_0200" data-id="M_0200">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0200/M_0200.png" alt="M_0200" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0200.glb" alt="M_0200" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0200</div>
       <h2 class="m-name">Hydra <span class="t-jp">ヒドラ</span></h2>
@@ -1909,7 +1911,7 @@ ATK3：くちばし攻撃（地上）</pre>
 </section>
 <section class="m-detail" id="m-M_0201" data-id="M_0201">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0201/M_0201.png" alt="M_0201" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0201.glb" alt="M_0201" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0201</div>
       <h2 class="m-name">未使用 <span class="t-jp">ワイバーン</span></h2>
@@ -1947,7 +1949,7 @@ ATK3：くちばし攻撃（地上）</pre>
 </section>
 <section class="m-detail" id="m-M_0210" data-id="M_0210">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0210/M_0210.png" alt="M_0210" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0210.glb" alt="M_0210" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0210</div>
       <h2 class="m-name">Evil Eye <span class="t-jp">イービルアイ</span></h2>
@@ -1978,7 +1980,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0211" data-id="M_0211">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0211/M_0211.png" alt="M_0211" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_0211.glb" alt="M_0211" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0211</div>
       <h2 class="m-name">Dead Eye <span class="t-jp">デッドアイ</span></h2>
@@ -2009,7 +2011,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0270" data-id="M_0270">
   <div class="m-head">
-    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0270/M_0270a.png" alt="M_0270 variant" title="M_0270a.png" /><img src="DATA/chr/monster/M_0270/M_0270b.png" alt="M_0270 variant" title="M_0270b.png" /></div></div>
+    <div class="m-sprite"><model-viewer src="models/M_0270.glb" alt="M_0270" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0270</div>
       <h2 class="m-name">Ogre <span class="t-jp">オーガー</span></h2>
@@ -2042,7 +2044,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0350" data-id="M_0350">
   <div class="m-head">
-    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0350/UV_BEAM.png" alt="M_0350 variant" title="UV_BEAM.png" /><img src="DATA/chr/monster/M_0350/eye.png" alt="M_0350 variant" title="eye.png" /><img src="DATA/chr/monster/M_0350/uv_bump.png" alt="M_0350 variant" title="uv_bump.png" /><img src="DATA/chr/monster/M_0350/uv_part.png" alt="M_0350 variant" title="uv_part.png" /><img src="DATA/chr/monster/M_0350/uv_test.png" alt="M_0350 variant" title="uv_test.png" /></div></div>
+    <div class="m-sprite"><model-viewer src="models/M_0350.glb" alt="M_0350" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_0350</div>
       <h2 class="m-name">Ascomoid <span class="t-jp">びほるだー</span></h2>
@@ -2073,7 +2075,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_1010" data-id="M_1010">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_1010/M_1010.png" alt="M_1010" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_1010.glb" alt="M_1010" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_1010</div>
       <h2 class="m-name">Ghost <span class="t-jp">ゴースト</span></h2>
@@ -2098,7 +2100,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8000" data-id="M_8000">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8000/M_8000.png" alt="M_8000" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8000.glb" alt="M_8000" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8000</div>
       <h2 class="m-name">Goblin <span class="t-jp">ゴブリンLv0</span></h2>
@@ -2135,7 +2137,7 @@ ATK9：待機
 </section>
 <section class="m-detail" id="m-M_8001" data-id="M_8001">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8001/M_8001.png" alt="M_8001" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8001.glb" alt="M_8001" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8001</div>
       <h2 class="m-name">Goblin <span class="t-jp">ゴブリンLv2</span></h2>
@@ -2169,7 +2171,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8002" data-id="M_8002">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8002/M_8002.png" alt="M_8002" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8002.glb" alt="M_8002" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8002</div>
       <h2 class="m-name">Goblin <span class="t-jp">ゴブリンLv3</span></h2>
@@ -2203,7 +2205,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8010" data-id="M_8010">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8010/M_8010.png" alt="M_8010" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8010.glb" alt="M_8010" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8010</div>
       <h2 class="m-name">Goblin Archer <span class="t-jp">ゴブリンアーチャー</span></h2>
@@ -2243,7 +2245,7 @@ ATK2：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8011" data-id="M_8011">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8011/M_8011.png" alt="M_8011" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8011.glb" alt="M_8011" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8011</div>
       <h2 class="m-name">Goblin Archer <span class="t-jp">ゴブリンアーチャー</span></h2>
@@ -2278,7 +2280,7 @@ ATK2：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8012" data-id="M_8012">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8012/M_8012.png" alt="M_8012" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8012.glb" alt="M_8012" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8012</div>
       <h2 class="m-name">Goblin Archer <span class="t-jp">ゴブリンアーチャー</span></h2>
@@ -2313,7 +2315,7 @@ ATK2：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8020" data-id="M_8020">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8020/M_8020.png" alt="M_8020" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8020.glb" alt="M_8020" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8020</div>
       <h2 class="m-name">Goblin Warrior <span class="t-jp">ゴブリンウォーリア</span></h2>
@@ -2356,7 +2358,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8021" data-id="M_8021">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8021/M_8021.png" alt="M_8021" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8021.glb" alt="M_8021" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8021</div>
       <h2 class="m-name">Goblin Warrior <span class="t-jp">ゴブリンウォーリア</span></h2>
@@ -2394,7 +2396,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8022" data-id="M_8022">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8022/M_8022.png" alt="M_8022" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8022.glb" alt="M_8022" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8022</div>
       <h2 class="m-name">Goblin Warrior <span class="t-jp">ゴブリンウォーリア</span></h2>
@@ -2428,7 +2430,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8030" data-id="M_8030">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8030/M_8030.png" alt="M_8030" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8030.glb" alt="M_8030" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8030</div>
       <h2 class="m-name">Goblin Shaman <span class="t-jp">ゴブリンシャーマン</span></h2>
@@ -2463,7 +2465,7 @@ town.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:5
 </section>
 <section class="m-detail" id="m-M_8031" data-id="M_8031">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8031/M_8031.png" alt="M_8031" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8031.glb" alt="M_8031" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8031</div>
       <h2 class="m-name">Goblin Shaman <span class="t-jp">ゴブリンシャーマン</span></h2>
@@ -2502,7 +2504,7 @@ armor craftsmen.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div sty
 </section>
 <section class="m-detail" id="m-M_8032" data-id="M_8032">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8032/M_8032.png" alt="M_8032" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8032.glb" alt="M_8032" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8032</div>
       <h2 class="m-name">Goblin Shaman <span class="t-jp">ゴブリンシャーマン</span></h2>
@@ -2547,7 +2549,7 @@ and the village.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div sty
 </section>
 <section class="m-detail" id="m-M_8040" data-id="M_8040">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8040/M_8040.png" alt="M_8040" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8040.glb" alt="M_8040" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8040</div>
       <h2 class="m-name">Poison Slime <span class="t-jp">ポイズンスライム</span></h2>
@@ -2578,7 +2580,7 @@ ATK2：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8050" data-id="M_8050">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8050/M_8050.png" alt="M_8050" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8050.glb" alt="M_8050" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8050</div>
       <h2 class="m-name">Bat <span class="t-jp">バット</span></h2>
@@ -2611,7 +2613,7 @@ in a green bottle.
 </section>
 <section class="m-detail" id="m-M_8051" data-id="M_8051">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8051/M_8051.png" alt="M_8051" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8051.glb" alt="M_8051" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8051</div>
       <h2 class="m-name">Bat <span class="t-jp">バット</span></h2>
@@ -2644,7 +2646,7 @@ in a green bottle.
 </section>
 <section class="m-detail" id="m-M_8052" data-id="M_8052">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8052/M_8052.png" alt="M_8052" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8052.glb" alt="M_8052" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8052</div>
       <h2 class="m-name">Bat <span class="t-jp">バット</span></h2>
@@ -2675,7 +2677,7 @@ ATK9：待機
 </section>
 <section class="m-detail" id="m-M_8060" data-id="M_8060">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8060/M_8060.png" alt="M_8060" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8060.glb" alt="M_8060" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8060</div>
       <h2 class="m-name">Flame Bat <span class="t-jp">フレイムバット</span></h2>
@@ -2708,7 +2710,7 @@ in a green bottle.
 </section>
 <section class="m-detail" id="m-M_8070" data-id="M_8070">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8070/M_8070.png" alt="M_8070" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8070.glb" alt="M_8070" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8070</div>
       <h2 class="m-name">Skeleton <span class="t-jp">スケルトン</span></h2>
@@ -2742,7 +2744,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8080" data-id="M_8080">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8080/M_8080.png" alt="M_8080" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8080.glb" alt="M_8080" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8080</div>
       <h2 class="m-name">Skeleton Archer <span class="t-jp">スケルトンアーチャー</span></h2>
@@ -2782,7 +2784,7 @@ ATK1：弓矢攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8081" data-id="M_8081">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8081/M_8081.png" alt="M_8081" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8081.glb" alt="M_8081" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8081</div>
       <h2 class="m-name">Skeleton Archer <span class="t-jp">スケルトンアーチャー</span></h2>
@@ -2816,7 +2818,7 @@ ATK1：弓矢攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8090" data-id="M_8090">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8090/M_8090.png" alt="M_8090" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8090.glb" alt="M_8090" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8090</div>
       <h2 class="m-name">Skeleton Warrior <span class="t-jp">スケルトンウォーリア</span></h2>
@@ -2855,7 +2857,7 @@ ATK1：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8091" data-id="M_8091">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8091/M_8091.png" alt="M_8091" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8091.glb" alt="M_8091" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8091</div>
       <h2 class="m-name">Skeleton Warrior <span class="t-jp">スケルトンウォーリア</span></h2>
@@ -2889,7 +2891,7 @@ ATK1：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_8100" data-id="M_8100">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8100/M_8100.png" alt="M_8100" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8100.glb" alt="M_8100" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8100</div>
       <h2 class="m-name">Lizardman <span class="t-jp">リザードマン</span></h2>
@@ -2929,7 +2931,7 @@ ATK2：飛び込み</pre>
 </section>
 <section class="m-detail" id="m-M_8101" data-id="M_8101">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8101/M_8101.png" alt="M_8101" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8101.glb" alt="M_8101" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8101</div>
       <h2 class="m-name">Lizardman <span class="t-jp">リザードマン</span></h2>
@@ -2963,7 +2965,7 @@ ATK2：飛び込み</pre>
 </section>
 <section class="m-detail" id="m-M_8110" data-id="M_8110">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8110/M_8110.png" alt="M_8110" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8110.glb" alt="M_8110" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8110</div>
       <h2 class="m-name">Lizard Shaman <span class="t-jp">リザードシャーマン</span></h2>
@@ -2998,7 +3000,7 @@ MAGIC:魔法</pre>
 </section>
 <section class="m-detail" id="m-M_8120" data-id="M_8120">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8120/M_8120.png" alt="M_8120" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8120.glb" alt="M_8120" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8120</div>
       <h2 class="m-name">Elder Lizardman <span class="t-jp">エルダーリザードマン</span></h2>
@@ -3032,7 +3034,7 @@ ATK2：飛び込み</pre>
 </section>
 <section class="m-detail" id="m-M_8130" data-id="M_8130">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8130/M_8130.png" alt="M_8130" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8130.glb" alt="M_8130" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8130</div>
       <h2 class="m-name">Griffon <span class="t-jp">グリフォン</span></h2>
@@ -3096,7 +3098,7 @@ ATK2：ガスクラウド（未使用）←&quot;ブラストウィスプ&quot;�
 </section>
 <section class="m-detail" id="m-M_8150" data-id="M_8150">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8150/M_8150.png" alt="M_8150" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8150.glb" alt="M_8150" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8150</div>
       <h2 class="m-name">Minotaur <span class="t-jp">ミノタウロス</span></h2>
@@ -3127,7 +3129,7 @@ paralysis.</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="wi
 </section>
 <section class="m-detail" id="m-M_8160" data-id="M_8160">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8160/M_8160.png" alt="M_8160" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8160.glb" alt="M_8160" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8160</div>
       <h2 class="m-name">Hydra <span class="t-jp">ヒドラ</span></h2>
@@ -3154,7 +3156,7 @@ ATK3：くちばし攻撃（地上）</pre>
 </section>
 <section class="m-detail" id="m-M_8170" data-id="M_8170">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_8170/M_8170.png" alt="M_8170" /></div>
+    <div class="m-sprite"><model-viewer src="models/M_8170.glb" alt="M_8170" camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" shadow-intensity="0.6" exposure="1.0" loading="lazy" reveal="auto" style="width:100%;height:100%;background:#0c0d10"></model-viewer></div>
     <div class="m-title">
       <div class="m-id">M_8170</div>
       <h2 class="m-name">Evil Eye <span class="t-jp">イービルアイ</span></h2>

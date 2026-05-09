@@ -95,9 +95,14 @@ PAGE = """<!doctype html>
 </head>
 <body>
 <header>
-  <h1>Xanadu Next — assets</h1>
-  <div class="meta">{counts}</div>
-  <a href="debug.html" style="margin-left:auto;color:var(--accent);font-size:12px">debug ↗</a>
+  <h1>Xanadu Next</h1>
+  <nav style="display:flex;gap:4px;margin-left:14px">
+    <a href="index.html" style="color:var(--accent);padding:4px 10px;border-radius:4px;background:var(--bg);font-size:12px">Assets</a>
+    <a href="monsters.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px">Bestiary</a>
+    <a href="areas.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px">Areas</a>
+    <a href="debug.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px">Debug</a>
+  </nav>
+  <div class="meta" style="margin-left:auto">{counts}</div>
 </header>
 <nav>
   <button data-view="images" class="active">Images</button>

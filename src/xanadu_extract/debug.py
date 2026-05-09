@@ -657,10 +657,16 @@ PAGE = """<!doctype html>
 <body>
 <header>
   <h1>Xanadu Next — dev cruft &amp; translated comments</h1>
+  <nav style="display:flex;gap:4px;margin:8px 0 12px">
+    <a href="index.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;background:transparent;font-size:12px;text-decoration:none">Assets</a>
+    <a href="monsters.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px;text-decoration:none">Bestiary</a>
+    <a href="areas.html" style="color:var(--muted);padding:4px 10px;border-radius:4px;font-size:12px;text-decoration:none">Areas</a>
+    <a href="debug.html" style="color:var(--accent);padding:4px 10px;border-radius:4px;background:#1f222b;font-size:12px;text-decoration:none">Debug</a>
+  </nav>
   <p>Things Falcom forgot to clean up before pressing the disc, plus the
      bilingual rendering of every Japanese commentary line in the data
      tables. Each Japanese line shows the original on top, with the English
-     directly underneath in gold. ← <a href="index.html">back to viewer</a></p>
+     directly underneath in gold.</p>
 </header>
 <main>
 {body}

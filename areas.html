@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xanadu Next — Areas</title>
+<style>
+
+:root {
+  --bg: #0f1014;
+  --panel: #181a21;
+  --panel-2: #1f222b;
+  --border: #262a35;
+  --fg: #e7e7ea;
+  --muted: #8a8e9c;
+  --accent: #c7a86b;
+  --accent-soft: #f6e5b8;
+  --link: #9bb6e0;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg);
+              font: 13px/1.5 ui-sans-serif, system-ui,
+              "Hiragino Sans", "Noto Sans CJK JP", sans-serif; }
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--accent); }
+code { font: 12px ui-monospace, monospace; background: #0c0d10;
+       padding: 1px 6px; border-radius: 3px; color: var(--fg); }
+b { font-weight: 600; }
+
+.top { display: flex; align-items: center; gap: 18px; padding: 10px 18px;
+       background: var(--panel); border-bottom: 1px solid var(--border);
+       position: sticky; top: 0; z-index: 50; }
+.top h1 { margin: 0; font-size: 14px; font-weight: 600;
+          letter-spacing: 0.02em; }
+.top h1 a { color: var(--fg); }
+.top h1 a:hover { color: var(--accent); }
+.top nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.top nav a { color: var(--muted); padding: 4px 10px; border-radius: 4px;
+             font-size: 12px; }
+.top nav a:hover { color: var(--fg); background: var(--panel-2); }
+.top nav a.active { color: var(--accent); background: var(--panel-2); }
+.top .spacer { flex: 1; }
+.top .meta { color: var(--muted); font-size: 11px; }
+
+main { padding: 22px; max-width: 1200px; margin: 0 auto; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+     color: var(--accent); margin: 28px 0 8px; font-weight: 600; }
+h2 .count { color: var(--muted); font-weight: 400; }
+.lede { color: var(--muted); margin: 0 0 12px; max-width: 80ch; }
+.panel { background: var(--panel); border: 1px solid var(--border);
+         border-radius: 4px; padding: 14px 16px; margin-bottom: 14px; }
+
+
+</style>
+</head>
+<body>
+<div class="top"><h1><a href="index.html">Xanadu Next</a></h1><nav><a href="index.html" class="">Assets</a><a href="monsters.html" class="">Bestiary</a><a href="areas.html" class="active">Areas</a><a href="debug.html" class="">Debug</a></nav><div class="spacer"></div><span class="meta">17 areas</span></div>
+<main>
+<p class="lede">17 area definitions from <code>DATA/Map/area*/area*.inf</code>.
+Each one declares one or more named <em>blocks</em> (the English names that
+appear in-game, like &ldquo;Floodgate&rdquo; or &ldquo;Eternal Maze&rdquo;), a list of
+monster slots that the area's encounter system can roll, and DROP() entries
+for breakable scenery. Monster pages cross-link in here.</p>
+<div class="panel">
+<table style="width:100%; font: 12px ui-monospace, monospace; border-collapse: collapse;">
+<thead><tr><th style="text-align:left">area</th><th style="text-align:left">blocks (in-game names)</th>
+<th>spawn slots</th><th>DROP() entries</th></tr></thead>
+<tbody><tr id="area00"><td><code>area00</code></td><td>Floodgate, Lakebed Ruins, Inn/Tavern, Shrine, Tool Shop, Mayor&#x27;s House, Weapon Shop, Harlech Village, Inn/Tavern 2F</td><td>0</td><td>0</td></tr><tr id="area01"><td><code>area01</code></td><td>abc</td><td>3</td><td>0</td></tr><tr id="area02"><td><code>area02</code></td><td>Temple</td><td>0</td><td>0</td></tr><tr id="area03"><td><code>area03</code></td><td>abc</td><td>8</td><td>0</td></tr><tr id="area04"><td><code>area04</code></td><td>Test</td><td>0</td><td>0</td></tr><tr id="area05"><td><code>area05</code></td><td>Eternal Maze B1F, Eternal Maze B2F</td><td>0</td><td>64</td></tr><tr id="area06"><td><code>area06</code></td><td>Castle Strangerock</td><td>0</td><td>13</td></tr><tr id="area07"><td><code>area07</code></td><td>Clover Ruins, Trechier Woods</td><td>0</td><td>26</td></tr><tr id="area08"><td><code>area08</code></td><td>Eaglet Mountain Outside, Eaglet Mountain 1F, Eaglet Mountain 2F, Eaglet Mountain 3F, Eaglet Mountain 4F, Eaglet Mountain Summit</td><td>0</td><td>48</td></tr><tr id="area09"><td><code>area09</code></td><td>Time Crevice, Netherworld, Xanadu Labyrinth</td><td>0</td><td>12</td></tr><tr id="area10"><td><code>area10</code></td><td>Back-Alley Ruins</td><td>0</td><td>12</td></tr><tr id="area12"><td><code>area12</code></td><td>Demon&#x27;s Nest B1F, Demon&#x27;s Nest B2F, Demon&#x27;s Nest Boss Room</td><td>0</td><td>0</td></tr><tr id="area14"><td><code>area14</code></td><td>Demon&#x27;s Nest B1F, Demon&#x27;s Nest B2F, Demon&#x27;s Nest Boss Room</td><td>0</td><td>0</td></tr><tr id="area20"><td><code>area20</code></td><td>Tutorial</td><td>0</td><td>0</td></tr><tr id="area51"><td><code>area51</code></td><td>Test Area</td><td>0</td><td>0</td></tr><tr id="area52"><td><code>area52</code></td><td>Tutorial</td><td>0</td><td>0</td></tr><tr id="area60"><td><code>area60</code></td><td>sample</td><td>0</td><td>0</td></tr></tbody>
+</table>
+</div>
+</main>
+
+</body>
+</html>

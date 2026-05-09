@@ -1,0 +1,53 @@
+
+// ----------------------------------------------------------------------------
+// 初期状態                                                                    
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	CHECK_GAME_FLAG(148)
+	OFF_JUMP L_END
+	SWITCH_ON("lever")
+	END
+
+L_END:
+	END
+}
+
+
+// ----------------------------------------------------------------------------
+// レバーオンオフ                                                              
+// ----------------------------------------------------------------------------
+
+DEF("lever")
+
+RES("CLICK")
+{
+	CHECK_GAME_FLAG(148)
+	ON_JUMP L_FLAG
+	SWITCH_ON("lever")
+
+	CHECK_GAME_FLAG(149)
+	OFF_JUMP L_MSG
+
+	GAME_FLAG_ON(148)
+	WAIT(100)
+	END
+
+L_MSG:
+	GAME_FLAG_ON(148)
+	WAIT(100)
+
+	MSG("You hear the sound of a stream babbling in the distance.")
+	GAME_FLAG_ON(149)
+	END
+
+L_FLAG:
+	SWITCH_OFF("lever")
+	GAME_FLAG_OFF(148)
+	WAIT(100)
+}
+
+

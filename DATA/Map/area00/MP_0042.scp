@@ -1,0 +1,201 @@
+
+// ============================================================================
+// ÇmÇoÇbÉeÉXÉgópÅià‰è„Åj
+// ============================================================================
+
+DEF("0060")
+RES("CLICK")
+{
+	
+	FOCUS_CHR("0060")
+	SET_NAME("0060","Since he's got a red shirt on,|'Red Shirt' is what to call the boy.")
+	SET_MOTION("0060","ATTACK1",-1)
+
+	MSG("Well, I'd say the representation is what's important.")
+	SET_MOTION("0060","STAND",-1)
+END
+}
+
+
+DEF("0070")
+RES("CLICK")
+{
+	FOCUS_CHR("0070")
+	SET_NAME("0070","[Momo-chan] is her destined name.")
+	SET_MOTION("0070","ATTACK1",-1)
+
+	MSG("I'm Momo-chaaaan!|I was originally gonna be the heroooine! Soooo not fair!")
+	SET_MOTION("0070","STAND",-1)
+END
+}
+
+
+
+DEF("0080")
+RES("CLICK")
+{
+	FOCUS_CHR("0080")
+	SET_NAME("0080","They say the elders are important to ancient Japanese culture.")
+	SET_MOTION("0080","ATTACK1",-1)
+
+	MSG("That's right, you young'ns give me no respect.")
+	SET_MOTION("0080","STAND",-1)
+END
+}
+
+
+DEF("0090")
+RES("CLICK")
+{
+	FOCUS_CHR("0090")
+	SET_NAME("0090","Name's Gin, Shooting Star Gin.")
+	SET_MOTION("0090","ATTACK1",-1)
+
+	MSG("But, I make kitten sounds. Meeeow.")
+	SET_MOTION("0090","STAND",-1)
+END
+}
+
+
+DEF("0100")
+RES("CLICK")
+{
+	FOCUS_CHR("0100")
+	SET_NAME("0100","Does this ponytail look like it should be yanked?")
+	SET_MOTION("0100","ATTACK1",-1)
+
+	MSG("I think people who do that should be|arrested for sexual harassment.")
+	SET_MOTION("0100","STAND",-1)
+END
+}
+
+DEF("0110")
+RES("CLICK")
+{
+	FOCUS_CHR("0110")
+	SET_NAME("0110","Homeless")
+	SET_MOTION("0110","ATTACK1",-1)
+
+	MSG("The Woooorld of Cardboard, it's everywhere, man.")
+	SET_MOTION("0110","STAND",-1)
+END
+}
+
+DEF("0120")
+RES("CLICK")
+{
+	FOCUS_CHR("0120")
+	SET_NAME("0120","Girl A")
+	SET_MOTION("0120","ATTACK1",-1)
+
+	MSG("Girl A has been on the news for real.")
+	SET_MOTION("0120","STAND",-1)
+END
+}
+DEF("0130")
+RES("CLICK")
+{
+	FOCUS_CHR("0130")
+	SET_NAME("0130","Android Kid B")
+	SET_MOTION("0130","ATTACK1",-1)
+
+	MSG("MASTER, SUCH A FUNCTION IS NOT PROGRAMMED")
+	SET_MOTION("0130","STAND",-1)
+END
+}
+DEF("0140")
+RES("CLICK")
+{
+	FOCUS_CHR("0140")
+	SET_NAME("0140","Sad Child")
+	SET_MOTION("0140","ATTACK1",-1)
+
+	MSG("It's because I'm the 3rd one...")
+	SET_MOTION("0140","STAND",-1)
+END
+}
+
+DEF("0150")
+RES("CLICK")
+{
+	FOCUS_CHR("0150")
+	SET_NAME("0150","Carefree Old Man")
+	SET_MOTION("0150","ATTACK1",-1)
+
+	MSG("Nff usfh lemmfhhshfsh washhh.")
+	SET_MOTION("0150","STAND",-1)
+END
+}
+
+
+DEF("0180")
+RES("CLICK")
+{
+	FOCUS_CHR("0180")
+	SET_NAME("0180","Since they're called 'Kid,'|you can't trust them with things.")
+	SET_MOTION("0180","ATTACK1",-1)
+
+	MSG("Well, everyone's sense of value is different.")
+	SET_MOTION("0180","STAND",-1)
+END
+}
+
+DEF("0190")
+RES("CLICK")
+{
+	FOCUS_CHR("0190")
+	SET_NAME("0190","10-Year-Old Child")
+	SET_MOTION("0190","ATTACK1",-1)
+
+	MSG("Ah. Ooh. Ahh.")
+	SET_MOTION("0190","STAND",-1)
+END
+}
+
+DEF("0210")
+RES("CLICK")
+{
+	FOCUS_CHR("0210")
+	SET_NAME("0210","Gatekeeper (Or Guard)")
+	SET_MOTION("0210","ATTACK1",-1)
+
+	MSG("Can you even tell what I'm supposed to be guarding?")
+	SET_MOTION("0210","STAND",-1)
+END
+}
+
+DEF("0220")
+RES("CLICK")
+{
+	FOCUS_CHR("0220")
+	SET_NAME("0220","Sleeveless Girl")
+	SET_MOTION("0220","ATTACK1",-1)
+
+	MSG("It's cold.")
+	SET_MOTION("0220","STAND",-1)
+END
+}
+
+DEF("0230")
+RES("CLICK")
+{
+	FOCUS_CHR("0230")
+	SET_NAME("0230","Mother")
+	SET_MOTION("0230","ATTACK1",-1)
+
+	MSG("Mmmmm, smells like Mom's cooking.|I think it's coming from the crab miso...")
+	SET_MOTION("0230","STAND",-1)
+END
+}
+
+DEF("0240")
+RES("CLICK")
+{
+	FOCUS_CHR("0240")
+	SET_NAME("0240","Gramps")
+	SET_MOTION("0240","ATTACK1",-1)
+
+	MSG("Gramps.")
+	SET_MOTION("0240","STAND",-1)
+END
+}

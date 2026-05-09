@@ -1,0 +1,130 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期化                                                                
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+	INIT_SWITCH_ON("d1")
+	INIT_SWITCH_ON("d2")
+	INIT_SWITCH_ON("d3")
+	INIT_SWITCH_ON("d4")
+
+	CHECK_RNDMAP_FLOOR(0)
+	ON_JUMP 0
+	CHECK_RNDMAP_FLOOR(1)
+	ON_JUMP 1
+	CHECK_RNDMAP_FLOOR(2)
+	ON_JUMP 2
+	CHECK_RNDMAP_FLOOR(3)
+	ON_JUMP 3
+
+	0:
+	// 第１部
+	// ウィル・オー・ウィスプ
+	put_monster("m00",392,15,2,0,0)
+	put_monster("m01",392,15,2,0,1)
+	put_monster("m02",392,15,2,0,2)
+	put_monster("m03",392,15,2,0,3)
+	JUMP PASS
+
+	1:
+	// 第２部
+	// イービルアイ
+	put_monster("m00",023,15,2,0,0)
+	put_monster("m01",023,15,2,0,1)
+	put_monster("m02",023,15,2,0,2)
+	put_monster("m03",023,15,2,0,3)
+	JUMP PASS
+
+	2:
+	// 第３部
+	// ゴーレム
+	put_monster("m00",020,15,2,0,0)
+	// ブラックスライム
+	put_monster("m01",177,15,2,0,1)
+	put_monster("m02",177,15,2,0,2)
+	put_monster("m03",177,15,2,0,3)
+	JUMP PASS
+
+	3:
+	// 第４部
+	// ゴーレム
+	put_monster("m00",020,15,2,0,0)
+	put_monster("m01",020,15,2,0,1)
+	// ウィル・オー・ウィスプ
+	put_monster("m02",392,15,2,0,2)
+	put_monster("m03",392,15,2,0,3)
+	JUMP PASS
+
+PASS:
+
+	CHECK_MONSTER(0)
+	ON_SKIP(1)
+	END
+
+	QUAKE(0,10,30)
+	SWITCH_OFF("d1")
+	SWITCH_OFF("d2")
+	SWITCH_OFF("d3")
+	SWITCH_OFF("d4")
+
+	ROOM_FLAG_ON(0)
+
+}
+
+
+// ----------------------------------------------------------------------------
+// 勝利イベント                                                                
+// ----------------------------------------------------------------------------
+
+RES("WIN")
+{
+	QUAKE(0,10,30)
+	SWITCH_ON("d1")
+	SWITCH_ON("d2")
+	SWITCH_ON("d3")
+	SWITCH_ON("d4")
+
+	ROOM_FLAG_OFF(0)
+}
+
+
+// ----------------------------------------------------------------------------
+// 扉閉め                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("d1")
+RES("CLICK")
+{
+	CHECK_ROOM_FLAG(0)
+	OFF_SKIP(1)
+	WAIT(0)
+}
+
+DEF("d2")
+RES("CLICK")
+{
+	CHECK_ROOM_FLAG(0)
+	OFF_SKIP(1)
+	WAIT(0)
+}
+
+DEF("d3")
+RES("CLICK")
+{
+	CHECK_ROOM_FLAG(0)
+	OFF_SKIP(1)
+	WAIT(0)
+}
+
+DEF("d4")
+RES("CLICK")
+{
+	CHECK_ROOM_FLAG(0)
+	OFF_SKIP(1)
+	WAIT(0)
+}
+
+

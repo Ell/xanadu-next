@@ -1,0 +1,126 @@
+//========================================================================
+// Guardian Table(05/07/19Ver)
+//========================================================================
+
+// 00 --------------------------------------------------------------------
+"Sylphid"
+"god00"
+"Increases Max HP"
+"A Guardian spirit with|elegant female curves.|Once named the will of|the wind, blowing|through trees and across|lakes, its song|envelopes a person in a|healing aria. It is a|teasing spirit, as well,|and enjoys tricking|travelers."
+10
+   1,   31,   70,  120,  180,  250,  330,  420,  520,  630
+//0.03
+0.04
+
+// 01 --------------------------------------------------------------------
+"Damonkatze"
+"god01"
+"Increases SP"
+"A lustrous black cat|with sable fur the color|of a cloudless night.|Originally known as a|familiar for witches,|this elusive spirit can|occasionally be found|basking in the|moonlight."
+// 5
+//   1,   51,  130,  240,  380,    0,    0,    0,    0,    0,
+10
+   1,   31,   70,  120,  180,  250,  330,  420,  520,  630
+//0.1
+0.033
+
+// 02 --------------------------------------------------------------------
+"Sorcerian"
+"god02"
+"Raises Magic Power"
+"The spirit of a great|sorcerer, so enthralled|with his pursuit of|alchemy that his own|death went past his|notice. Worshipped as|the 'God of knowledge|and science' even now,|this Guardian is not|from this region."
+10
+   1,   31,   70,  120,  180,  250,  330,  420,  520,  630,
+0.03
+
+// 03 --------------------------------------------------------------------
+"Belladonna"
+"god03"
+"Raises Potion Efficacy"
+"A spirit of the miracle|elixir formulated from|the Atropa genus.|Because the war caused|this particular strain|to become extinct, it|goes without saying that|this elixir has become|rather sought after|amongst wealthy|aristocrats and|merchants."
+//10
+//   1,   21,   50,   90,  140,  200,  270,  350,  440,  540,
+//0.1
+ 5
+   1,   31,   80,  150,  240,    0,    0,    0,    0,    0,
+0.2
+
+// 04 --------------------------------------------------------------------
+"Durendal"
+"god04"
+"Increases Prof. Gains"
+"The emperor ordered a|great sword to be made,|so the blacksmith thrust|his own wife into the|forge, resulting in the|tempering of two blades.|Although the swords were|completed, the smith|vanished. It is said he|wandered off, Durendal|held in his arms."
+10
+//   1,   31,   70,  120,  180,  250,  330,  420,  520,  630,
+   1,   21,   50,   90,  140,  200,  270,  350,  440,  540,
+0.2
+
+// 05 --------------------------------------------------------------------
+"Zwerg"
+"god05"
+"Increases Drop Rate"
+"When the Earth was born,|this spirit's race|bustled below the|surface as metalsmiths,|crafting many a trinket.|Perhaps because of their|subterranean existence,|it's said their work|with mineral veins and|jewels is unparalleled."
+ 8
+   1,   41,  130,  270,  460,  700,  990, 1330,    0,    0,
+1.0
+
+// 06 --------------------------------------------------------------------
+"Vanaporte"
+"god06"
+"Raises Charisma"
+"During the Xanadu era,|this distinguished|general was said to have|led a troop of 200 men|to victory against|20,000, but even his|military genius could|not stand against the|hordes of Galsis, and he|became naught but a|spirit in the end."
+10
+   1,   21,   60,  120,  200,  300,  420,  560,  720,  900,
+-0.020,0.010
+
+// 07 --------------------------------------------------------------------
+"Flugel"
+"god07"
+"Raises EXP Earned"
+"This great winged snake|appears in legends of|the native Hopi people|of Leyland. Residing in|the clouds, this spirit|is known to protect|travelers. It was also|once revered as a god of|earthquakes, but the|advent of Galsis put it|in its place."
+//10
+//   1,   31,   70,  120,  180,  250,  330,  420,  520,  630,
+//0.05
+ 5
+   1,   51,  130,  240,  380,    0,    0,    0,    0,    0,
+0.1
+
+// 08 --------------------------------------------------------------------
+"Ganesha"
+"god08"
+"Resists Abnormal Eff."
+"A huge animal called an|elephant from a country|far south that was|presented to the king.|The beast was deeply|loyal, even in death,|and defended its master|as a spirit. Even now,|Ganesha tries to protect|its deceased lord."
+//10
+//   1,   21,   50,   90,  140,  200,  270,  350,  440,  540,
+//0.02,3.0
+ 3
+   1,   41,  100,    0,    0,    0,    0,    0,    0,    0,
+1.0
+
+// 09 --------------------------------------------------------------------
+"Grey Ash"
+"god09"
+"Improves Armlets"
+"Interested in humans,|this reaper bucked the|natural order and|wandered away from the|underworld. Capricious|and curious, Grey Ash|takes pleasure in|observing human nature|and watches them until|their deaths."
+ 3
+   1,   41,  100,    0,    0,    0,    0,    0,    0,    0,
+1.0
+
+// 10 --------------------------------------------------------------------
+"Celbesk"
+"god10"
+"Improves Equipment"
+"This undefeated champion|was buried without|fanfare by his jealous|and neglected wife, but|his passion for fighting|was so renowned that a|holy knight held a|funeral in his honor.nHis spirit lingers on as|an embodiment of his|dedication to the craft."
+ 5
+   1,   51,  130,  240,  380,    0,    0,    0,    0,    0,
+//0.02
+0.06
+
+// 11 --------------------------------------------------------------------
+"Bella Freude"
+"god11"
+"More Bonus Points"
+"When nobody is home and|you hear the toll of a|bell, it might be the|work of this girlish|spirit who often resides|in old houses. Her|presence is considered|to be good fortune." 
+ 3
+   1,  151,  400,    0,    0,    0,    0,    0,    0,    0,
+1.0

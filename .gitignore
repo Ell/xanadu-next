@@ -1,0 +1,10 @@
+.venv
+__pycache__
+*.py[oc]
+src/
+uv.lock
+pyproject.toml
+.python-version
+.mcp.json
+out/
+.playwright-mcp/

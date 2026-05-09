@@ -1,0 +1,108 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期状態                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+}
+
+DEF("door")
+RES("CLICK")
+{
+}
+
+DEF("shop")
+RES("INIT")
+{
+	sys("#c2WIP Shop Interface Test")
+}
+RES("CLICK")
+{
+	focus_chr("shop")
+
+START:
+	sel("Which shop do you want to test?|Weapon|Tools|Locksmith|Training|Skills|Some Gold Please|Cancel")
+	check_select(0)
+	off_jump SEL_A
+	// 武器屋 /////////////////////
+	erase_shop_list(0)
+	entry_shop_list("0/1/2/4/5/10/11/13/14/15/17")
+	entry_shop_list("80/81/82/83")
+	entry_shop_list("60/61/62")
+	call_shop(20000)
+	jump START
+SEL_A:
+	check_select(1)
+	off_jump SEL_B
+	// 道具屋屋 /////////////////////
+	erase_shop_list(0)
+	entry_shop_list("210/50210/100210/225/50225/100225/224/50224/100224/223/50223/100223")
+	call_shop(30000)
+	jump START
+SEL_B:
+	check_select(2)
+	off_jump SEL_C
+	// カギ屋 /////////////////////
+	erase_shop_list(0)
+	entry_shop_list("227")
+	call_shop(10000)
+	jump START
+SEL_C:
+	// 道場 /////////////////////
+	check_select(3)
+	off_jump SEL_C2
+START2:
+		// 各師範 ////////////////
+		sel("Which skill?|STR|INT|REF|CON|MND|CHR|Go Back One Menu")
+		check_select(0)
+		off_jump SEL1
+		call_shop(40000)
+		jump START2
+	SEL1:
+		check_select(1)
+		off_jump SEL2
+		call_shop(40001)
+		jump START2
+	SEL2:
+		check_select(2)
+		off_jump SEL3
+		call_shop(40002)
+		jump START2
+	SEL3:
+		check_select(3)
+		off_jump SEL4
+		call_shop(40003)
+		jump START2
+	SEL4:
+		check_select(4)
+		off_jump SEL5
+		call_shop(40004)
+		jump START2
+	SEL5:
+		check_select(5)
+		off_jump SEL6
+		call_shop(40005)
+		jump START2
+	SEL6:
+		jump START
+SEL_C2:
+	check_select(4)
+	off_jump SEL_D
+	// スキル屋 /////////////////////
+	erase_shop_list(0)
+	entry_shop_list("228/229/230")
+	call_shop(50000)
+	jump START
+SEL_D:
+	check_select(5)
+	off_jump SEL_E
+	sys("#c2Obtained 10000 gold!")
+	get_gold(10000)
+	jump START
+SEL_E:
+	end
+
+}
+

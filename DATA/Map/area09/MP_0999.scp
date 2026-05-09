@@ -1,0 +1,226 @@
+//////////////////////////////////////////////////////////////////////
+// ローレライボス戦
+//
+// ROOM_FLAG
+//  0: 1st 死亡チェック用
+//  1: 2nd 死亡チェック用
+//  2: 3rd 死亡チェック用
+//  3: イベントトリガー対策
+//
+//////////////////////////////////////////////////////////////////////////////
+// 初期化
+//////////////////////////////////////////////////////////////////////////////
+
+DEF("MAP")
+RES("INIT")
+{
+	SET_COLOR("k03",0x00000000,1,0)
+	SET_COLOR("k04",0x00000000,1,0)
+	SET_COLOR("k05",0x00000000,1,0)
+	SET_COLOR("k06",0x00000000,1,0)
+	SET_COLOR("k07",0x00000000,1,0)
+	SET_COLOR("k08",0x00000000,1,0)
+	SET_COLOR("k09",0x00000000,1,0)
+	SET_COLOR("k10",0x00000000,1,0)
+
+
+	// ★05/05/18:ブラックオニキス禁止フラグON
+	room_flag_on(255)
+	//とりあえず隠す
+	HIDE_CHR("lole2")
+	BLUR(0)
+	SLOW(0)
+
+// 05/04/26追記：ランダムマップから来た時のフェードを戻す処理 ----------------
+	CHECK_GAME_FLAG(920)
+	OFF_JUMP SKIP_FADE
+
+	CHECK_GAME_FLAG(3000)
+	OFF_JUMP SKIP_FADE
+	CINEMA_ON(0)
+	FADE_IN(-1)
+	CINEMA_OFF(0)
+	// フラグ戻して
+	GAME_FLAG_OFF(3000)
+
+SKIP_FADE:
+// ---------------------------------------------------------------------------
+
+	// EV C-9 《魅》のローレライを見たか（＝倒したか）
+	check_game_flag(3708)
+	off_jump NEXT3
+
+	// ワープゲート出現
+	ENTRY_CHR( 2, 459)
+	ENTRY_CHR( 3, 460)
+	ENTRY_CHR( 4, 461)
+	ENTRY_CHR( 5, 462)
+	ENTRY_CHR( 6, 479)
+	ENTRY_CHR( 7, 480)
+	ENTRY_CHR( 8, 481)
+
+	PUT_CHR( 2, "PoleRed",     0.00,0.00, 6.00,   0)
+	PUT_CHR( 3, "PoleBlue",    5.20,0.00,-3.00,   0)
+	PUT_CHR( 4, "PoleYellow", -5.20,0.00,-3.00,   0)
+	PUT_CHR( 5, "Base",        0.00,0.00, 0.00,   0)
+	PUT_CHR( 6, "NullBase3",   0.00,0.00, 0.00,   0)
+	PUT_CHR( 7, "NullBase2",   0.00,0.50, 0.00,   0)
+	PUT_CHR( 8, "NullBase1",   0.00,1.00, 0.00,   0)
+
+	set_motion("PoleRed",	"EMPTY2")
+	set_motion("PoleBlue",	"EMPTY2")
+	set_motion("PoleYellow","EMPTY2")
+	set_motion("Base","EMPTY2")
+
+	jump NEXT2
+
+NEXT3:
+	// 40 「武」の賢者ドヴォルザーク
+	ENTRY_CHR( 0, 498)
+	PUT_CHR( 0, "Dvorak",  -2.77,-11.61,-33.9, 180)
+	ENABLE_AUTO_TURN("Dvorak", 0)
+	// 124 「魅」の賢者ローレライ
+	ENTRY_CHR( 1, 124)
+	PUT_CHR( 1, "Lorele",  0.00,0.00,0.00,   0)
+
+NEXT2:
+
+	CHECK_GAME_FLAG(6)
+	ON_SKIP(1)
+	INIT_SWITCH_ON("efc")
+
+	CHECK_GAME_FLAG(4016)
+	OFF_JUMP START
+	SWITCH_ON("portal")
+	KILL_CHR("cover",0,0,1)
+
+START:
+	// うにゃーん空間
+//	set_raster_info( 0, 10,10, 0.001,0.001, 1,0, -1,-1, 0.5)
+	set_raster_info( 0, 200,200, 0.010,0.010, 1,1, -1,-1, 0.5)
+	raster(0,1)	
+	SET_CHR_SURFACE_ATTR("papa","M_0083e",0)
+
+	// とりあえず隠す
+	HIDE_CHR("1st")
+	HIDE_CHR("2nd")
+	HIDE_CHR("3rd")
+	HIDE_CHR("core")
+	HIDE_CHR("papa")
+	HIDE_CHR("box")
+	camera_off("こども用")
+	CAMERA_Off("ぱぱ用")
+	HIDE_CHR("stop")	
+
+	// ぱぱ用コリジョンモデルのアタッチ
+	load_chr("M_0083\M_0083h",0)
+	//set_collision_obj("papa",0)
+
+	CHECK_GAME_FLAG(905)
+	OFF_JUMP NEXT
+	CHECK_GAME_FLAG(906)
+	ON_JUMP NEXT
+	SHOW_CHR("box")
+	
+NEXT:
+}
+
+
+// ---------------------------------------------------------------------------
+// 階段
+// ---------------------------------------------------------------------------
+
+DEF("k01")
+RES("STEP_ON")
+{
+	SET_COLOR("k02",0xff000000,10,0)
+	SET_COLOR("k03",0x00600000,30,0)
+}
+
+DEF("k02")
+RES("STEP_ON")
+{
+	SET_COLOR("k01",0xff000000,10,0)
+	SET_COLOR("k02",0xff000000,10,0)
+	SET_COLOR("k03",0xff000000,10,0)
+	SET_COLOR("k04",0x00600000,30,0)
+}
+
+DEF("k03")
+RES("STEP_ON")
+{
+	SET_COLOR("k01",0x00600000,30,0)
+	SET_COLOR("k02",0xff000000,10,0)
+	SET_COLOR("k03",0xff000000,10,0)
+	SET_COLOR("k04",0xff000000,10,0)
+	SET_COLOR("k05",0x00600000,30,0)
+}
+
+DEF("k04")
+RES("STEP_ON")
+{
+	SET_COLOR("k02",0x00600000,30,0)
+	SET_COLOR("k03",0xff000000,10,0)
+	SET_COLOR("k04",0xff000000,10,0)
+	SET_COLOR("k05",0xff000000,10,0)
+	SET_COLOR("k06",0x00600000,30,0)
+}
+
+DEF("k05")
+RES("STEP_ON")
+{
+	SET_COLOR("k03",0x00600000,30,0)
+	SET_COLOR("k04",0xff000000,10,0)
+	SET_COLOR("k05",0xff000000,10,0)
+	SET_COLOR("k06",0xff000000,10,0)
+	SET_COLOR("k07",0x00600000,30,0)
+}
+
+DEF("k06")
+RES("STEP_ON")
+{
+	SET_COLOR("k04",0x00600000,30,0)
+	SET_COLOR("k05",0xff000000,10,0)
+	SET_COLOR("k06",0xff000000,10,0)
+	SET_COLOR("k07",0xff000000,10,0)
+	SET_COLOR("k08",0x00600000,30,0)
+}
+
+DEF("k07")
+RES("STEP_ON")
+{
+	SET_COLOR("k05",0x00600000,30,0)
+	SET_COLOR("k06",0xff000000,10,0)
+	SET_COLOR("k07",0xff000000,10,0)
+	SET_COLOR("k08",0xff000000,10,0)
+	SET_COLOR("k09",0x00600000,30,0)
+}
+
+DEF("k08")
+RES("STEP_ON")
+{
+	SET_COLOR("k06",0x00600000,30,0)
+	SET_COLOR("k07",0xff000000,10,0)
+	SET_COLOR("k08",0xff000000,10,0)
+	SET_COLOR("k09",0xff000000,10,0)
+	SET_COLOR("k10",0x00600000,30,0)
+}
+
+DEF("k09")
+RES("STEP_ON")
+{
+	SET_COLOR("k07",0x00600000,30,0)
+	SET_COLOR("k08",0xff000000,10,0)
+	SET_COLOR("k09",0xff000000,10,0)
+	SET_COLOR("k10",0xff000000,10,0)
+}
+
+DEF("k10")
+RES("STEP_ON")
+{
+	SET_COLOR("k08",0x00600000,30,0)
+	SET_COLOR("k09",0xff000000,10,0)
+	SET_COLOR("k10",0xff000000,10,0)
+}
+
+

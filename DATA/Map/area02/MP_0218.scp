@@ -1,0 +1,6 @@
+DEF("switch")
+RES("CLICK")
+{
+	wait(60)
+}
+	

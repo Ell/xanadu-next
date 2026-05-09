@@ -1,0 +1,98 @@
+
+// ----------------------------------------------------------------------------
+// マップ                                                                    
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_ON(254)
+
+	//SE鳴らし
+	SE("SE_MOVE1")
+
+	LOCK("lock",3)
+}
+
+// ----------------------------------------------------------------------------
+// ゲートイベント                                                              
+// ----------------------------------------------------------------------------
+
+//DEF("lock")
+//RES("KEY")
+DEF("gate")
+RES("EVENT")
+{
+//	CHECK_KEY(3)
+//	OFF_JUMP next
+
+	// カギ使用
+//	USE_KEY(3)
+
+	// シネマ開始
+	CINEMA_ON(0)
+
+	// プレイヤー止まれ
+	STOP_PC(0)
+
+	// 解除エフェクト用モーションに
+	SET_MOTION("gate","WALK1",0)
+
+	// エフェクト解除待ちとクロスフェード待ち
+	WAIT(120)
+
+	// オブジェクト消し
+	HIDE_CHR("gate")
+
+	SE("SE_MOVE2")
+
+	// クロスフェード
+	CROSS_FADE(9)
+
+		// カメラ制御開始
+		PERMIT_SCRIPT_CAMERA(1)
+		SET_SCRIPT_CAMERA_EX( "PC", 1, 240,45,0, 15, 16 )
+		SCALE_SCRIPT_CAMERA( 0.5, 30, 0 )
+		ROTATE_SCRIPT_CAMERA( 30,0,0, 30, 0 )
+
+	// ブラー＆スロウ
+	SLOW(6)
+	BLUR(10)
+	WAIT(3)
+	BLUR(20)
+	WAIT(3)
+	BLUR(30)
+	WAIT(3)
+	BLUR(40)
+	WAIT(3)
+	BLUR(50)
+	WAIT(3)
+
+	FADE_OUT(15)
+
+	BLUR(60)
+	WAIT(3)
+	BLUR(70)
+	WAIT(3)
+	BLUR(80)
+	WAIT(3)
+	BLUR(90)
+	WAIT(3)
+	BLUR(100)
+	WAIT(3)
+
+	// マップ切り替え後にフェード処理
+	GAME_FLAG_ON(3000)
+		PERMIT_SCRIPT_CAMERA(0)
+	FADE_OUT(0)
+
+	// マップ移動
+	ENTRY_NEXT_RANDOM_MAP(1)
+
+END
+
+next:
+
+}
+

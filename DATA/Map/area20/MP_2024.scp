@@ -1,0 +1,24 @@
+
+// ----------------------------------------------------------------------------
+// ƒ}ƒbƒv‰Šúó‘Ô                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	put_monster("skull1",	319,1,0,0,0)
+	put_monster("bat1",		005,1,0,0,1)
+	put_monster("bat2",		005,1,0,0,2)
+	put_monster("bat3",		005,1,0,0,3)
+	put_monster("zombie1",	010,1,0,0,4)
+	put_monster("zombie2",	010,1,0,0,5)
+	put_monster("zombie3",	010,1,0,0,6)
+}
+
+
+DEF("heisi")
+RES("CLICK")
+{
+	msg("My thanks for waiting.|Let us be gone from this place.")
+}

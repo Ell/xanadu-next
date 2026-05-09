@@ -1,0 +1,287 @@
+
+// ----------------------------------------------------------------------------
+// 初期状態                                                                    
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	// とりあえず消しとく
+	HIDE_CHR("Beatrice")
+	HIDE_CHR("Dvorak")
+	HIDE_CHR("Tiowald")
+
+	// EV B-4 トレント戦後(ドヴォルザークとの会話)
+	CHECK_GAME_FLAG(3603)
+	OFF_JUMP NEXT2
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	CHECK_GAME_FLAG(3605)
+	ON_JUMP NEXT2
+
+	SHOW_CHR("Dvorak")
+	SHOW_CHR("Tiowald")
+
+NEXT2:
+	// カニグモ倒したか
+	CHECK_GAME_FLAG(1)
+	ON_JUMP NEXT3
+
+	SHOW_CHR("Beatrice")
+	SET_MOTION("Beatrice","STAND",0)
+	jump NEXT4
+
+NEXT3:
+	SHOW_CHR("Beatrice")
+	SET_MOTION("Beatrice","HOOK",0)
+
+NEXT4:
+	// カギ設定
+	CHECK_GAME_FLAG(1550)
+	ON_SKIP(2)
+	KAGI("d1550",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1550")
+
+	// カギ設定
+	CHECK_GAME_FLAG(1551)
+	ON_SKIP(2)
+	KAGI("d1551",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1551")
+
+	// 岩をガントレットで破壊したか？
+	CHECK_GAME_FLAG(588)
+	OFF_SKIP(1)
+	HIDE_CHR("iwa")
+
+	// マップ読み替え
+	CHECK_GAME_FLAG(1)
+	OFF_JUMP NEXT
+
+	LOAD_MAP("MP_05fc")
+	LOAD_HITMAP("MP_05fch")
+
+	END
+
+NEXT:
+
+	HIDE_CHR("iwa")
+
+}
+
+
+// ----------------------------------------------------------------------------
+// カギ開け
+// ----------------------------------------------------------------------------
+
+DEF("d1550")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1550)
+}
+
+DEF("d1551")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1551)
+}
+
+
+// ----------------------------------------------------------------------------
+// 柵
+// ----------------------------------------------------------------------------
+
+DEF("iwa")
+RES("KILL")
+{
+	KILL_CHR("iwa",0,0,-1)
+	GAME_FLAG_ON(588)
+}
+
+
+// ----------------------------------------------------------------------------
+// セーブ
+// ----------------------------------------------------------------------------
+
+DEF("save")
+RES("CLICK")
+{
+	CINEMA_ON(0)
+	STOP_PC(0)
+
+	SEL("Record your deeds?|#c2Save|Cancel")
+	CHECK_SELECT(0)
+	OFF_JUMP SEL_A
+
+		CALL_SHOP(4)
+//		SE("SE_UP_PRM")
+//		SYS("#c2今までの冒険を記録しました。")
+
+SEL_A:
+	CHECK_SELECT(1)
+
+	CINEMA_OFF(0)
+}
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+// ベアトリーチェ前イベント
+
+DEF("Beatrice")
+
+RES("INIT")
+{
+	// EV B-4 トレント戦後(ドヴォルザークとの会話)
+	CHECK_GAME_FLAG(3603)
+	OFF_JUMP EXIT
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	CHECK_GAME_FLAG(3605)
+	ON_JUMP EXIT
+
+	set_skip_label("SKIP")
+
+//▼ベアトリーチェ石像前
+
+	STOP_PC(0)
+	SET_MOTION("PC","STAND",-1)
+	load_npc_eqp(7,00)
+	DVORAK(0)
+	SET_SPOT_ORG( 1, 0.58,0.00,8.73 )
+
+	permit_script_camera(1)
+	set_script_camera(-1.19,0.00,8.68, -50,155.0,0.0, 8.0, 15.0)
+//	move_script_look_at(0,0,-2.0, 700, 1)
+	rotate_script_camera(0,-20,0, 600, 1)
+
+	CINEMA_ON(0)
+
+//　　マップに入るとイベント開始
+//　　ベアトリーチェの石像の前でドヴォルザークとティオバルトが
+//　　向かい合っている。
+
+	MSG_EX("#S3#C3Dvorak|#C0I see, there are others still...",-1,2)
+
+	MSG_EX("#S3#C3???|#C0As it stands, there are five...no, four|people still caught within the curse.",-1,2)
+
+	cross_fade(40)
+	set_script_camera(1.75,1.00,9.48, -50,170.0,0.0, 8.0, 15.0)
+	rotate_script_camera(0,20,0, 500, 1)
+	wait(80)
+
+	SET_MOTION("Dvorak", "ATTACK1",-1)
+	MSG_EX("#S3#C3Dvorak|#C0What a vexatious predicament.|Yet why did Theobald and myself...",-1,2)
+
+	MSG_EX("#S3#C3Theobald|#C0A practitioner of magic I am not, and without|knowing, I can provide only scant suppositions.",-1,2)
+	set_deg_EX("Tiowald", "Dvorak")
+	MSG_EX("#S3#C3Theobald|#C0There is but one thing I can say with certainty.|Something has begun to stir...",-1,2)
+	MSG_EX("#S3#C3Theobald|#C0All we can do at this point is to|analyze the state of events around us.",-1,2)
+
+	MSG_EX("#S3#C3Dvorak|#C0That is true... For my part, I shall continue|to pursue that man in the direction he departed.",-1,2)
+	MSG_EX("#S3#C3Dvorak|#C0What will you do, Sage Theobald?",-1,2)
+
+	SET_MOTION("Tiowald", "ATTACK1",-1)
+	MSG_EX("#S3#C3Theobald|#C0Hmmm. I believe I shall explore this|place for a time.",-1,2)
+	MSG_EX("#S3#C3Theobald|#C0Let us part here, and by doing so,|double our efforts.",-1,2)
+
+	wait_camera(0)
+
+	cross_fade(40)
+	set_script_camera(3.12,1.00,9.79, -15,190.0,0.0, 8.0, 15.0)
+	wait(80)
+
+	MSG_EX("#S3#C3Dvorak|#C0As you wish.|Then I shall leave you.",-1,2)
+
+	MSG_EX("#S3#C3Theobald|#C0Do take care.",-1,2)
+
+//　　ドヴォルザーク、ブラックオニキスで姿を消す。
+//　　その姿を見送るティオバルト。
+
+	wait(60)
+	SET_MOTION("Dvorak","EMPTY17",10)
+	wait(60)
+	ATTACH_EFC("EFC_WARP_E","Dvorak","POS")
+	wait(70)
+	ATTACH_EFC("EFC_WARP_T","Dvorak","POS")
+	warp_chr("Dvorak",0)
+	wait(100)
+	HIDE_CHR("Dvorak")
+
+	move_script_look_at(-1.5,0,0.0, 120, 1)
+//	rotate_script_camera(0,-30,0, 120, 1)
+
+	set_deg("Tiowald", 220)
+	MSG_EX("#S3#C3Theobald|#C0Haha, he is as straightforward and steadfast as ever.|A bit of stopping to 'partake of the flowers' would do|him some good, as well.",-1,2)
+	MSG_EX("#S3#C3Theobald|#C0I suppose I should bend to my own task.",-1,2)
+	MSG_EX("#S3#C3Theobald|#C0...Perhaps the site of my own liberation|would be a place to start.",-1,2)
+
+//　　ティオバルトもブラックオニキスで姿を消す。
+//　　以降はハーレックの街に出現予定(一般メッセージ)
+
+	wait(60)
+	SET_MOTION("Tiowald","EMPTY20",10)
+	wait(110)
+	ATTACH_EFC("EFC_WARP_E","Tiowald","POS")
+	wait(100)
+	ATTACH_EFC("EFC_WARP_T","Tiowald","POS")
+	warp_chr("Tiowald",0)
+	wait(100)
+	HIDE_CHR("Tiowald")
+
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	GAME_FLAG_ON(3605)
+
+	focus_chr("PC")
+	cross_fade(60)
+	HIDE_CHR("Dvorak")
+	HIDE_CHR("Tiowald")
+//	set_script_camera_EX("PC",0,-45,225,0.0, 20, 15.0)
+//	reset_map_rot_y(3,0)
+	permit_script_camera(0)
+//	stop_walk("PC")
+	DELETE_EFC("Dvorak")
+	DELETE_EFC("Tiowald")
+	CINEMA_OFF(0)
+
+EXIT:
+	SET_SPOT_ORG( 0, 0.58,0.00,8.73 )
+	END
+
+SKIP:
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	GAME_FLAG_ON(3605)
+
+	focus_chr("PC")
+	cross_fade(60)
+	HIDE_CHR("Dvorak")
+	HIDE_CHR("Tiowald")
+//	set_script_camera_EX("PC",0,-45,225,0.0, 20, 15.0)
+//	reset_map_rot_y(3,0)
+	permit_script_camera(0)
+//	stop_walk("PC")
+	DELETE_EFC("Dvorak")
+	DELETE_EFC("Tiowald")
+	CINEMA_OFF(0)
+	SET_SPOT_ORG( 0, 0.58,0.00,8.73 )
+	fade_in(60)
+	END
+}
+
+
+
+RES("CLICK")
+{
+	//カニグモ倒したか
+	CHECK_GAME_FLAG(1)
+	ON_JUMP NEXT
+
+	SYS("The intricately crafted statue is holding|open its arms.")
+	END
+NEXT:
+	SYS("Stone fragments litter the ground.")
+}

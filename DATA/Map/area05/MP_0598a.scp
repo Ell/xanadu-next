@@ -1,0 +1,384 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期化時にボスパーツを全部読み込む                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	// 胴体
+	load_chr("M_0280\ARM_280a",0)
+	// 右腕１～３
+	load_chr("M_0280\ARM_280b",1)
+	load_chr("M_0280\ARM_280d",2)
+	load_chr("M_0280\ARM_280f",3)
+	// 左腕１～３
+	load_chr("M_0280\ARM_280c",4)
+	load_chr("M_0280\ARM_280e",5)
+	load_chr("M_0280\ARM_280g",6)
+	// 子ガニ
+	load_chr("O_0524\O_0524",7)
+	// 簡易コリジョンモデル
+	load_chr("M_0280\M_0280h",8)
+
+	hide_chr("kani_body")
+	hide_chr("kani_core")
+
+	hide_chr("kani_ashi1")
+	hide_chr("kani_ashi2")
+	hide_chr("kani_ashi3")
+	hide_chr("kani_ashi4")
+	hide_chr("kani_ashi5")
+	hide_chr("kani_ashi6")
+	hide_chr("kani_ashi7")
+	hide_chr("kani_ashi8")
+
+	hide_chr("girl")
+	hide_chr("drasure")
+	// 一部のカメラを無効に
+	camera_off("ボス中央（改）")
+	camera_off("ボス中央")
+	camera_off("ボス右")
+	camera_off("ボス左")
+	camera_off("第二形態")
+
+//	LOAD_MAP("MP_0560")
+//	LOAD_HITMAP("MP_0560h")
+
+}
+
+
+
+
+
+
+
+// ----------------------------------------------------------------------------
+// ボス（コア）                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("kani_core")
+
+RES("KILL")
+{
+	// PCの動きを止める
+	stop_pc(0)
+
+	// シネマON
+	cinema_on(0)
+
+	// ブラー効果ON
+	blur(50)
+
+	// 甲羅脱ぎモーション再生
+	set_motion("kani_body","EMPTY3",0)
+//	wait(165)
+	wait(200)
+
+	show_chr("kani_ashi1")
+	show_chr("kani_ashi2")
+	show_chr("kani_ashi3")
+	show_chr("kani_ashi4")
+	show_chr("kani_ashi5")
+	show_chr("kani_ashi6")
+	show_chr("kani_ashi7")
+	show_chr("kani_ashi8")
+	link_hp_chr("kani_ashi1","kani_body")
+	link_hp_chr("kani_ashi2","kani_body")
+	link_hp_chr("kani_ashi3","kani_body")
+	link_hp_chr("kani_ashi4","kani_body")
+	link_hp_chr("kani_ashi5","kani_body")
+	link_hp_chr("kani_ashi6","kani_body")
+	link_hp_chr("kani_ashi7","kani_body")
+	link_hp_chr("kani_ashi8","kani_body")
+//	link_hp_chr("kani_core","kani_body")
+
+	// 消した柱を戻す
+	show_chr("pillar1")
+	show_chr("pillar2")
+
+	// シネマOFF
+	cinema_off(0)
+	
+	// ブラー効果OFF
+	blur(0)
+	
+	// カメラ空間の固定を解除
+	unlock_camera("ボス中央（改）")
+//	unlock_camera("ボス中央")
+	
+	// 第一形態用カメラをOFF
+	camera_off("ボス中央（改）")
+//	camera_off("ボス中央")
+//	camera_off("ボス右")
+//	camera_off("ボス左")
+	// 第二形態用カメラをON
+	camera_on("第二形態")
+	
+	end
+}
+
+
+
+// ----------------------------------------------------------------------------
+// ボス（本体）                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("kani_body")
+
+RES("KILL")
+{
+	// PCの動きを止める
+	stop_pc(0)
+
+	// 女の子をボスの位置に
+	set_pos_ex("drasure","kani_body")
+
+	// シネマON
+	cinema_on(0)
+
+	// ブラー効果ON
+	blur(50)
+
+	// 死亡モーション再生
+	set_motion("kani_body","EMPTY4",0)
+	wait(436)
+
+	fade_out(-1)
+	wait(128)
+	
+	blur(0)
+
+	call_ending(0)
+}
+
+{
+	hide_chr("kani_body")
+	hide_chr("kani_core")
+
+	// 女の子登場
+	show_chr("drasure")
+	wait(60)
+	fade_in(-1)
+	wait(240)
+
+	fade_out(-1)
+	wait(120)
+
+	// マップ移動
+	camera_off("全体")
+	SET_POS("PC",1,-4,3)
+	wait(30)
+	ENTRY_MAP("0599_pcset")
+
+	end
+}
+// ----------------------------------------------------------------------------
+// モモちゃん発見                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("momo")
+
+RES("EVENT")
+{
+	check_room_flag(0)
+	off_jump momo
+	end
+
+momo:
+
+	room_flag_on(0)
+
+	// PCの動きを止める
+	stop_pc(0)
+
+	// ムービー用カメラ読み込み
+	load_camera("C_momo_turi")
+	set_camera_org(0,0,0)
+	play_camera(100,219)
+
+	// シネマON
+	cinema_on(0)
+	wait(119)
+	// シネマＯＦＦ
+	cinema_off(0)
+
+	end
+}
+
+// ----------------------------------------------------------------------------
+// 壊れ壁                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("kabe")
+
+RES("EVENT")
+{
+	check_room_flag(0)
+	off_jump boss
+	end
+
+boss:
+	room_flag_on(0)
+
+	// カメラをオン
+	camera_on("ボス中央（改）")
+//	camera_on("ボス中央")
+//	camera_on("ボス右")
+//	camera_on("ボス左")
+
+	set_target_chr("kani_body")
+	// フリー回転モードにする
+	set_map_attr(16)
+	// オートターゲットモードにする
+	set_map_attr(17)
+
+	// PCの動きを止める
+	stop_pc(0)
+
+	// 座標を変更
+	SET_POS("PC",0,0,-19)
+	// 向きを変更
+	SET_DEG("PC",0)
+
+	// ２本の柱が邪魔なんで一時的に消す
+	hide_chr("pillar1")
+	hide_chr("pillar2")
+	
+	// カメラ空間を固定
+	lock_camera("ボス中央（改）")
+//	lock_camera("ボス中央")
+
+// DEBUG用イベントスキップ
+//jump skip_event
+
+	// ムービー用カメラ読み込み
+	load_camera("C_0598")
+	set_camera_org(0,1,26)
+	play_camera(410,1450)
+
+	// 登場シーン
+	
+	// BGM変更
+//	bgm(4,1,0,0)
+	bgm(4,0,-1)
+	// シネマON
+	cinema_on(0)
+	
+	// スキップ先指定
+//	set_skip_label("skip_event")
+	
+	// ボス表示（壁の裏で待機状態を維持）
+	show_chr("kani_body")
+	show_chr("kani_core")
+	set_motion("kani_body","EMPTY1",0)
+
+	// 壁破壊①
+	wait(60)
+	SHAKE(25,25)
+	se("SE_WALL_HIT")
+
+	wait(10)
+	shake(0,15)
+
+	wait(60)
+	SHAKE(25,25)
+	se("SE_WALL_HIT")
+
+	wait(10)
+	shake(0,15)
+
+	wait(90)
+
+	set_motion("kabe1","DOWN",0)
+	set_motion("hand","DOWN",0)
+	shake(25,25)
+	se("SE_WALL_HIT")
+
+	wait(40)
+	shake(0,15)
+	wait(80)
+
+	shake(25,25)
+	se("SE_WALL_HIT")
+	wait(40)
+
+	shake(0,15)
+	wait(140)
+
+	blur(50)
+	slow(1)
+
+	shake(25,25)
+	se("SE_WALL_HIT")
+	wait(40)
+
+	// 目光る
+	attach_efc("EFC_SPI_EYE","kani_core","Frame1_ARM_280h_Layer1")
+
+	shake(0,15)
+	wait(20)
+
+	set_motion("kabe1","HOOK",0)
+
+	wait(0)
+
+	slow(0)
+	blur(0)
+
+	// 突進モーション再生
+	set_motion("kani_body","EMPTY2",0)
+	
+	// 壁の辺りまで迫ってきたら…
+	wait(263)
+
+	slow(2)
+	blur(1)
+
+	// 壁破壊②
+	set_motion("kabe2","DOWN",0)
+
+	shake(25,25)
+	se("SE_WALL_HIT")
+
+	wait(40)
+	shake(0,15)
+
+	wait(20)
+	set_motion("kabe2","HOOK",0)
+
+//	wait(127)
+	wait(27)
+	slow(0)
+	blur(0)
+	wait(50)
+	wait(50)
+
+	// シネマＯＦＦ
+	cinema_off(0)
+
+	// マジ当たりON
+	set_collision_obj("kani_body",8)
+
+	end
+
+// スキップした場合
+skip_event:
+
+	fade_out(-1)
+	wait(64)
+
+	show_chr("kani_body")
+	show_chr("kani_core")
+	set_collision_obj("kani_body",8)
+	
+	set_motion("kani_body","STAND",0)
+	set_motion("kabe1","HOOK",0)
+	set_motion("kabe2","HOOK",0)
+	
+	fade_in(-1)
+	
+	jump return_skip
+}
+

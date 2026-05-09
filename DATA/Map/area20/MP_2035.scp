@@ -1,0 +1,113 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期状態                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+// 宝箱 ----------------------------
+	hide_chr("trs")
+
+
+// 召還装置 ------------------------
+	init_switch_on("sw")
+
+
+// 柵 ------------------------------
+	hide_chr("map35_A")
+	set_color("map35_A",0x00000000,0,1)
+
+
+// door(W) ------------------------------------------
+	check_game_flag(1007)
+	off_jump skip_W
+	init_switch_on("map35_B")
+skip_W:
+
+}
+
+RES("WIN")
+{
+// ロック解除 ------------------------
+	switch_on("sw")
+	kill_chr("map35_A",0,0,30)
+
+// 最終グループだったらご褒美 -------------
+	check_area_flag(4)
+	off_jump skip
+	set_treasure("trs",1,230,"a")
+	show_chr("trs")
+skip:
+}
+
+
+// 柵 //////////////////////////////////////////////////////////
+DEF("map35_A")
+RES("CLICK")
+{
+	wait(0)
+}
+
+
+// 召還装置 ///////////////////////////////////////////////////
+DEF("sw")
+RES("CLICK")
+{
+	check_area_flag(4)
+	off_jump battle
+	end
+battle:
+
+	check_room_flag(0)
+	off_jump boot
+	end
+boot:
+// ドアロック -------------------------
+	switch_off("sw")
+	shake(0,15)
+	show_chr("map35_A")
+	set_color("map35_A",0xff000000,30,1)
+	wait(30)
+	room_flag_on(0)
+
+// モンスター召還 ---------------------
+// 一つ前のグループが呼び出されてないと呼び出されない作り
+
+// ４グループ目
+	check_area_flag(3)
+	off_jump skip_4
+	put_monster("m13",	004,1,0,0x00000010,-1)
+	put_monster("m14",	004,1,0,0x00000010,-1)
+	put_monster("m15",	004,1,0,0x00000010,-1)
+	put_monster("m16",	004,1,0,0x00000010,-1)
+	area_flag_on(4)
+skip_4:
+
+// ３グループ目
+	check_area_flag(2)
+	off_jump skip_3
+	put_monster("m9",	004,1,0,0x00000010,-1)
+	put_monster("m10",	004,1,0,0x00000010,-1)
+	put_monster("m11",	004,1,0,0x00000010,-1)
+	put_monster("m12",	004,1,0,0x00000010,-1)
+	area_flag_on(3)
+skip_3:
+
+// ２グループ目
+	check_area_flag(1)
+	off_jump skip_2
+	put_monster("m5",	004,1,0,0x00000010,-1)
+	put_monster("m6",	004,1,0,0x00000010,-1)
+	put_monster("m7",	004,1,0,0x00000010,-1)
+	put_monster("m8",	004,1,0,0x00000010,-1)
+	area_flag_on(2)
+skip_2:
+
+// １グループ目
+	put_monster("m1",	004,1,0,0x00000010,-1)
+	put_monster("m2",	004,1,0,0x00000010,-1)
+	put_monster("m3",	004,1,0,0x00000010,-1)
+	put_monster("m4",	004,1,0,0x00000010,-1)
+	area_flag_on(1)
+}

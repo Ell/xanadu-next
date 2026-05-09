@@ -1,0 +1,406 @@
+// ==========================================================================
+// プロローグ用湖面
+// ==========================================================================
+
+// ----------------------------------------------------------------------------
+// マップ                                                                    
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	// 仮マップ
+	LOAD_MAP("MP_00a1")
+
+	// 05/05/29:「霧」：画像読み込み＆表示開始
+	SET_FILTER_INFO("fog",0,0x3fffffff,0.001f,0.000f)
+	FILTER(1)
+
+	// ボート初期座標
+	set_pos("boat", -15.0, 2.0, -22.0)
+	set_deg("boat", 80.0)
+
+	// ボートに乗せる
+	set_pos("front", -11.5, 4, -22.0)
+	set_pos("PC", -13.7, 2.0, -21.13)
+	set_deg("PC", 170.0)
+	set_pos("Char", -15.5, 2.6, -22.0)
+	set_deg("Char", 140.0)
+	set_pos("Boatman", -16.8, 2.8, -22.6)
+	set_deg("Boatman", 170.0)
+	SET_MOTION("PC","EMPTY21",0)
+	look_chr("PC","-")
+
+
+	fade_out(0)
+	stop_bgm(1,0)
+}
+
+//---------------------------------------------------------------------
+
+DEF("boat")
+
+RES("INIT")
+{
+	// 05/05/29:暗転中にPCが水に落ちるのを防ぐため。
+	stop_pc(0)
+
+	// 05/06/07:PCが溺死しちゃうので先にセリフの前に座標を決めちゃいます（ひ）
+	// ボート初期座標
+	set_pos("boat", -15.0, 2.0, -22.0)
+	set_deg("boat", 80.0)
+	ATTACH_EFC("EFC_0211","boat","POS")
+
+	// ボートに乗せる
+	set_pos("front", -11.5, 4, -22.0)
+	set_pos("PC", -13.7, 2.0, -21.13)
+	set_deg("PC", 170.0)
+	set_pos("Char", -15.5, 2.6, -22.0)
+	set_deg("Char", 140.0)
+	set_pos("Boatman", -16.8, 2.8, -22.6)
+	set_deg("Boatman", 170.0)
+	SET_MOTION("PC","EMPTY21",0)
+	look_chr("PC","-")
+
+	CINEMA_ON(0)
+	fade_out(0)
+
+	wait(30)
+
+	// スキップ設定
+	set_skip_label("SKIP1")
+
+	WAIT(120)
+	ENTRY_IMG(0,"mono\MONO05_01",0)
+	ENTRY_IMG(1,"mono\MONO05_02",0)
+	ENTRY_IMG(2,"mono\MONO05_03",0)
+	ENTRY_IMG(3,"mono\MONO05_04",0)
+	ENTRY_IMG(4,"mono\MONO05_05",0)
+	ENTRY_IMG(5,"mono\MONO05_06",0)
+	SET_IMG( 0, 000,000, 0,  0,  0,256,256, 0, 0xffffffff, 0xff000000, 1,1, 0, 1,1)
+	SET_IMG( 1, 256,000, 1,  0,  0,256,256, 0, 0xffffffff, 0xff000000, 1,1, 0, 1,1)
+	SET_IMG( 2, 512,000, 2,  0,  0,256,256, 0, 0xffffffff, 0xff000000, 1,1, 0, 1,1)
+	SET_IMG( 3, 000,256, 3,  0,  0,256,256, 0, 0xffffffff, 0xff000000, 1,1, 0, 1,1)
+	SET_IMG( 4, 256,256, 4,  0,  0,256,256, 0, 0xffffffff, 0xff000000, 1,1, 0, 1,1)
+	SET_IMG( 5, 512,256, 5,  0,  0,256,256, 0, 0xffffffff, 0xff000000, 1,1, 0, 1,1)
+	IMG_ON(0)
+	IMG_ON(1)
+	IMG_ON(2)
+	IMG_ON(3)
+	IMG_ON(4)
+	IMG_ON(5)
+	FADE_IN(180)
+	WAIT(240)
+
+	SET_MSG_TIME(5,40,90,90)
+	MSG_EX("I speak of a time when I traveled with an irritating individual - |an awkward man devoid of all social graces.",-1,0x00000094)
+	MSG_EX("But though these feelings are the first that ever came to me,|my mind always returns to the words he spoke in his later years:",-1,0x00000094)
+	MSG_EX("&22There is no path to follow that would serve me better.|Thus, I walk that path, and I do not waver.&22",-1,0x00000094)
+	MSG_EX("As I reminisce here, I find it all rather embarrassing.",-1,0x00000094)
+	MSG_EX("For I had judged the man unfairly,|never truly understanding him.",-1,0x00000094)
+	MSG_EX("[Excerpt from &22The Last Knight,&22 Chapter Two, &22The Black Bride,&22|by Charlotte L. Wells]",-1,0x00000094)
+	SET_MSG_TIME(-1,-1,-1,-1)
+
+	FADE_OUT(180)
+	WAIT(180)
+	IMG_OFF(0)
+	IMG_OFF(1)
+	IMG_OFF(2)
+	IMG_OFF(3)
+	IMG_OFF(4)
+	IMG_OFF(5)
+
+//	SET_MSG_TIME(5,40,50, 30)
+////	SET_MSG_TIME(-1,-1,-1,-1)
+//	MSG_EX("何と不器用な人だろうと|私は苛立ちすら覚えたものです。|しかし後年、彼は私にこう語りました。|　|「この道より我を活かす道は無し、故に我は往く」と───|　|今にして思えば、とても恥ずかしい話です。|私はあの人のことを何も分かっていなかったのですから。|　|　　　　　　　　　　　　　シャーロット・Ｌ・ウェルズ著|　　　　　　　　　「最後の騎士」　第二章　黒き花嫁より",-1,0x00000090)
+//	SET_MSG_TIME(-1,-1,-1,-1)
+
+	// ボート初期座標
+//	set_pos("boat", -15.0, 2.0, -22.0)
+//	set_deg("boat", 80.0)
+//	ATTACH_EFC("EFC_0211","boat","POS")
+	// ボートに乗せる
+//	set_pos("PC", -13.5, 2.6, -22.0)
+//	set_deg("PC", 80.0)
+//	set_pos("Char", -15.2, 2.6, -22.0)
+//	set_deg("Char", 140.0)
+//	set_pos("Boatman", -16.5, 2.6, -22)
+//	set_deg("Boatman", 170.0)
+
+	SE("SE_LAKE")
+	SE("SE_EVENT_51")
+	wait(60)
+	permit_script_camera(1)
+	fade_in(120)
+
+	move_vec("boat", 26.0, 0.0, 8.0, 1200)
+
+	// ボートを中央に持ってくる
+	set_script_camera(20.0,0.0,-16.0,  -35.5,135.0,0.0, 30, 15.0)
+	move_script_look_at(-20,0,0, 800, 1)
+	rotate_script_camera(0,50,0, 800, 1)
+	wait(400)
+	scale_script_camera(0.8, 400, 1)
+	wait(400)
+	move_script_look_at( 20,-2,10, 400, 1)
+	rotate_script_camera(20,50,0, 400, 1)
+	wait(400)
+
+	cross_fade(100)
+
+	// 仮マップ
+	LOAD_MAP("MP_00a2")
+
+	// ボート座標
+	set_pos("boat", 10.0, 2.0, -55.0)
+	set_deg("boat", 80.0)
+	// ボートに乗せる
+	set_pos("front", 14, 3.5, -54.5)
+	set_pos("PC", 11.2, 2.0, -54.13)
+	set_deg("PC", 180.0)
+	set_pos("Char", 9.4, 2.6, -54.7)
+	set_deg("Char", 140.0)
+	set_pos("Boatman", 8.1, 2.8, -55.7)
+	set_deg("Boatman", 170.0)
+	SET_MOTION("PC","EMPTY21",0)
+	look_chr("PC","front")
+	set_script_camera_EX("Char",1,-20.5,205.0,0.0, 10, 15.0)
+	rotate_script_camera(0,-5,0, 1000, 1)
+	scale_script_camera(1.5, 1000, 1)
+
+//	// 05/05/29:「霧」：濃度を上げる。
+	SET_FILTER_COLOR(120,1,0xafffffff)
+
+	//シャルがあたりを見回す。
+	look_chr("Char","front")
+	wait(60)
+	look_chr("Char","Boatman")
+	wait(60)
+	set_motion("Char","ATTACK1",-1)
+	wait(60)
+
+	MSG_EX("#S3#C3Char|#C0'Tis quite the brume...|I've never seen such a deep fog.",-1,2)
+
+//　　シャル、主人公の方を向いて
+	wait(20)
+	look_chr("Char","front")
+	wait(60)
+
+	MSG_EX("#S3#C3Char|#C0And I heard the lake was large, but seeing is truly believing.|The distance from Olston to Harlech is quite staggering.",-1,2)
+	wait(30)
+
+//　　主人公、軽くシャルにうなずく。
+//　　シャル、船頭のほうへ向く。
+	look_chr("PC","-")
+	WAIT(120)
+	look_chr("PC","front")
+	WAIT(60)
+
+	set_deg("Char", 190.0)
+	look_chr("Char","Boatman")
+	wait(60)
+
+	MSG_EX("#S3#C3Char|#C0Boatman, how much farther to the island?",-1,2)
+	wait(30)
+
+	MSG_EX("#S3#C3Boatman|#C0Well, I reckon we're 'bout at the halfway point,|give or take.",-1,2)
+	wait(20)
+	look_chr("Char","-")
+
+	MSG_EX("#S3#C3Char|#C0Still so far to go...",-1,2)
+	MSG_EX("#S3#C3Char|#C0Lake Orwell was not aptly named.|'Tis more an ocean than a lake!",-1,2)
+
+	MSG_EX("#S3#C3Boatman|#C0Haha... The name don't do it justice!|I'll say, though, I'm a might surprised.",-1,2)
+
+	CROSS_FADE(30)
+	set_script_camera_EX("Char",2,   -10.5,150,0,   4, 15)
+	scale_script_camera(0.8, 1000, 1)
+
+	MSG_EX("#S3#C3Boatman|#C0Ferryin' across such a pretty young thing, and here|ye're gonna be studyin' at the Royal Academy to boot!",-1,2)
+	wait(30)
+
+	set_deg("Char", 210.0)
+	look_chr("Char","Boatman")
+	MSG_EX("#S3#C3Char|#C0Ah! You flatter me, sir.",-1,2)
+	WAIT(30)
+	MSG_EX("#S3#C3Boatman|#C0Harlech Island ain't all that big, but ye can't take|two steps without trippin' over an ancient ruin.",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Ye say ye're studyin' archaeology?|Well, miss, ye came to the right place!",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0...So, that fella yer bodyguard or somethin'?",-1,2)
+	wait(20)
+
+//　　船頭、主人公のほうを見やって
+
+	CROSS_FADE(60)
+	set_script_camera_EX("Char",1,-20.5,205.0,0.0, 12, 15.0)
+	move_script_look_at(1.5,0,0, 1000, 1)
+	rotate_script_camera(0,-60,0, 1000, 1)
+	scale_script_camera(0.8, 1000, 1)
+
+	look_chr("Boatman","front")
+	wait(60)
+
+	MSG_EX("#S3#C3Boatman|#C0From his getup, I'd say he's one o'|them knights. Rare breed, these days.",-1,2)
+
+//　　シャルも主人公を見やる
+	wait(20)
+	set_deg("Char", 165.0)
+	look_chr("Char","front")
+	wait(60)
+
+
+	MSG_EX("#S3#C3Char|#C0He is of the Northsea Chevaliers.|We come from the same orphanage.",-1,2)
+
+	MSG_EX("#S3#C3Boatman|#C0Northsea, ye say? Quite the pedigree!",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0I hear a man's tested sword-to-claw against a lion|'fore he can rightly call himself one o' those!",-1,2)
+
+	MSG_EX("#S3#C3Char|#C0He is a top-class swordsman, to be sure.",-1,2)
+
+	wait(20)
+	set_deg("Char", 190.0)
+	look_chr("Char","-")
+	wait(60)
+
+	MSG_EX("#S3#C3Char|#C0Although...",-1,2)
+	MSG_EX("#S3#C3Char|#C0The war did dampen his spirits a bit.",-1,2)
+
+	wait(20)
+	look_chr("Boatman","-")
+	wait(40)
+
+	MSG_EX("#S3#C3Boatman|#C0The War o' the Knights, eh?|Yeah, don't blame him...",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Fightin' hard for king and country, and then all at once,|every one o' 'em gets the boot. No honor, no nothin'!",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Just told to disband, or they'd get hunted down.|Like they're criminals or somethin'...",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Lost their livelihood, too. Minister got it all.|Forced most o' 'em to start workin' as mercenaries.",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Yer fella there's lucky to have ye. Still don't know|what in blazes Prime Minister Zordius was thinkin'!",-1,2)
+
+//　　船頭、何かに気づいたように辺りを見回す。
+	wait(20)
+
+	CROSS_FADE(60)
+	set_script_camera_EX("Char",1,-15,175.0,0.0, 12, 15.0)
+	SCALE_SCRIPT_CAMERA( 1.3, 1000, 1)
+	wait(120)
+
+	// 05/05/29:「霧」：さらに濃度を上げる。
+	SET_FILTER_COLOR(200,1,0xffffffff)
+
+	look_chr("Char","Boatman")
+	WAIT(60)
+	look_chr("Char","front")
+	WAIT(60)
+	look_chr("Char","Boatman")
+	WAIT(60)
+	look_chr("Boatman","Char")
+	wait(60)
+	look_chr("Boatman","-")
+	wait(40)
+
+	WAIT(30)
+	look_chr("Char","-")
+	wait(60)
+
+	MSG_EX("#S3#C3Char|#C0This fog...",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Soupin' up on us, is it?",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Best keep a sharp eye. There may be somethin'|for ye to see out there!",-1,2)
+
+	wait(10)
+	set_deg("Char", 220.0)
+	look_chr("Char","Boatman")
+	MSG_EX("#S3#C3Char|#C0Truly?! Do you think we'll be able to see it?!",-1,2)
+
+	wait(10)
+	look_chr("Boatman","Char")
+	MSG_EX("#S3#C3Boatman|#C0Ah, so ye've heard about it, have ye?",-1,2)
+
+	set_motion("Char","ATTACK1",-1)
+	MSG_EX("#S3#C3Char|#C0Of course! 'Tis the main reason I've come!",-1,2)
+	MSG_EX("#S3#C3Boatman|#C0Shoulda guessed as much.|Ye are quite a fascinatin' lass, after all.",-1,2)
+
+//　　船頭が遠方の湖面を見やる。シャルと主人公もそちらへ向く。
+	wait(100)
+	look_chr("Boatman", "-")
+	WAIT(30)
+	STOP_ENV_SE( SE_EVENT_51 )
+	set_motion("Boatman","ATTACK1",-1)
+	MSG_EX("#S3#C3Boatman|#C0Ah, there it is. Out yonder.",-1,2)
+
+
+//　　船頭が遠方の湖面を見やる。シャルと主人公もそちらへ向く。
+
+//	move_script_look_at(10,0,-5, 400, 1)
+//	rotate_script_camera(10, -10,0, 200, 1)
+//	scale_script_camera(1.8, 440, 1)
+	wait(60)
+	set_deg("Char", 180)
+	look_chr("Char", "-")
+	wait(40)
+	look_chr("PC", "-")
+	wait(40)
+
+	MSG_EX("#S3#C3Boatman|#C0We got a name for it 'round these parts.",-1,2)
+	scale_script_camera(1.5, 180, 0)
+	BLUR(20)
+
+//　　鐘の音が鳴り響きながら、画面速やかにブラックアウト(カメ
+//　　ラ回転もしません)して船頭のセリフ表示。
+//　　「あれが……」⇒「オーウェルの奇岩城だ。」この流れに隙
+//　　間を空けないくらい速くでいいです。
+//　　⇒画面、フェードアウトしてオープニング開始
+	WAIT(60)
+	fade_out(120)
+	wait(180)
+
+	MSG_EX("#S3#C3Boatman|#C0We call it 'Strangerock.'|Lake Orwell's famous Castle Strangerock...",-1,2)
+
+SKIP1:
+	// スキップ設定
+	set_skip_label("SKIP2")
+
+	stop_env_se("SE_LAKE",2000)
+	stop_env_se("SE_EVENT_51",2000)
+	wait(100)
+
+	IMG_OFF(0)
+	IMG_OFF(1)
+	IMG_OFF(2)
+	IMG_OFF(3)
+	IMG_OFF(4)
+	IMG_OFF(5)
+
+	stop_se(0)
+	BLUR(0)
+	fade_out(0)
+	wait(2)
+
+	play_movie("movie\opening.avi", 0)
+
+	// EV プロローグのイベントを見た
+	game_flag_on(3500)
+	ENTRY_MAP("game_start")
+
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+	END
+
+
+SKIP2:
+	IMG_OFF(0)
+	IMG_OFF(1)
+	IMG_OFF(2)
+	IMG_OFF(3)
+	IMG_OFF(4)
+	IMG_OFF(5)
+
+	stop_se(0)
+	BLUR(0)
+	fade_out(0)
+	wait(2)
+
+	// EV プロローグのイベントを見た
+	game_flag_on(3500)
+	ENTRY_MAP("game_start")
+	END
+}
+
+

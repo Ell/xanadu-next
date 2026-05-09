@@ -1,0 +1,1726 @@
+
+// ----------------------------------------------------------------------------
+// マップ  宿酒場２Ｆ　宿泊用部屋
+// ----------------------------------------------------------------------------
+
+//-- ROOM_FLAG -------------------------------------------------------
+// 0 シャル会話
+//
+
+DEF("MAP")
+
+RES("INIT")
+{
+
+	//▼奇岩城出現後
+	check_game_flag(3702)
+	off_jump NEXT
+	// TK シャルと城が現れたことについて話す
+	check_game_flag(3723)
+	on_jump NEXT
+	HIDE_CHR("Char")
+
+NEXT:
+
+}
+
+//////////////////////////////////////////////////////////////////////
+// シャル
+
+
+DEF("Char")
+
+// マップ切り替えイベント
+RES("INIT")
+{
+//▼シャルが調査を始めた
+	CHECK_GAME_FLAG(3501)
+	OFF_JUMP EXIT
+//会話１
+	CHECK_GAME_FLAG(3502)
+	OFF_JUMP EVENT1
+
+	// EV 降霊の儀式後
+	check_game_flag(3531)
+	off_jump EXIT
+	// EV 
+	check_game_flag(3532)
+	off_jump EVENT3
+
+	// 3603	EV B-4 トレント戦後(ドヴォルザークとの会話)
+	check_game_flag(3603)
+	off_jump EXIT
+	// 3623	TK B-4c トレント戦後、クラウンについてのシャルの会話
+	check_game_flag(3623)
+	off_jump EVENT4
+
+	// 4		インフェルノを倒したか？
+	check_game_flag(   4)
+	off_jump EXIT
+	// 3617	EV B-9b インフェルノ倒した後、シャルと話した
+	check_game_flag(3617)
+	off_jump EVENT5
+	// イベントなし
+	jump EXIT
+
+//-- Ｂ-９　インフェルノ戦後のハーレック -----------------------------
+
+EVENT5:
+
+	set_pos("PC",-0.69,0.00,-0.36)
+	set_deg("PC", 349)
+	SET_MOTION("PC","STAND",-1)
+
+	permit_script_camera(1)
+	set_script_camera_EX("Char",1,-32,185.0,0.0, 7, 15.0)
+
+	set_deg("Char", 191)
+	look_chr("Char", "PC")
+
+	CINEMA_ON(0)
+	fade_in(120)
+	wait(120)
+
+	set_skip_label("SKIP5")
+
+//　　フェード抜け。自室でシャルと向き合って会話している主人公
+
+	MSG_EX("#S3#C3Char|#C0...Did you find another crown?",-1,2)
+	MSG_EX("#S3#C3Char|#C0After exploring Eaglet Mountain, I dare say|you've pretty much scoured this whole island!",-1,2)
+	MSG_EX("#S3#C3Char|#C0You've done wonderfully.",-1,2)
+
+	look_chr("Char", "-")
+	MSG_EX("#S3#C3Char|#C0Up to this point we've gathered three crowns...|And a fair number of tabulae, too.",-1,2)
+	MSG_EX("#S3#C3Char|#C0We should check around town.|Maybe there's some clue about|Castle Strangerock we can still learn.",-1,2)
+	look_chr("Char", "PC")
+	WAIT(60)
+	MSG_EX("#S3#C3Char|#C0With all that endless fighting you've done, #N0,|a relaxing stroll would probably do you good.",-1,2)
+
+//　　→フェード抜けで操作許可
+
+	focus_chr("PC")
+	cross_fade(60)
+	set_script_camera_EX("PC",0,-45,225,0.0, 20, 15.0)
+	reset_map_rot_y(1,0)
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+	wait(60)
+
+
+
+	// 3617	EV B-9b インフェルノ倒した後、シャルと話した
+	game_flag_on(3617)
+	END
+
+SKIP5:
+	reset_map_rot_y(1,0)
+	focus_chr("PC")
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+
+	// 3617	EV B-9b インフェルノ倒した後、シャルと話した
+	game_flag_on(3617)
+
+	fade_in(60)
+	wait(60)
+	END
+
+//-- Ｂ-４Ｂ トレント戦後のハーレック --------------------------------
+
+EVENT4:
+
+	set_pos("PC",-0.69,0.00,-0.36)
+	set_deg("PC", 349)
+	SET_MOTION("PC","STAND",-1)
+
+	permit_script_camera(1)
+	set_script_camera_EX("Char",1,-32,185.0,0.0, 7, 15.0)
+
+	set_deg("Char", 191)
+	look_chr("Char", "PC")
+
+	CINEMA_ON(0)
+	fade_in(120)
+	wait(120)
+
+	set_skip_label("SKIP4")
+
+//　　トレント戦後、ハーレックに戻ると強制的に宿屋へ飛んで
+//　　イベント開始。シャルと向き合って会話している主人公。
+
+	wait(90)
+	look_chr("Char", "PC")
+	wait(30)
+	MSG_EX("#S3#C3Char|#C0Wow, what a simply splendid crown...",-1,2)
+	look_chr("Char", "PC")
+	MSG_EX("#S3#C3Char|#C0Didn't you say you found a crown|down in the Back-Alley Ruins?",-1,2)
+
+	wait(60)
+	look_chr("Char", "-")
+	wait(20)
+
+	MSG_EX("#S3#C3Char|#C0And that was when you were wounded|by that swordsman...",-1,2)
+	MSG_EX("#S3#C3Char|#C0From what I've found in my research,|it seems like this crown has something|to do with the Sacred Sword.",-1,2)
+
+	look_chr("Char", "PC")
+	MSG_EX("#S3#C3Char|#C0And I would guess that that swordsman and|the old man accompanying him probably also|know something about the Sacred Sword.",-1,2)
+	MSG_EX("#S3#C3Char|#C0I wonder who they could be...",-1,2)
+	MSG_EX("#S3#C3Char|#C0It sounds like there may be another crown, though.|Perhaps we can figure out more by finding it?",-1,2)
+
+	wait(60)
+	look_chr("Char", "-")
+	wait(20)
+
+	MSG_EX("#S3#C3Char|#C0It might be a good idea to see if there's|any correlation in the tabulae.",-1,2)
+
+	look_chr("Char", "PC")
+	set_deg_ex("Char", "PC")
+	wait(60)
+
+	MSG_EX("#S3#C3Char|#C0Now, #N0...|Be on your guard around those people.",-1,2)
+	MSG_EX("#S3#C3Char|#C0If anything like before were to|happen to you again, I'd...",-1,2)
+
+	focus_chr("PC")
+	cross_fade(60)
+	set_script_camera_EX("PC",0,-45,225,0.0, 20, 15.0)
+	reset_map_rot_y(1,0)
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+	wait(60)
+
+	// 3623	TK B-4c トレント戦後、クラウンについてのシャルの会話
+	game_flag_on(3623)
+	END
+
+SKIP4:
+	reset_map_rot_y(1,0)
+	focus_chr("PC")
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+
+	// 3623	TK B-4c トレント戦後、クラウンについてのシャルの会話
+	game_flag_on(3623)
+
+	fade_in(60)
+	wait(60)
+	END
+
+
+//--------------------------------------------------------------------
+EVENT3:
+
+	set_pos("PC",-0.69,0.00,-0.36)
+	set_deg("PC", 349)
+	SET_MOTION("PC","STAND",-1)
+
+	permit_script_camera(1)
+	set_script_camera_EX("Char",1,-32,185.0,0.0, 7, 15.0)
+
+	set_deg("Char", 191)
+	look_chr("Char", "PC")
+
+	CINEMA_ON(0)
+	fade_in(120)
+	wait(120)
+
+	set_skip_label("SKIP3")
+
+	MSG_EX("#S3#C3Char|#C0So, while you've been resting, I've been doing a|bit of research. And I think I found something...",-1,2)
+
+	sys("#S3#C2Char produced from her bag the|tabulae you found in the ruins.",-1,2)
+	add_text_time(6000000)
+
+	wait(60)
+	look_chr("Char", "-")
+	wait(20)
+
+	MSG_EX("#S3#C3Char|#C0These are tabulae from|the ruins, #N0.",-1,2)
+	wait(20)
+	MSG_EX("#S3#C3Char|#C0You had these on you when you were found.|I hope you don't mind that I looked them over.",-1,2)
+	MSG_EX("#S3#C3Char|#C0They're quite old. The lettering carved into|them is no longer used, and hasn't been for a|very, very long time.",-1,2)
+	MSG_EX("#S3#C3Char|#C0'Tis considered a sacred script of sorts, and one|used exclusively by the literati of Xanadu Kingdom.",-1,2)
+	MSG_EX("#S3#C3Char|#C0You've heard of Xanadu, no? Troubadours often sing of it.|Songstress Sandra downstairs seems enamored with it, in fact.",-1,2)
+	MSG_EX("#S3#C3Char|#C0Scholars tell that it was once quite a prosperous|kingdom. Some even called it a paradise on Earth.|It stood for over a thousand years!",-1,2)
+	MSG_EX("#S3#C3Char|#C0And it would seem all the ruins around here|are in some way related to this Xanadu kingdom.",-1,2)
+	MSG_EX("#S3#C3Char|#C0I'm willing to bet Castle Strangerock|has some connection, as well.",-1,2)
+	MSG_EX("#S3#C3Char|#C0If you find any other slates or tablets like these,|be sure you bring them to me for translation, okay?",-1,2)
+	MSG_EX("#S3#C3Char|#C0These are exactly the kinds of things we're looking for.|They're the keys to unlocking the mysteries of Harlech Island.",-1,2)
+	MSG_EX("#S3#C3Char|#C0And with enough time, I can easily decipher|each and every one you show me.",-1,2)
+	wait(40)
+	look_chr("Char", "PC")
+	MSG_EX("#S3#C3Char|#C0Speaking of which, I actually translated these|particular tabulae while you were resting.",-1,2)
+	MSG_EX("#S3#C3Char|#C0If you're interested in reading my notes,|just let me know!",-1,2)
+	wait(60)
+	look_chr("Char", "-")
+	wait(120)
+	MSG_EX("#S3#C3Char|#C0#N0...",-1,2)
+	wait(120)
+	look_chr("Char", "PC")
+	set_deg_ex("Char", "PC")
+	wait(60)
+	MSG_EX("#S3#C3Char|#C0I'll do whatever I can to help you.",-1,2)
+	MSG_EX("#S3#C3Char|#C0So please...find the Sacred Sword.|Find the Dragonslayer. Okay?",-1,2)
+
+	focus_chr("PC")
+	cross_fade(60)
+	set_script_camera_EX("PC",0,-45,225,0.0, 20, 15.0)
+	reset_map_rot_y(1,0)
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+	wait(60)
+
+	// EV 宿酒場のイベント(調査開始)
+	game_flag_on(3532)
+	// EV B-1 聖剣の探索へ(シャルとの会話)
+	game_flag_on(3600)
+	END
+
+SKIP3:
+	reset_map_rot_y(1,0)
+	focus_chr("PC")
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+
+	// EV 宿酒場のイベント(調査開始)
+	game_flag_on(3532)
+	// EV B-1 聖剣の探索へ(シャルとの会話)
+	game_flag_on(3600)
+	fade_in(60)
+	wait(60)
+	END
+
+//--------------------------------------------------------------------
+EVENT1:
+	set_pos("PC",-0.69,0.00,-0.36)
+	set_deg("PC", 349)
+	SET_MOTION("PC","STAND",-1)
+
+	permit_script_camera(1)
+//	set_script_camera_EX("Char",3,-35,205.0,0.0, 8, 15.0)
+//	move_script_look_at(0,0,-2.0, 400, 1)
+//	rotate_script_camera(0,-10,0, 400, 1)
+
+	set_deg("Char", 191)
+	look_chr("Char", "PC")
+	set_script_camera_EX("PC",3,-35,195,0.0, 8, 15.0)
+	wait(60)
+
+	CINEMA_ON(0)
+	fade_in(120)
+	wait(120)
+
+	set_skip_label("SKIP")
+
+//	stop_camera(0)
+	cross_fade(60)
+	MSG_EX("#S3#C3Char|#C0So, here we are. 'Tis not a bad room at all, really! Rather|cozy, in fact. Should make an excellent base of operations.",-1,2)
+	MSG_EX("#S3#C3Char|#C0Which brings us to our mission here. We're to be the first|explorers to uncover the mysteries of Castle Strangerock!",-1,2)
+	wait(20)
+	look_chr("Char", "-")
+	MSG_EX("#S3#C3Char|#C0Exciting, no?",-1,2)
+	MSG_EX("#S3#C3Char|#C0However, despite its fame, there is|very little information about it.",-1,2)
+	wait(20)
+	set_motion("Char","ATTACK1",-1)
+	MSG_EX("#S3#C3Char|#C0All we truly know, in fact, is that it|appears on the lake when the mist rolls in.",-1,2)
+	MSG_EX("#S3#C3Char|#C0That's why I think our best course of action is|to explore the ruins scattered across this island.",-1,2)
+	look_chr("Char", "PC")
+	wait(20)
+	MSG_EX("#S3#C3Char|#C0Between the ruins and any local legends we may happen|upon, I'm certain we'll find some clue to aid our search.",-1,2)
+	MSG_EX("#S3#C3Char|#C0I suppose the best place to start is with the townsfolk.|Let's ask around and see what we can learn, shall we?",-1,2)
+	MSG_EX("#S3#C3Char|#C0If we split up, we'll cover more ground.|Good luck, #N0!",-1,2)
+
+	focus_chr("PC")
+	cross_fade(60)
+	set_script_camera_EX("PC",0,-45,225,0.0, 20, 15.0)
+	reset_map_rot_y(1,0)
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+
+	// EV 宿酒場のイベント(調査開始)
+	game_flag_on(3502)
+
+EXIT:
+	END
+
+
+SKIP:
+	reset_map_rot_y(1,0)
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+
+	// EV 宿酒場のイベント(調査開始)
+	game_flag_on(3502)
+	focus_chr("PC")
+	fade_in(60)
+	wait(60)
+	END
+}
+
+//////////////////////////////////////////////////////////////////////
+// シャル会話処理
+
+RES("CLICK")
+{
+	FOCUS_CHR("Char")
+	SET_NAME("Char", "Char")
+	SET_MOTION("Char", "ATTACK1",-1)
+
+	//3711	EV C-12 聖剣の巫女姫(▽ドラゴンスレイヤー入手後)
+	check_game_flag(3711)
+	on_jump NEXT
+
+	// 3717	EV C-11b 黒き花嫁後のシャルとの会話
+	check_game_flag(3717)
+	ON_JUMP NEXT
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump TALK
+
+NEXT:
+
+//-- 石板と手記の判定 ------------------------------------------------
+
+	// Ｂパート始まるまでは石板は渡せない
+	check_game_flag(3532)
+	off_jump MENU_TOP
+
+	// 石板持ってる？（0:石板/1:手記）
+	check_text_item(0)
+	off_jump NoStone
+	// 全部没収（0:石板/1:手記）
+	msg("Ah, you've brought me more tabulae to translate!|I'll decipher these right away.")
+	sys("Relinquished tabulae to Char.")
+	pick_text_item(0)
+NoStone:
+
+	// 手記ってる？（0:石板/1:手記）
+	check_text_item(1)
+	off_jump NoPaper
+	// 全部没収（0:石板/1:手記）
+	msg("Ooh, I see you've found some old memoirs!|I'll get started on translating these right away.")
+	sys("Relinquished memoirs to Char.")
+	pick_text_item(1)
+	// EV 手記を預けたことがある
+	game_flag_on(3611)
+NoPaper:
+
+//--------------------------------------------------------------------
+
+MENU_TOP:
+	// EV 手記を預けたことがある
+	check_game_flag(3611)
+	on_jump MENU4
+
+	// Ｂパート開始
+	check_game_flag(3532)
+	on_jump MENU3
+
+	// 最初のシャルと話したフラグ
+	check_game_flag(3510)
+	on_jump MENU2
+
+	jump MENU1
+
+//-- 会話のみ --------------------------------------------------------
+
+MENU1:
+	jump TALK
+
+
+//-- 荷物預けあり ----------------------------------------------------
+
+MENU2:
+	SEL("#c1Need something?|#c2Talk|Rest|Store/Retrieve Items|Nothing")
+	check_select(0)
+	on_jump TALK
+	check_select(1)
+	on_jump REST
+	check_select(2)
+	on_jump ITEM
+
+	jump EXIT
+
+//-- 荷物預け、石板あり、手記なし ------------------------------------
+
+MENU3:
+	SEL("#c1Need something?|#c2Talk|Rest|Store/Retrieve Items|Read Tabulae|Nothing")
+	check_select(0)
+	on_jump TALK
+	check_select(1)
+	on_jump REST
+	check_select(2)
+	on_jump ITEM
+	check_select(3)
+	on_jump STONE_PLATE
+
+	jump EXIT
+
+//-- 荷物預け、石板、手記あり ----------------------------------------
+
+MENU4:
+	SEL("#c1Need something?|#c2Talk|Rest|Store/Retrieve Items|Read Tabulae|Read Memoirs|Nothing")
+	check_select(0)
+	on_jump TALK
+	check_select(1)
+	on_jump REST
+	check_select(2)
+	on_jump ITEM
+	check_select(3)
+	on_jump STONE_PLATE
+	check_select(4)
+	on_jump NOTE_BOOK
+
+	jump EXIT
+
+//-- 会話選択 --------------------------------------------------------
+TALK:
+	call TALK_CHAR
+	jump MENU_TOP
+
+//-- 休憩する --------------------------------------------------------
+
+REST:
+	fade_out(30)
+	wait(30)
+	wait(30)
+	refresh("PC")
+	se("SE_HEAL")
+	sys("#c2You feel rested and refreshed.")
+	set_time(12,00)
+
+	// セーブ回数カウント
+	INC_SAVE_COUNT( 0 )
+
+	call_shop(4)
+	check_use_shop(0)
+	off_jump no_use
+	sys("#C2The details of your adventure have been recorded.")
+no_use:
+	fade_in(30)
+	wait(30)
+	jump MENU_TOP
+	jump EXIT
+
+//-- 荷物を預ける ----------------------------------------------------
+ITEM:
+	// 預かり所
+
+	////////////////////////////////////////////////////
+	// ★05/09/10:ショップ説明スクリプトを入店時に再生
+	check_game_flag(77)
+	on_jump skip_help
+	game_flag_on(77)
+	add_shop_script("help")
+skip_help:
+	////////////////////////////////////////////////////
+	call_shop(3)
+	jump MENU_TOP
+
+//-- 石板を読む ------------------------------------------------------
+STONE_PLATE:
+	CINEMA_ON(0)
+
+	// 石板MENU呼び出し（0:石板/1:手記）
+	call_text(0)
+
+	// call_text()内で「キャンセル(12)」を選んだ時はここでスキップさせる
+	check_sel_text(12)
+	on_jump PLATE_END
+	check_sel_text(-1)
+	on_jump PLATE_END
+
+	// 石板用背景を読みこみ
+	load_novel_bg("epitaph\plate")
+	// 石板用背景表示
+	novel_on(0)
+	wait(60)
+
+	SET_MSG_TIME(5,40,50, 30)
+
+	// 選んだ石板に応じた文面の表示
+	check_sel_text(0)
+	on_jump Stone1
+	check_sel_text(1)
+	on_jump Stone2
+	check_sel_text(2)
+	on_jump Stone3
+	check_sel_text(3)
+	on_jump Stone4
+	check_sel_text(4)
+	on_jump Stone5
+	check_sel_text(5)
+	on_jump Stone6
+	check_sel_text(6)
+	on_jump Stone7
+	check_sel_text(7)
+	on_jump Stone8
+	check_sel_text(8)
+	on_jump Stone9
+	check_sel_text(9)
+	on_jump Stone10
+	check_sel_text(10)
+	on_jump Stone11
+	check_sel_text(11)
+	on_jump Stone12
+
+	jump STONE_END
+//--------------------------------------------------------------------
+Stone1:
+	MSG_EX("#S3#C0[To the Inheritors |of History]",-1,0x00000094)
+	MSG_EX("#S3#C0I tell of my homeland,|founded by the great|Kublai Khan, and|proclaimed an Eden|by all who behold|its fair vistas.| |Its name,|Xanadu.",-1,0x00000094)
+	MSG_EX("#S3#C0Here,|the songs of the birds|ring out,| |the flowers are always|in bloom,| |and the light of the sun|doth shine warmly|upon all the land.",-1,0x00000094)
+	MSG_EX("#S3#C0Truly, Xanadu is a place|of beauty, and peace.",-1,0x00000094)
+	MSG_EX("#S3#C0However, it is not my intent|to extol the glory|of this countryside herein.|Rather, the duty|that falls upon me|is that of minutiae and fact - | |to make accurate record|of the history|that's befallen us.",-1,0x00000094)
+	MSG_EX("#S3#C0And even in such a|place as Xanadu,|for every light that|burns pure, a shadow|is also cast.",-1,0x00000094)
+	MSG_EX("#S3#C0To those who shall inherit|and succeed our history,|I beg ye read this account|carefully|and with open mind.",-1,0x00000094)
+	MSG_EX("#S3#C0I must regrettably chronicle|that twice did our paths|cross with a hideous calamity|of unimaginable horror.| |The devil Galsis - |he who rules the world|of nothingness.|He who brings forth|apparitions to defile us.",-1,0x00000094)
+	MSG_EX("#S3#C0At his hands,|the ideals of our just|and righteous community|turned to ashes,| |and our Eden|became a land|governed by lust and vice.",-1,0x00000094)
+	MSG_EX("#S3#C0As we stand now, however,|we have overcome|these tribulations,|and re-established|a prosperity|befitting Xanadu.",-1,0x00000094)
+	MSG_EX("#S3#C0We owe our gratitude|for this good fortune|to the heroes and wise men|of the past|who drove this devil|from our land.",-1,0x00000094)
+	MSG_EX("#S3#C0The first invasion of Galsis |was thwarted |by a valorous youth |who bore the Sacred Sword, |sent to our aid |by his liege, King Giuliden, |and guided |by the one star's light.",-1,0x00000094)
+	MSG_EX("#S3#C0The second invasion|of Galsis|was repelled|by a beautiful|and valiant princess|who carried with her|the selfsame sword.",-1,0x00000094)
+	MSG_EX("#S3#C0Both of these figures |have since been accorded|the highest honors in|the annals of history.",-1,0x00000094)
+	MSG_EX("#S3#C0Light coexists with shadow,|and so too must the tales|of Xanadu's calamitous past|coexist with those|of its heroes.",-1,0x00000094)
+	MSG_EX("#S3#C0If we are to remember|the trials we have faced,|'tis important|we also remember|the means through which|they were overcome...",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula1")
+
+	check_game_flag(3900)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone1_end
+
+	MSG("The phrasing suggests that it was written|by a historian from ancient Xanadu.")
+	MSG("It really is a remarkable find!")
+	MSG("If its contents are accurate, that means|Xanadu was visited by some sort of demon|not once, but twice!")
+	MSG("And this &22Sacred Sword&22... I can only|assume it to be the Dragonslayer itself.")
+	MSG("I'm not familiar with this legendary hero or princess the|historian writes of, however. I wonder who they were...")
+	MSG("Hey, #N0. Don't you find this all very exciting?|Doesn't it just give you the shivers?")
+	MSG("Whenever I hear these grand tales of old, I always|think about all the people who lived in those times,|the people who got caught up in it all...")
+	MSG("And I always imagine,|what if we were them...")
+
+Stone1_end:
+	game_flag_on(3900)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("...Ah, sorry. I got a bit caught up|in it all for a moment.")
+	MSG("Before you go, I have something to give you.|Believe it or not, I actually made you lunch!")
+	MSG("After all you've been through,|'tis the least I can do.")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone2:
+	MSG_EX("#S3#C0[The Chosen Ones]",-1,0x00000094)
+	MSG_EX("#S3#C0He came without warning|during the reign of|His Highness King Giuliden.| |Dragon King Galsis - such|was the name given to the|calamity that brought cruelty|and avarice in its wake.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Galsis released his minions |upon the land, and in the |blink of an eye, Xanadu was|swept under a wave of terror.| |The renowned artisan Seisen |was  forced to  construct a |maze for  the devil  within |the  sacred catacombs  that |stretched beneath the royal |capital.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Powerless to resist Galsis'|corrupting influence, those|who  had  formerly  thrived|under  the  reign  of  King |Giuliden  began  inundating|him with unreasonable|demands. | |Rumor   had  it  that   the |treasured crowns themselves,|long-standing   symbols  of |Xanadu's  royal  line,  had |been torn from  his  grasp; |and  with their loss,  the|world plunged into darkness.",-1,0x00000094)
+	MSG_EX("#S3#C0Still,|despite the looming shadows |of fear  and  disgrace, His |Highness remained undaunted. | |He bided  his  time, quietly |waiting for  a portent from |above.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Finally,|with  the help  of a  noted |astrologer,  he  found  his |foretoken  and arranged for |an audience with a group of |youths  boasting  a  heroic |disposition. | |The youths were placed under |the tutelage of seven offi- |ciating  sages who  helped |train  them   in  body  and |spirit to stand up  against |the devil's regime.",-1,0x00000094)
+	MSG_EX("#S3#C0|Valor, merit, charm,|empathy, wisdom, mysticism, |and victory;  such were the |subjects  of mastery taught |by the Seven Sages,  all of |whom  were   merciless  and |unforgiving tutors. | |One  brave  soul persevered|through   their    ruthless|instruction,  and it was he|who  ultimately  set  forth |into the  vast  underground |labyrinth  that Galsis  had |made his lair.",-1,0x00000094)
+	MSG_EX("#S3#C0Singlehandedly, |he retrieved all the crowns, |and even obtained the Sacred |Sword known as Dragonslayer.",-1,0x00000094)
+	MSG_EX("#S3#C0| | |This sword is said  to house |the  deified   spirit  of  a |great  hero   who spent  his |life   hunting   dragons  of |wicked   heart;  some   even |claim  it  to  be  his  very |incarnation made steel.| |And with weapon in hand,|this brave soul faced innume- |rable  threats, culminating |in the triumphant defeat of |the Dragon King, Galsis.",-1,0x00000094)
+	MSG_EX("#S3#C0|He  truly was  a courageous |youth;  and  the  king,|a  great  and  wise  man.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Through their  valor  and|wisdom, Xanadu was pulled|back from the brink of hell. | |Even now, the people of this |land  recount  the  glorious|tale of these two |valiant men. | |'Tis  with  heavy heart  I |must  report, however,  that |the name  of  this  youthful|savior  has  been  lost  to|history.",-1,0x00000094)
+	MSG_EX("#S3#C0| |As  our  story  draws  to a |close, the demonic Galsis|lay defeated, and  Xanadu's |peaceful days were returned. | |But  as you surely must  be |aware,  dear  reader,  this |was not  to be  the  tale's |final conclusion...",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula2")
+
+	check_game_flag(3901)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone2_end
+
+	MSG("...It seems to chronicle Xanadu's struggle|against some fell creature named Galsis.")
+	MSG("The Sacred Sword...Dragonslayer.|Its legend has been passed down from generation|to generation, even as far back as this...")
+
+	check_game_flag(3907)
+	on_jump Stone2_2
+
+//	⇒石板⑧天蠍の石板を読んでいない
+
+	CHECK_ITEM(187)
+	on_jump Stone2_1
+	CHECK_ITEM(188)
+	on_jump Stone2_1
+	CHECK_ITEM(189)
+	on_jump Stone2_1
+	CHECK_ITEM(190)
+	on_jump Stone2_1
+
+//		⇒クラウンを一つも持っていない
+	MSG("And these crowns... I'll bet they're the same ones|sought after by that swordsman you fought, #N0...")
+	MSG("It says here that they're|&22long-standing symbols of Xanadu's royal line&22.|They must be quite a sight to behold!")
+	MSG("So what does that swordsman want with them,|I wonder. Is he a treasure hunter?")
+	jump Stone2_end
+
+//		⇒クラウンと一つでも持っている
+Stone2_1:
+	MSG("And these crowns... I find it far too coincidental that|this journey began with you being struck down for that very|thing, #N0. I surmise that the crowns in these|ruins are the very ones written of in this tablet.")
+	MSG("And if so...well, the tablet says they're|&22long-standing symbols of Xanadu's royal line&22.|I believe they must be rather rare and valuable treasures.")
+	MSG("You'd best treat them as such.|Take good care of them if you come across more, okay?")
+	jump Stone2_end
+
+//	⇒石板⑧天蠍の石板を読んでいる
+Stone2_2:
+	MSG("And this Dragonslayer...|It houses the deified spirit of a dragon hunter and|may even be his very incarnation? The language here|suggests that the Sacred Sword is regarded as nothing|less than a god...")
+	jump Stone2_end
+
+Stone2_end:
+	game_flag_on(3901)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("Oh, #N0! Before you go, take this.|I made you some food for your travels.")
+	MSG("I hope you like it!")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone3:
+	MSG_EX("#S3#C0[When the Rain Falls]",-1,0x00000094)
+	MSG_EX("#S3#C0No matter the era, bad|tidings never  warn of|their approach.|Their arrival is sudden,|and devastating.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Several  years  passed  in |tranquil procession following |the fated struggle between |the valiant youth  and |Galsis. | |One  night,  when the moon |was  nearing  its  peak, a |messenger approached  King |Giuliden's private chambers |as he rested.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Galsis, whose body had been |entombed within the labyrinth, |was  returning to life;  his |pulse had begun beating anew.",-1,0x00000094)
+	MSG_EX("#S3#C0Understanding the urgency of|the situation, the king cal- |led forth  the  brave  sword |bearer  and the  seven  wise |sages to his castle. | |I surmise the reason was to |discern  the meaning behind |Galsis' revival.",-1,0x00000094)
+	MSG_EX("#S3#C0| |It is  said  that this|council lasted seven  days,|from  early morning through|the darkest hours of night. | |As  dawn  broke  on  the |eighth day at the castle a |conclusion was reached, and |the meeting adjourned at |long last.",-1,0x00000094)
+	MSG_EX("#S3#C0| |The devil's body was to be |borne to the castle and |sealed within a barrier of |tremendous power, so as to |arrest the beast's rebirth.",-1,0x00000094)
+	MSG_EX("#S3#C0| |King Giuliden appointed his |own  daughter  as a  Sacred |Maiden  to  this  end,  and |commanded her  to  maintain |the  devil's  seal,  for as |long as she drew breath.",-1,0x00000094)
+	MSG_EX("#S3#C0| |The Seven Sages would serve |to support her in this task, |as best as they were able. | |Thus spawned a noble tradi- |tion,  wherein  the  eldest |daughter of the royal family |would  inherit the  duty of |protecting and maintaining |this seal.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Through |this adjudication, peace |persisted  in Xanadu for many |hundreds of years thereafter. | |Occasional   rumors  of the |devil's revival did surface |from  time   to  time,  but |history   records  no  such |occurrences. | |Xanadu's  rich  and idyllic |existence continued  unaba- |ted, and all was well.",-1,0x00000094)
+	MSG_EX("#S3#C0Such was the state of the |land until a particular |young woman came along...",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula3")
+
+	check_game_flag(3902)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone3_end
+
+	MSG("Seems this Galsis was sealed away|after his first defeat.")
+	MSG("It stands to reason, then, that actually|killing devils like this might be impossible. ")
+	MSG("And this tradition where the first princess|of each king would inherit the role of a|Sacred Maiden and maintain the seal...")
+	MSG("It seems like a tremendous burden. To be forced|into a lifetime of servitude, and be responsible|for guarding such monstrous evil... How terrible.")
+
+Stone3_end:
+	game_flag_on(3902)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("Ah, but enough of that! Here's your lunch, #N0.|I made it while I was translating.")
+	MSG("I put a lot into this one,|so be sure to savor it!")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone4:
+	MSG_EX("#S3#C0[The Unblessed Bride]",-1,0x00000094)
+	MSG_EX("#S3#C0| |The  advent  of  the  Black|Bride   is   an  event   of|considerable  renown,  and|has  thus been  recorded in|much  detail  by  the|scholars  of  the  era. | |The  following  is directly|sourced from  one of  these|accounts:",-1,0x00000094)
+	MSG_EX("#S3#C0I fear I shall never forget |the terrible events of this |accursed day.",-1,0x00000094)
+	MSG_EX("#S3#C0| |It  should  have   been  an |auspicious  occasion,  with |Princess Fleurette celebra- |ting her 16th year. | |Her  birthday   rites   did|progress without  incident,|but just as the investiture|ceremony  for the  title of|Sacred  Maiden  was about|to  begin,  something|dreadful occurred.",-1,0x00000094)
+	MSG_EX("#S3#C0That terrible woman|appeared before us, veiled|in  the deepest  black. She|calmly  stepped in front of|the crowd, seemingly|oblivious  to  the audacity|of her own actions.| |She  opened  her   insolent|mouth, and  these are  the|words she spoke...",-1,0x00000094)
+	MSG_EX("#S3#C0&22I  have  freed  the  devil|Galsis from his seal within|the castle,&22 she said.",-1,0x00000094)
+	MSG_EX("#S3#C0And that's not all!| |She  even went so far as to |call  herself  that demon's |bride!",-1,0x00000094)
+	MSG_EX("#S3#C0| |Everyone in|attendance began to laugh.| |As one might imagine, there |weren't many left who still |put much stock in tales of |Galsis.| |That  the  woman  was  also|widely known as a religious|fanatic  did her no favors.|Indeed, the  crowd  lost no|time  in  chastising  her,|right then and there.",-1,0x00000094)
+	MSG_EX("#S3#C0But not a moment later, the |derision and  laughter  all |came to an abrupt halt.",-1,0x00000094)
+	MSG_EX("#S3#C0The clear  |blue  sky, which  had seemed|so  auspicious just  moments|before  during  Princess|Fleurette's  celebration|ceremony,  suddenly  became|choked  with  dark  clouds. | |Then, accompanied by roiling|thunder, the voice of none |other  than   Galsis  himself |resounded throughout the land.",-1,0x00000094)
+	MSG_EX("#S3#C0|In short, it was a|declaration of war upon|Xanadu.| |And in  that  very  moment,|one could feel the onset of|a  new  era  of  terror and|chaos, engulfing our would- |be utopia  like the  clouds|swallowed the light above.",-1,0x00000094)
+	MSG_EX("#S3#C0| | |There could be no doubt that |this traitorous woman spoke |the truth:  she  had taken a |vow  of  marriage  with  the |great Dragon King of legend.| |Although just  an  ordinary |human being,  she unleashed |the  wrath of ultimate evil |upon our fair kingdom.  She |alone  had  overthrown |centuries  of  peace  in  a |mere instant.",-1,0x00000094)
+	MSG_EX("#S3#C0| |'Black Bride,' |they've begun calling her. | |A fitting name. ",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula4")
+
+	check_game_flag(3903)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone4_end
+
+	MSG("...This one's all about a woman who |came to be known as the 'Black Bride.'")
+	MSG("What kind of person would marry a devil?|It's inhuman! Did her own people hold no|interest for her?")
+	MSG("There's something terribly creepy about it all.|To become the wife of such a wicked creature...|'Tis truly disturbing.")
+
+Stone4_end:
+	game_flag_on(3903)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("...Ah, I almost forgot. I've made a lunch for you,|#N0. It's all packed up and ready for you|to take on your next excursion!")
+	MSG("I'm quite proud of this one, actually.|All the patrons of the tavern downstairs seemed|to really enjoy it, and I hope you will too.")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone5:
+	MSG_EX("#S3#C0[Where the Star Shines]",-1,0x00000094)
+	MSG_EX("#S3#C0His Highness|did not  hesitate.  As soon |as the demon's challenge was|delivered, he  issued his own |royal decree ordering the|deaths of Galsis and his|unholy bride.",-1,0x00000094)
+	MSG_EX("#S3#C0| |The ones named to carry out |this mission were none other |than General  Vanaporte and |his most elite fighters.| |His Highness entrusted them |with the  Sacred Sword  and |seemed to  anticipate  that |the might of  the  warriors |and  the supremacy  of  the|holy blade  would  lead  to  |certain victory.",-1,0x00000094)
+	MSG_EX("#S3#C0|Now, if |you've  been  following |along carefully, dear reader, |you will undoubtedly take |issue with this course |of action. | |Indeed,  when  the  kingdom |last faced Galsis, the|appointed challenger had|been a youth trained by the|Seven Sages that bore the|Sacred Sword alone against|the demon.",-1,0x00000094)
+	MSG_EX("#S3#C0| |That   approach   succeeded |where all others had failed.|So why, then, would the|king  abandon  precedent in|this  manner?| |The answer, it seems,  lies |up   above;   for   in  the |heavens,  no star  could be |seen, and thus no gathering |of youths would convene. ",-1,0x00000094)
+	MSG_EX("#S3#C0| |When the call for heroes was|sounded  previously, history|records  that  three  stars|shone  as   one,   cutting|through  the  thick  black|clouds  that hung  over the|land like  a beacon  in the|night.",-1,0x00000094)
+	MSG_EX("#S3#C0| |This small constellation has |come  to  be  known  as  the |Dragon's Fang,  and  its|twinkling points are said to|combine  into a single  star|once  every  three   hundred|years.| |From  time immemorial, this |merging was seen  as a good |omen, and only in its light |could a hero be revealed. ",-1,0x00000094)
+	MSG_EX("#S3#C0|It seems, however, that the |devil's  revival  under the |auspices of the Black Bride |was  an  event  even   Lady |Destiny could  not foresee.  |This time the Dragon's Fang|did  not  coalesce,  but|remained  dim  and  apart,|barely  able  to  penetrate|the looming darkness.| |Under this bleak sky|Xanadu's army  failed,|and this time there appear- |ed  no  hope of  a  hero's |arrival to set things right.",-1,0x00000094)
+	MSG_EX("#S3#C0|It was in  this direst  of|times,  when  anxiety  and|unease permeated  the every|waking thought of  all  who|dwelt  within  the  castle,|that something occurred. | |The royal  medium  herself, |Princess Fleurette, went |missing. | |And with her, |the Seven Sages... ",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula5")
+
+	check_game_flag(3904)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone5_end
+
+	MSG("...Seems like this is talking about|the battle between Xanadu and Galsis.")
+	MSG("And it says that when the|three stars in the night sky meet,|'tis a portent for something amazing.")
+	MSG("'Twould be wonderful if this country|could see peace soon too...")
+
+Stone5_end:
+	game_flag_on(3904)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("...Ah, #N0!|I made some food for you.")
+	MSG("You can't fight on an|empty stomach, right?")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone6:
+	MSG_EX("#S3#C0[The Princess|Ne'er Returning]",-1,0x00000094)
+	MSG_EX("#S3#C0| |If the  literature  of this|era  rings  true, then  the|fair Princess Fleurette was|a young lady  of  the  most|cheerful disposition, unmat- |ched in both  academic  and|military talent, and beloved|by all her people.",-1,0x00000094)
+	MSG_EX("#S3#C0| |But though it  is an incon- |trovertible  fact  that she|inherited   the  title   of|Sacred  Maiden  at the time|of  her  16th  birthday,|little  detail  is known of|her life before that day.",-1,0x00000094)
+	MSG_EX("#S3#C0Of course, the question most|pertinent to these  records|is that of  her whereabouts|when she and the Seven Sages|vanished from Xanadu.",-1,0x00000094)
+	MSG_EX("#S3#C0| |The following|account is one|that may prove most familiar|to my readers, as it endures|to  this  very  day  in the|canon  of  tales  recounted|to our young.| |Regrettably,  there  exists|no official report of these|events, so all  information|herein     pertaining    to|Princess Fleurette's emprise|is  comprised  from  hearsay|and rumor of the time.",-1,0x00000094)
+	MSG_EX("#S3#C0| |The last confirmed location|of  Princess Fleurette  and|her   party   was  in   the|vicinity of Lyndale.| |With the Dragonslayer shim- |mering in  her  hands,  our|noble heroine had her sights|set  upon  the   mysterious|castle  that  appeared only|amidst the fog on the water;",-1,0x00000094)
+	MSG_EX("#S3#C0the selfsame fort  that had|eluded the  prior  frenzied|searching  of   Xanadu's|army -  Castle Strangerock,|stronghold of Galsis.",-1,0x00000094)
+	MSG_EX("#S3#C0| |The princess  and the Seven|Sages,  having successfully|infiltrated  the  elusive|citadel,  had   thus  set|about  tracking  down   the|devil and his bride therein.| |And in those  haunted halls,|to behold the mere shadow of|the  princess  wielding  the|Sacred  Sword  was as  if to|see  the  Guardian  Valkyria|herself, such  was the level|of mastery  displayed by our|heroine.",-1,0x00000094)
+	MSG_EX("#S3#C0|At long last, after seven|days of fierce battle,|Princess Fleurette's holy|blade was plunged through|the massive neck of the|Dragon King.| |The  Black  Bride, with her|husband dead  and her power|lost, is  said to have then|relinquished Castle Strange- |rock into the water's deep,|and   herself  to   eternal|sleep...",-1,0x00000094)
+	MSG_EX("#S3#C0Of course, |this  is  all  little  more|than  folktale.  Whatever|truth there may be  to this|grandiose   epic  has  been|lost to the ages.",-1,0x00000094)
+	MSG_EX("#S3#C0| |It is historical fact,|however,  that  the|incursions  wrought by  the|devil's  minions  suddenly|ceased no more  than  a|single month after Princess|Fleurette's disappearance|from Xanadu.| |And since that time, neither|scale  nor  claw  has  been|seen of Galsis or his bride.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Now, |the princess is heralded as |one of the great figures of |our time; a savior regarded |with reverence  and admira- |tion akin to  that bestowed |upon the founder himself  - |the great Kublai Khan.| |And after these events,  no |further incidents occurred, |leaving   Xanadu's   record |books with naught but peace |and prosperity to this very |day.",-1,0x00000094)
+	MSG_EX("#S3#C0| |I must  admit that  even  I, |typically unaffected as I am|by  the march  of  time that |I  commit  to  record,  have |become   enamored  of   this |lore.  When  I call  to mind|that   image   of   Princess|Fleurette  brandishing   her|holy  blade,  I  find myself|lost  in  the  moment...",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula6")
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone6_0
+
+	//▼奇岩城出現後
+	check_game_flag(3702)
+	on_jump Stone6_0
+
+	// 3619	TK B-9d シャル、誘導後に石板を読んだ
+	check_game_flag(3619)
+	on_jump Stone6_end
+	// 3618	TK B-9c シャル、石板への誘導会話
+	check_game_flag(3618)
+	off_jump Stone6_0
+
+	// 読んだことある？
+	check_game_flag(3905)
+	off_jump Stone6_B
+
+//▽以前に《処女の石板》を読んだことがある
+Stone6_A:
+	MSG("I know you've read it before,|but judging by what's written here...|Well, do you think about this part?")
+	MSG("It says the Black Bride &22then relinquished|Castle Strangerock into the water's deep&22...|This HAS to be some sort of clue, don't you agree?")
+	MSG("I guess we can't know for sure since|it might just be a fairy tale.")
+	MSG("But there might be some leads at|the bottom of that lake, though!")
+	game_flag_on(3619)
+	jump Stone6_end
+
+//▽初めて《処女の石板》を読んだ
+Stone6_B:
+	MSG("...Even though this tabula is talking|about some legend, it clearly|mentions Castle Strangerock!")
+	MSG("It seems that castle was home|to the Dragon King, Galsis.")
+	MSG("And based on the description here regarding it...")
+	MSG("It says the Black Bride &22then relinquished|Castle Strangerock into the water's deep&22...|This HAS to be some sort of clue, don't you agree?")
+	MSG("I guess we can't know for sure since|it might just be a fairy tale.")
+	MSG("But there might be some leads at|the bottom of that lake, though!")
+	game_flag_on(3619)
+	jump Stone6_end
+
+Stone6_0:
+	check_game_flag(3905)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone6_2
+
+	MSG("...Seems like this is talking about|Princess Fleurette.")
+	MSG("She must've looked amazing wielding the|Sacred Sword against Galsis!")
+
+	// 3702	EV C-3 奇岩城出現
+	check_game_flag(3702)
+	on_jump Stone6_end
+
+	MSG("And then there's that mention of Castle Strangerock...|It might just be a clue!")
+	MSG("Except, I guess we can't be certain if the rumors|from that era are true. It says the Black Bride|sunk it into the lake...")
+	jump Stone6_end
+
+Stone6_2:
+	// 3711	EV C-12 聖剣の巫女姫
+	check_game_flag(3711)
+	off_jump Stone6_end
+
+//	⇒フローレットに会っている
+	MSG("...Seems like this is talking about|Fleurette.")
+	MSG("How could Liese raise a weapon|against her own sister...?")
+	MSG("...")
+	jump Stone6_end
+
+Stone6_end:
+	check_game_flag(3905)
+	on_jump STONE_END
+
+	game_flag_on(3905)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("...Oh, before I forget,|I made lunch for you.")
+	MSG("Ehehe, I hope you like it.|I put a lot of work into it this time!")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone7:
+	MSG_EX("#S3#C0[Of History and Spirits]",-1,0x00000094)
+	MSG_EX("#S3#C0I wish to|pen down the relationship|between Xanadu|and the Guardians.",-1,0x00000094)
+	MSG_EX("#S3#C0| |After Galsis was sealed away|within  the  king's  castle,|the  country  experienced an|unprecedented  level|of  prosperity.| |One   of   the   results of|this outcome  that  would|be remiss  of  me   not  to|mention  is  that  of   the|existence of the Guardians.",-1,0x00000094)
+	MSG_EX("#S3#C0As you,|dear reader, might be aware,|a Guardian  is a  spirit of|sorts,  baptized   into   a|newborn child. There within|the  child it rests, bonded|and  intertwined  with  the|very soul.",-1,0x00000094)
+	MSG_EX("#S3#C0|At  present, |Guardians  are known  only|as  protective spirits.|However, those spirits were|in fact once real people|who existed in  this world.| |By  altering  the powers of |this world,  these  spirits |are   able   to   enhance a |person's   characteristics |such as  physical  prowess, |fortune,  magical aptitude, |and more.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Through a ritual of|unification, the recipient|is imbued with a seal|originally designed by the|Sacred  Maiden  along with|the Seven Sages.",-1,0x00000094)
+	MSG_EX("#S3#C0| |As  the  years  swept  by, |those tasked with overseeing |the  devil's  seal  created|one  of  much  greater|strength.| |I can only surmise  that the |Sacred Maiden saw the wisdom |and merit of using that same |ceremony  to  infuse  the|blessing  of  a  Guardian|within people.",-1,0x00000094)
+	MSG_EX("#S3#C0| | |Later, the capital of Xanadu|was consecrated, and a grand |ceremony  was  held  in  the |Spirit  Sanctum  where   one|by  one,  each citizen  gave|their thanks.| |Stone monuments dedicated to|the Guardians were built all|around the country alongside|the  highways, such  was the |reverence  the citizens  had |for them.",-1,0x00000094)
+	MSG_EX("#S3#C0Even now, seeing the loving |look  of  a mother  with  a |child held in her arms come |knocking  upon  the  Spirit |Sanctum's  door  is truly a |wonder to behold.",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula7")
+
+	check_game_flag(3906)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone7_end
+
+	MSG("...Says here that infusing Guardians with people|has been a custom for a really long time now.")
+	MSG("The Sacred Maiden's seal was what|originally started the tradition,|huh...")
+	MSG("And now, you're alive thanks|to her and Liese, #N0!")
+	MSG("I'm so glad...")
+
+Stone7_end:
+	game_flag_on(3906)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("...Ah, of course! I made you lunch!")
+	MSG("I made a whole lot this time.|Go on, take as muuuuch as you need!")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone8:
+	MSG_EX("#S3#C0[The Four Royal Crowns]",-1,0x00000094)
+	MSG_EX("#S3#C0Rebick|Quoxi|Tairone|Zagreus| |These are the names given to them|by the citizens of Xanadu.",-1,0x00000094)
+	MSG_EX("#S3#C0Praised as the greatest |treasures of Xanadu, they are|known as the four crowns.",-1,0x00000094)
+	MSG_EX("#S3#C0These noble treasures are|not only proof of Xanadu's|royal lineage, but it is|also suggested that they|have a deeper purpose.| |To  my regret, however, what|that 'deeper purpose' may be|is something only  the royal|family knows, and thus I  am|unable to recount it here.",-1,0x00000094)
+	MSG_EX("#S3#C0| |When the brave hero defeated |Galsis,  these  four  crowns |were   vital  to  that  end,|perhaps  owing  to  some|hidden power  they contained|within.| |Even  after  invoking  the |blessed   ritual  with  the |same seal done by the Sacred |Maiden it is said that their |powers are still required.",-1,0x00000094)
+	MSG_EX("#S3#C0| |At the time of his invasion, |the very first demand Galsis |made  was  for  these  four |crowns to  be handed over to |him.|  |Worried about his citizens' |well-being,  King  Giuliden |conceded   to  the  demon's|request.  I  could   not |imagine  what  was  going |through his mind then.",-1,0x00000094)
+	MSG_EX("#S3#C0After|the crowns were relinquished, |the  brave  wielder  of  the |Sacred  Sword  reclaimed the |treasures,  yet  they  would|not  remain  in the  kingdom|for long.| |In the later advent of the|Dragon King, Princess|Fleurette took the crowns|from the castle with her on|her quest.",-1,0x00000094)
+	MSG_EX("#S3#C0| |To  the  regret  of  this|chronicler and  the records|of history itself, however,|both Princess Fleurette and|the four royal crowns  have|been lost to the  annals of|time.",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula8")
+
+	check_game_flag(3907)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone8_end
+
+	check_game_flag(3901)
+	off_jump Stone8_2
+
+//	⇒石板②金牛の石板を読んでいる")
+	MSG("The royal crowns...ah!|This is talking about those four crowns!")
+	MSG("Xanadu really IS as amazing|as I had imagined it.")
+	MSG("It seems like they were necessary for defeating|the Dragon King as well as sealing him away...|But it looks like we can't learn anything else|from this tabula.")
+	jump Stone8_end
+
+Stone8_2:
+//	⇒石板②金牛の石板を読んでいない")
+	MSG("...Seems like this is talking about|crowns of some significance.")
+	MSG("#N0, didn't you say that you found|something of that sort in the ruins?")
+	MSG("If the crowns talked about here are one and the|same, then they're quite the amazing find...")
+	MSG("You'd best treat them as such.|Take good care of them, okay?")
+
+Stone8_end:
+	game_flag_on(3907)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("...Ah, before I forget.|I've made you some lunch.")
+	MSG("Alcott let me use the kitchen, so be|sure to give him your thanks, as well!")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone9:
+	MSG_EX("#S3#C0[Sacred Sword and Maiden]",-1,0x00000094)
+	MSG_EX("#S3#C0Allow me |to discuss the particulars|of the Sacred Sword, |Dragonslayer.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Dragonslayer |is the name of the legendary|blade used  by a  brave hero|to  fell  the  Dragon  King,|Galsis.| |Long  ago,  when  the  sword|first  emerged  in  lore, it|was  presumed  to  be  the|incarnation  of  a  sainted|hero  whose  desire  to|destroy  evil  had|manifested  in  physical|form.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Yet the ability to vanquish|evil is not the  only magic|it holds. At full strength,|the sword also protects the|wielder, even granting unto|them the utmost triumphs.| |Because  of this power, the|royal  family  feared  that|the  sword  would fall into|the hands of wicked people,|much like the crowns.| |In  order  to  safeguard the|Sacred Sword, therefore, its|whereabouts were kept secret|from the public with extreme|care.",-1,0x00000094)
+	MSG_EX("#S3#C0| |One other rumor concerning|the  care  of  the  Sacred|Sword that  I am unable to|confirm is its  connection|to  the  Sacred  Maiden's|seal.| |For after Princess|Fleurette took the Sacred|Sword with her, the final|whereabouts  of the  holy|blade  were  lost  to all|records.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Regarding the Sacred|Maiden's seal, maintaining|the spell is quite the|arduous task, indeed. | |From the day they turn 16, |those chosen are appointed|the role of standing guard|over the seal imprisoning|the devil until  their  |successor becomes of age.| |For  centuries,  there  has |been a steady continuation|of the role since Galsis|was sealed.",-1,0x00000094)
+	MSG_EX("#S3#C0| |In  order  to  fulfill  such |obligations, I have heard it |is necessary that the  royal |family's  eldest daughter is |put through arduous training |to  become a  Sacred  Maiden |from the moment of her birth.    | |It is no exaggeration  in my |eyes  to  say  that  they|shouldered a great burden to|maintain  peace  in  Xanadu.",-1,0x00000094)
+	MSG_EX("#S3#C0| |That is, until this unfortu- |nate role was put to an end. |More specifically,  when it |was passed to |Princess Fleurette...",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula9")
+
+	check_game_flag(3908)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone9_end
+
+	MSG("...Hmmm. It says here that the Sacred Sword|and the Sacred Maiden's seal are related.")
+	MSG("Hmmhmm, I'd love to hear Princess Fleurette's|tale if she were alive to tell it.")
+	jump Stone9_end
+
+Stone9_2:
+	// 3711	EV C-12 聖剣の巫女姫
+	check_game_flag(3711)
+	off_jump Stone9_end
+
+//	⇒フローレットに会っている
+	MSG("Do you think...Fleurette might have sealed|away the Dragonslayer herself...?")
+//	MSG("ここに書いてある通りなら|フローレットさんは神様を|体に宿していたってことだよね。")
+
+Stone9_end:
+	game_flag_on(3908)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("Oh, that's right!  Before I forget...")
+	MSG("Here's a packed lunch!|I made sure to make nice and nutritious,|so don't forget to eat it!")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone10:
+	MSG_EX("#S3#C0[The Seven Wise Sages]",-1,0x00000094)
+	MSG_EX("#S3#C0| |The Seven Sages who |gathered to guide the brave|hero in his quest to defeat|Galsis were people from all|walks of  life and from all|corners of Xanadu.||They  were skilled  men and|women  held  in the highest |regard by the king.",-1,0x00000094)
+	MSG_EX("#S3#C0After |that hero defeated  Galsis, |their role became  that  of |assistants  to  the  Sacred |Maidens.| |These sages  served both as |guardians   and   advisors |in  all  aspects  of  the |Sacred Maiden's life.",-1,0x00000094)
+	MSG_EX("#S3#C0Up until the time  Princess |Fleurette became the Sacred|Maiden many different people |were appointed a role as one |of the sages throughout the |ages.",-1,0x00000094)
+	MSG_EX("#S3#C0||But the sages of that time|are of particular note,|and are honoured below.| |Dvorak, Sage of Valor |Gandharva, Sage of Merit|Lorelei, Sage of Charm  |Theobald, Sage of Empathy|Abhidharma, Sage of Wisdom|Beatrice, Sage of Mysticism|and Sturm, Sage of Victory",-1,0x00000094)
+	MSG_EX("#S3#C0| |They, along with|the princess, carried the|hopes of the people as they|set off to vanquish  Galsis. | |And  when  they  faced  the|demonic  army,  the sages|passed along their knowledge|and records to her.| |Their  wisdom and  skill, it|is said, was instrumental in|driving  Galsis  out  and|returning peace to Xanadu.",-1,0x00000094)
+	MSG_EX("#S3#C0| |I wish to record here,|however,  an  oddity  that I|came  across  while perusing|the  various  records  from|that era.",-1,0x00000094)
+	MSG_EX("#S3#C0The sage, Lorelei -  |Not a single document exists |which pertains to her.",-1,0x00000094)
+	MSG_EX("#S3#C0Perhaps she perished during |the war. Or perhaps, some- |one wished to strike her|memory from history|itself...| |Much  like the  location of |the crowns and Sacred Sword, |I have no way to verify the|true fate of this forgotten|sage.",-1,0x00000094)
+	MSG_EX("#S3#C0| |At the present time, without|the  lingering  threat  of|Galsis casting a shadow over|the land,  the traditions of|the sages and  Sacred Maiden|have been abolished. |However, I  wish  to  ensure |that their valiant legacy is|given  its due  in the pages|of history,  and  thus  have|written about it here. | |I can only  hope  that  the |royal heroine and the Seven|Sages found peace at the|end, even as I immortalize|their deeds here.",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula10")
+
+	check_game_flag(3909)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone10_end
+
+	MSG("The Seven Sages, huh...")
+	MSG("We really owe them so much for all|the sacrifices they made to make|the world what it is today.")
+	MSG("These people are undoubtedly related|to the Sacred Sword, as well!")
+
+Stone10_end:
+	game_flag_on(3909)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("Ah, and before you go...|I've got some lunch for you to take!")
+	MSG("There you are. That should fill you|right up if you get hungry!")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone11:
+	MSG_EX("#S3#C0[The Black Bride]",-1,0x00000094)
+	MSG_EX("#S3#C0A woman once chose to wed|the devil Galsis. | |These days, she is known to|the people as the |Black Bride. ",-1,0x00000094)
+	MSG_EX("#S3#C0| |I've been told that on that|fateful day  she reached up|to the sky and eclipsed the|sun,  both hands held high,|sending a  pillar of  flame|to  pierce the  earth  from|the heavens.| |Owing to her connection with |Galsis, the power which she |commanded was beyond human |comprehension.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Even after the  Black Bride|rekindled the fighting |between  Xanadu and Galsis,|she  frequently visited the |royal castle as the devil's |messenger.| |I highly  suspect, however,|that she had also|frequently visited Galsis|in that selfsame castle when|he had been sealed away.",-1,0x00000094)
+	MSG_EX("#S3#C0|Guarded  as  his seal  was,|these visits, and indeed|her ability to have met|with Galsis at all,|suggests  that  the  Black|Bride was a practitioner of|some  skill.  Or  perhaps,|even  a member of the royal|family...",-1,0x00000094)
+	MSG_EX("#S3#C0| | |This theory, while|unsupported, does have some|merit, for even the records|kept during  that time seem|to me to be rather|suspicious.||A person of such noteworthy|treason  would  surely have|their  name recorded on  an|official document|somewhere, after all.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Yet, every record I've|come across has referred|to her as the Black Bride.| |And despite the many years|of research I have done,|never once have I found|anything which told her|true name.| |It is quite inconvenient to |have her  name blotted  out|in  such  a  manner, hidden|away so that none may learn|her true identity.",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula11")
+
+	check_game_flag(3910)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁
+	check_game_flag(3710)
+	on_jump Stone11_2
+
+	// ⇒奇岩城で黒き花嫁に会っていない
+	MSG("Based on what this says...|This Black Bride must've been|quite the heinous villain!")
+	MSG("I couldn't imagine what I would do|if I saw her in my dreams...")
+	MSG("...")
+	MSG("Hey, if I see her tonight in my dreams,|do you think you could wake me up?")
+	jump Stone11_end
+
+Stone11_2:
+	// ⇒奇岩城で黒き花嫁に会った
+	MSG("The Black Bride... This whole tabula is|talking about Liese, isn't it...")
+	MSG("...")
+	jump Stone11_end
+
+Stone11_end:
+	game_flag_on(3910)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("Ah, that's right.  I made some lunch for|you. Be sure to take it before you go!")
+	MSG("Ehehe, 'tis a new dish I learned!|I hope it tastes all right...")
+	jump GET_FOOD
+//--------------------------------------------------------------------
+Stone12:
+	MSG_EX("#S3#C0[The Architect of Disaster]",-1,0x00000094)
+	MSG_EX("#S3#C0In an ancient times,|the kingdom of Xanadu lay|above  a  network  of|hallowed caves deep within |the earth.| |The Alf river carved the |tunnels and crevices of|those caves, its torrential|flow ultimately ending in |a huge waterfall far below.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Even the great founder Kublai |Khan himself enjoyed being by |the river's waters.| |Xanadu  was  exactly  the |paradise he described it to |be in his writings.",-1,0x00000094)
+	MSG_EX("#S3#C0And yet,|during Giuliden's rule, the|ambience of those caves|changed completely when|Galsis came to Xanadu.",-1,0x00000094)
+	MSG_EX("#S3#C0| |The sheer pervasiveness of|his evil caused  the river|to run dry, and an ominous|stone to  rise up from the|now  lifeless  ground. With|that peaceful beauty  gone,|monsters began  to  thrive|there.| |It was from here that|Galsis imposed his reign,  |overseeing  Xanadu  from|within  those  cavernous|depths.",-1,0x00000094)
+	MSG_EX("#S3#C0|To |thwart those who would|dare defy him,  Galsis|ordered  the  king to|shape  the  caves into |a vast labyrinth.| |The citizens were distraught.|Their  peaceful  paradise of |Xanadu had  become corrupted |so utterly.| |But not a single one of them |was able to stand up against|Galsis' rule.",-1,0x00000094)
+	MSG_EX("#S3#C0| |'Tis said the labyrinth was |designed by the famous |architect, Seisen.| |It seemed as though Galsis |had abducted him, as well. ",-1,0x00000094)
+	MSG_EX("#S3#C0| |Seisen |played his part well. Daily |provisions, weapons, and |even all manner of medicines |were littered about in great |number in the caves.| |So  great  were his talents |that he had even cured  the |time king of the |Millennial Slumber.",-1,0x00000094)
+	MSG_EX("#S3#C0| |Through great skill |and wit, the famous craftsman |transformed the sacred caves |into a labyrinthine fortress. | |This  maze  served  not |only to  protect Galsis but |also to hinder the |swordbearer.",-1,0x00000094)
+	MSG_EX("#S3#C0| |'Tis said that Seisen even |built a castle  for Galsis, |yet  I've  been  unable  to |determine  the  validity of |those claims.| |If Galsis does indeed have a |keep  within those tangled|depths, nobody has been able|to confirm its existence|to this day.",-1,0x00000094)
+	MSG_EX("#S3#C0And as |for the supposed architect|of that abode, never again|did he return to Xanadu. | |Most believe he fled, but|the moniker they gave|him remained behind:|'The Demon's Artisan.'",-1,0x00000094)
+
+	// 石版用背景消去
+	novel_off(0)
+	wait(60)
+	INIT_SWITCH_ON("tabula12")
+
+	check_game_flag(3911)
+	on_jump STONE_END
+
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump Stone12_end
+
+	MSG("Do you think the ruins in Harlech|could be the same written of here?")
+	MSG("...'Tis possible. This Seisen person|could very well have been the hand|behind what we see now.")
+	MSG("But this part about him never coming back...|I wonder if he perished inside his own creation.")
+
+Stone12_end:
+	game_flag_on(3911)
+	// お弁当処理
+	CHECK_MAX_ITEM(0)
+	ON_JUMP STONE_END
+	MSG("Ah, enough of that.|I made you some lunch!")
+	MSG("Please, be sure to eat it all.|I don't want you meeting your own|end because of an empty stomach!")
+	jump GET_FOOD
+
+//--------------------------------------------------------------------
+
+GET_FOOD:
+	SE("SE_GETITEM")
+	sys_ex("Received a packed lunch from Char!",-1,0x00000200)
+
+	check_game_flag(3960)
+	off_jump FOOD_01
+	check_game_flag(3961)
+	off_jump FOOD_02
+	check_game_flag(3962)
+	off_jump FOOD_03
+	check_game_flag(3963)
+	off_jump FOOD_04
+	check_game_flag(3964)
+	off_jump FOOD_05
+	check_game_flag(3965)
+	off_jump FOOD_06
+	check_game_flag(3966)
+	off_jump FOOD_07
+	check_game_flag(3967)
+	off_jump FOOD_08
+	check_game_flag(3968)
+	off_jump FOOD_09
+	check_game_flag(3969)
+	off_jump FOOD_10
+	check_game_flag(3970)
+	off_jump FOOD_11
+	check_game_flag(3971)
+	off_jump FOOD_12
+	jump FOOD_END
+
+FOOD_01:
+	// 初めて手に入れたときのメッセージ
+	MSG("Surprised? I've started taking cooking lessons|from Alcott. I'm not very good just yet,|but I intend to give it everything I've got!")
+	MSG("So expect a lot of my special-made lunches from|here on out! And if all goes well, they're sure|to get better and better with each one.")
+	MSG("I hope you're looking forward to it!")
+
+	game_flag_on(3960)
+	get_item(310,1)
+	get_exp(10)
+	jump FOOD_END
+FOOD_02:
+	game_flag_on(3961)
+	get_item(311,1)
+	get_exp(20)
+	jump FOOD_END
+FOOD_03:
+	game_flag_on(3962)
+	get_item(312,1)
+	get_exp(30)
+	jump FOOD_END
+FOOD_04:
+	game_flag_on(3963)
+	get_item(313,1)
+	get_exp(40)
+	jump FOOD_END
+FOOD_05:
+	game_flag_on(3964)
+	get_item(314,1)
+	get_exp(50)
+	jump FOOD_END
+FOOD_06:
+	game_flag_on(3965)
+	get_item(315,1)
+	get_exp(60)
+	jump FOOD_END
+FOOD_07:
+	game_flag_on(3966)
+	get_item(316,1)
+	get_exp(70)
+	jump FOOD_END
+FOOD_08:
+	game_flag_on(3967)
+	get_item(317,1)
+	get_exp(80)
+	jump FOOD_END
+FOOD_09:
+	game_flag_on(3968)
+	get_item(318,1)
+	get_exp(90)
+	jump FOOD_END
+FOOD_10:
+	game_flag_on(3969)
+	get_item(319,1)
+	get_exp(100)
+	jump FOOD_END
+FOOD_11:
+	game_flag_on(3970)
+	get_item(320,1)
+	get_exp(110)
+	jump FOOD_END
+FOOD_12:
+	game_flag_on(3971)
+	get_item(321,1)
+	get_exp(120)
+	jump FOOD_END
+
+
+FOOD_END:
+	wait(60)
+	jump STONE_END
+
+
+//--------------------------------------------------------------------
+
+STONE_END:
+	SET_MSG_TIME(-1,-1,-1,-1)
+
+	// ちょっと待ってから
+	wait(50)
+
+	// 再び石版MENUへ
+	jump STONE_PLATE
+
+//-- 手記を読む ------------------------------------------------------
+NOTE_BOOK:
+	CINEMA_ON(0)
+
+	// 石板MENU呼び出し（0:石板/1:手記）
+	call_text(1)
+
+	// call_text()内で「キャンセル(12)」を選んだ時はここでスキップさせる
+	check_sel_text(12)
+	on_jump PLATE_END
+	check_sel_text(-1)
+	on_jump PLATE_END
+
+	// 石板用背景を読みこみ
+	load_novel_bg("epitaph\paper")
+	// 石板用背景表示
+	novel_on(0)
+	wait(60)
+
+	SET_MSG_TIME(5,40,50, 30)
+
+	// 選んだ石板に応じた文面の表示
+	check_sel_text(0)
+	on_jump Note1
+	check_sel_text(1)
+	on_jump Note2
+	check_sel_text(2)
+	on_jump Note3
+	check_sel_text(3)
+	on_jump Note4
+	check_sel_text(4)
+	on_jump Note5
+	check_sel_text(5)
+	on_jump Note6
+	check_sel_text(6)
+	on_jump Note7
+	check_sel_text(7)
+	on_jump Note8
+	check_sel_text(8)
+	on_jump Note9
+	check_sel_text(9)
+	on_jump Note10
+	check_sel_text(10)
+	on_jump Note11
+	check_sel_text(11)
+	on_jump Note12
+
+	jump NOTE_END
+
+Note1:
+	MSG_EX("#S3#C023rd day of the Herdsman's Moon, year 1210",-1,0x00000094)
+	MSG_EX("#S3#C0I've decided to attempt keeping|a personal record, starting today.||I've no intention of sharing these |private thoughts with others, but|I've been advised that this activity |may provide a much-needed outlet,|and after recent introspection,|I will give it a try.",-1,0x00000094)
+	MSG_EX("#S3#C0Of course, I am not fastidious nor diligent |like my sister, so I know not how long |this may last. I know only that my |thoughts and feelings must be expressed,|and herein I shall express them freely.",-1,0x00000094)
+	MSG_EX("#S3#C0My day began with practice in the black arts,|followed by fencing at midday, and ended with|lessons in etiquette during the evening hours.| |Day in and day out, this strict regimen remains unaltered,|and I find my sanity grown thin by its relentless march.",-1,0x00000094)
+	MSG_EX("#S3#C0--I know, I know. I mustn't dwell.|'Tis not my intent to mire these pages in such ill humor.|I was cautioned on this outcome, and warned to avoid such|behavior.| |I must make a point to record those|positive events in my day, as well.",-1,0x00000094)
+	MSG_EX("#S3#C0And if I were to identify which such events those|might be, only the praising of my sister comes to mind; |for her joy is my joy.| |My sister and I are always together, and it often feels |as if the bond between us could overcome any |hardship, no matter the severity.| |Of course, I could never speak these words to her directly,|as it is a rather embarrassing sentiment.",-1,0x00000094)
+	INIT_SWITCH_ON("memoir1")
+	jump NOTE_END
+
+Note2:
+	MSG_EX("#S3#C027th day of the Silverwolf's Moon, year 1210",-1,0x00000094)
+	MSG_EX("#S3#C0'Tis impossible to deny my sister's grace and elegance.|When placed side-by-side with one such as I, |she is clearly the lady among us.| |Father has always compared me to her |for as long as I can remember,|and sometimes I find myself truly hating |that I've such a proper sibling.",-1,0x00000094)
+	MSG_EX("#S3#C0And yet, in spite of her elegance - |or perhaps contributing to its air - |she is the one cursed with frailty and delicacy,|suffering from a weak constitution |since she was but a young child.",-1,0x00000094)
+	MSG_EX("#S3#C0Indeed, she was absent from fencing|practice today because of her condition,|which has me a bit concerned...| |I shall attend her within the hour and|see how she fares.",-1,0x00000094)
+	MSG_EX("#S3#C0'Tis hard to believe that despite her maladies,|she has always been the better fighter whenever we spar.|Her resolve is strong, even if her body is not.|Given that, my concern for her seems all the|more irrational, does it not?",-1,0x00000094)
+	INIT_SWITCH_ON("memoir2")
+	jump NOTE_END
+
+Note3:
+	MSG_EX("#S3#C030th day of the Firehen's Moon, year 1211",-1,0x00000094)
+	MSG_EX("#S3#C0Today I did the unthinkable: I snuck into town.|Even jotting down an account of this brief liberation|from lessons makes my heart swell with excitement.| |I do understand the value of training and study,|but when each and every day is spent learning,|sometimes it feels as though I may suffocate!",-1,0x00000094)
+	MSG_EX("#S3#C0And I do so love the town.|I adore each and every corner of it, |but my favorite spot is most certainly the marketplace.| |Filled with fine wares, marvelous creatures, and delectable|offerings, the likes of which I've never seen before, |I could happily lose myself in the bustle.| |Even given a full day's time, |I would not tire of touring its many stalls.",-1,0x00000094)
+	MSG_EX("#S3#C0Unfortunately, I was spotted by a guard whilst |partaking of confectioneries in a most unladylike fashion,|and was escorted away from my beloved market.| |Upon my unwilling return to the castle, my instructors|gave me quite the tongue-lashing, and assured me that|the morrow's training would be particularly severe.| |When I spoke of this with my sister,|she was quite amused.",-1,0x00000094)
+	MSG_EX("#S3#C0I have no regrets on the matter, though.|'Tis important not just to learn, but to experience; |and today, I experienced that which I could never know |through study alone.| |This is my life, and my journey.",-1,0x00000094)
+	INIT_SWITCH_ON("memoir3")
+	jump NOTE_END
+
+Note4:
+	MSG_EX("#S3#C011th day of the Pegasus Moon, year 1211",-1,0x00000094)
+	MSG_EX("#S3#C0I've been in a dreadful mood all day.| |There's to be a ball held at the castle this eve,|and, unfortunately, my attendance is mandatory.",-1,0x00000094)
+	MSG_EX("#S3#C0I simply DESPISE gowns, and all the pomp and|daintiness that go along with them.| |I suppose I'll even be expected to dance,|so that the skirts of my kirtle might billow|in the breeze!",-1,0x00000094)
+	MSG_EX("#S3#C0And they're such long skirts, too, |which means I'll have to descend the staircase |very slowly and carefully, and try not to step|on the hem and fall like last year.| |I will never have the grace nor poise of my sister,|and thus these events bring me no joy.",-1,0x00000094)
+	MSG_EX("#S3#C0I suppose I can at least look forward to|the hors d'oeuvres. Either way, since I cannot|avoid it, I may as well make the best of it.| |Off I go, then...",-1,0x00000094)
+	INIT_SWITCH_ON("memoir4")
+	jump NOTE_END
+
+Note5:
+	MSG_EX("#S3#C07th day of the Unicorn's Moon, year 1212",-1,0x00000094)
+	MSG_EX("#S3#C0I heard the most incredible story today about the|legendary phoenix during Sage Theobald's lecture.||He spoke of its power and immortality, a rarity even|here in Xanadu.||It once nested inside the sacred caves,|but its like has not been seen in many an age.|'Tis a sight I am unlikely to ever behold.",-1,0x00000094)
+	MSG_EX("#S3#C0The phoenix would visit the land, bringing forth|great tidings and blessings...or so the legend goes.| |And when the world falls into ruin, 'tis claimed that|it will guide the people to their salvation.",-1,0x00000094)
+	MSG_EX("#S3#C0A being who lives eternally, |ever watching over this world and its inhabitants...| |For some reason, this story makes me feel warm inside.",-1,0x00000094)
+	MSG_EX("#S3#C0I'd really love to be able to|meet the phoenix at least once.| |My sister also said she wants to see it,|so we promised to go find it together.| |For now it seems an impossible hope, but one day,|someday, I really do wish to see that phoenix.",-1,0x00000094)
+	INIT_SWITCH_ON("memoir5")
+	jump NOTE_END
+
+Note6:
+	MSG_EX("#S3#C010th day of the Wild Rabbit's Moon, year 1212",-1,0x00000094)
+	MSG_EX("#S3#C0My sister collapsed.",-1,0x00000094)
+	MSG_EX("#S3#C0She's always been poor of health,|and I suppose time has been taking its toll.| |Our magic lesson was particularly rigorous|and she fainted.",-1,0x00000094)
+	MSG_EX("#S3#C0She's currently resting, but|her face is still so very pale.",-1,0x00000094)
+	MSG_EX("#S3#C0My sister is constantly worrying about me,|and goes about her life with a smile, showing|no concern for her own troubles...| |I want to make sure she doesn't push herself|too much, so I really must endeavor to do better.",-1,0x00000094)
+	MSG_EX("#S3#C0No matter how many times I've asked Father and|Sage Theobald, they never seem to let her rest.| |Yet, if she continues on like this...|There HAS to be something I can do for her.",-1,0x00000094)
+	MSG_EX("#S3#C0Tomorrow I...I'm planning on giving things|my all so that I can surpass my sister.| |If I do that, then surely...",-1,0x00000094)
+	INIT_SWITCH_ON("memoir6")
+	jump NOTE_END
+
+Note7:
+	MSG_EX("#S3#C03rd day of the Filial Crow's Moon, year 1215",-1,0x00000094)
+	MSG_EX("#S3#C0Today my tutor praised me quite highly.",-1,0x00000094)
+	MSG_EX("#S3#C0Very soon I'll have the ability to best my sister.|It's been three years since then-- | |Even though I wasn't really much to look at before,|I've grown a considerable amount.| |I'm still not as good as my sister. Her magical prowess|and swordplay are yet out of my reach, but it won't be|long before I surmount those final hurdles.",-1,0x00000094)
+	MSG_EX("#S3#C0That time will come.|'Tis just a little bit longer.",-1,0x00000094)
+	MSG_EX("#S3#C0In order to prepare for when the time comes,|I think I need to keep applying myself like this.",-1,0x00000094)
+	INIT_SWITCH_ON("memoir7")
+	jump NOTE_END
+
+Note8:
+	MSG_EX("#S3#C014th day of the Demigod's Moon, year 1216",-1,0x00000094)
+	MSG_EX("#S3#C0Today is our 16th birthday.|At long last, the time has come.| |My sister and I, together,|have a very important task today.",-1,0x00000094)
+	MSG_EX("#S3#C0No matter the outcome of today's events,|there is nothing we can do to change it.|'Tis the fate we were born into.",-1,0x00000094)
+	MSG_EX("#S3#C0Yet, I hope the Goddess of Fate has heard my|prayers, and will choose me in place of my sister.| |While the thought scares me, 'tis what I fervently|desire. I've done everything in order to swing the|pendulum in my favor.",-1,0x00000094)
+	MSG_EX("#S3#C0...Well, I suppose I must get going, then.| |When next I return to this room,|I wonder exactly what feelings I'll hold in my heart...",-1,0x00000094)
+	INIT_SWITCH_ON("memoir8")
+	jump NOTE_END
+
+Note9:
+	MSG_EX("#S3#C015th day of the Demigod's Moon, year 1216",-1,0x00000094)
+	MSG_EX("#S3#C0I am completely crestfallen.",-1,0x00000094)
+	MSG_EX("#S3#C0How could this happen?|Why did things turn out this way...?",-1,0x00000094)
+	MSG_EX("#S3#C0I cannot fathom the events that transpired.|My heart aches. I just cannot...|Please...please save my sister...",-1,0x00000094)
+	INIT_SWITCH_ON("memoir9")
+	jump NOTE_END
+
+Note10:
+	MSG_EX("#S3#C017th day of the Demigod's Moon, year 1216",-1,0x00000094)
+	MSG_EX("#S3#C0Much has happened, and the moment had arrived.|It should've been me who was chosen.| |All those days I spent...utterly worthless.|There's no way I can get them back now.| |And now my sister has gone and left me.",-1,0x00000094)
+	MSG_EX("#S3#C0Regardless, that task should have been mine.|Mine to bear for the sake of all Xanadu.| |It is time I throw away memories of the past.|Now I MUST become the Sacred Maiden of the Seal.",-1,0x00000094)
+	INIT_SWITCH_ON("memoir10")
+	jump NOTE_END
+
+Note11:
+	MSG_EX("#S3#C019th day of the Demigod's Moon, year 1216",-1,0x00000094)
+	MSG_EX("#S3#C0Today my father received a report from|one of his generals.| |Who am I?|Is it really right for me to just sit here dallying about?| |No, I need not go confirm for myself.",-1,0x00000094)
+	MSG_EX("#S3#C0The real meaning of the Black Bride...|To become that person's...",-1,0x00000094)
+	MSG_EX("#S3#C0'Tis the only role for which I'm suited.| |I'm the only one who can do this.|This is a fate destined only for me.",-1,0x00000094)
+	INIT_SWITCH_ON("memoir11")
+	jump NOTE_END
+
+Note12:
+	MSG_EX("#S3#C016th day of the Hydra's Moon, year 1217",-1,0x00000094)
+	MSG_EX("#S3#C0This might be the last time I put my|thoughts to paper here.",-1,0x00000094)
+	MSG_EX("#S3#C0It has already been three months since|I left the castle.| |There were those who came and showed their support,|all of us working together to meet our goals.| |A place for the Dragon King and his Black Bride.",-1,0x00000094)
+	MSG_EX("#S3#C0A demon's abode, Castle Strangerock--",-1,0x00000094)
+	MSG_EX("#S3#C0We will be heading there after today.|O Sacred Maidens who preceded me,|I beg you lend me your strength.",-1,0x00000094)
+	INIT_SWITCH_ON("memoir12")
+	jump NOTE_END
+
+NOTE_END:
+	SET_MSG_TIME(-1,-1,-1,-1)
+
+	// 背景消去
+	novel_off(0)
+	wait(60)
+
+	// 再びMENUへ
+	jump NOTE_BOOK
+
+//--------------------------------------------------------------------
+
+PLATE_END:
+	CINEMA_OFF(0)
+	novel_off(0)
+
+	jump MENU_TOP
+
+//-- 終了 ------------------------------------------------------------
+
+EXIT:
+	SET_MOTION("Char","STAND",-1)
+	END
+}
+
+
+//////////////////////////////////////////////////////////////////////
+// 会話用サブルーチン
+
+@TALK_CHAR
+{
+	// シャルと話した
+	game_flag_on(3510)
+
+	//3711	EV C-12 聖剣の巫女姫(▽ドラゴンスレイヤー入手後)
+	check_game_flag(3711)
+	on_jump TALK11
+	// 3710	EV C-11 黒き花嫁(▼障壁消滅後)
+	check_game_flag(3710)
+	on_jump TALK10
+	// EV C-4 相似の二人
+	check_game_flag(3703)
+	on_jump TALK9
+//	// 3702	EV C-3 奇岩城出現	ここにはいない
+//	check_game_flag(3702)
+//	on_jump TALK8
+	//▼インフェルノ戦後
+	check_game_flag(4)
+	on_jump TALK7
+	//▼カニグモ戦後
+	check_game_flag(1)
+	on_jump TALK6
+	//▼トレント戦後
+	check_game_flag(3)
+	on_jump TALK5
+	// EV 手記を預けたことがある
+	check_game_flag(3611)
+	on_jump TALK4
+	// EV EV 降霊の儀式終了、シャルとの会話
+	check_game_flag(3532)
+	on_jump TALK3
+	// 街の中で遺跡が見つかったというスペンスの話を聞いてから
+	check_game_flag(3512)
+	on_jump TALK2
+
+	jump TALK1
+
+//--------------------------------------------------------------------
+
+//会話１１(EV C-12 聖剣の巫女姫(▽ドラゴンスレイヤー入手後))
+TALK11:
+	MSG("#N0...")
+	MSG("Be careful on your way.|I...I'll be waiting here for you.")
+	RET
+
+//会話１０(EV C-11 黒き花嫁(▼障壁消滅後))
+TALK10:
+	// 3717	EV C-11b 黒き花嫁後のシャルとの会話
+	check_game_flag(3717)
+	ON_JUMP TALK10_2
+
+TALK10_1:
+	MSG("#N0, welcome back.")
+
+	SYS("You discuss the events that transpired with Char.")
+
+	MSG("Liese is the Black Bride...")
+	MSG("She was such a kind person,|so how could she...?")
+	MSG("...")
+	MSG("...Sorry. I'll be all right.")
+	MSG("The Guardian of the Sacred Sword, huh?|Hmmmmm...")
+	MSG("Didn't I see one of those people who had been|petrified standing in front of the castle?")
+	MSG("And if they're there, then the demon's castle, Strangerock,|UNDOUBTEDLY must hold the Sacred Sword.|Don't you think that's the logical conclusion?")
+	MSG("And if that really is the case,|then there must be some way...")
+	MSG("That girl standing before the castle|must have some significance, as well.")
+	MSG("But what is her connection to Liese...?|I can't help but wonder just who she might be.")
+	// 3717	EV C-11b 黒き花嫁後のシャルとの会話
+	game_flag_on(3717)
+	RET
+
+//　　※以降、繰り返し用
+TALK10_2:
+	MSG("The Guardian of the Sacred Sword...|It must be related to the petrified person|in front of the castle, don't you think?")
+	MSG("But what is her connection to Liese...?|I can't help but wonder just who she might be.")
+	RET
+
+//会話９（EV C-4 相似の二人、シャルとの会話）
+TALK9:
+	check_room_flag(0)
+	on_jump TALK9_3
+
+	MSG("A barrier protecting the castle, hmmm...")
+	MSG("That barrier is probably what made the castle|fade in and out of the fog like it did.")
+	MSG("From the evidence we've gathered up to this point,|it sounds like the matter of the castle 'sinking'|into the lake was more in part due to the|reflection caused by the fog and that barrier.")
+	MSG("Mmm, but you know...even after all this effort,|we still haven't found a way in.")
+	room_flag_on(0)
+	RET
+
+//　　→以降、繰り返しメッセージ②
+TALK9_3:
+	MSG("We haven't found a way into Castle Strangerock|even after all this work...")
+	MSG("Do you think there might be some clues|hidden amongst the memoirs and tabulae?")
+	MSG("Ooh, or maybe it might have something to do with|that female statue that was found in the ruins.")
+	MSG("Do you think that maybe the petrification|has worn off by now?")
+	RET
+
+//会話８（EV C-3 奇岩城出現、シャルとの会話）
+TALK8:
+	ret
+
+//▼インフェルノ戦後
+TALK7:
+	check_room_flag(0)
+	on_jump TALK7_2
+
+TALK7_1:
+	MSG("You've managed to explore all of|Harlech Island!")
+	MSG("There might be some clue as to Strangerock's|whereabouts hidden in those memoirs and tabulae.")
+	MSG("Shall we give them another look?")
+	MSG("You've been fighting so much, #N0.|'Twould be good for you to take a break from|battle and just have a nice stroll about town.")
+	room_flag_on(0)
+	// 3618	TK B-9b シャル、石板への誘導会話
+	game_flag_on(3618)
+	RET
+
+//　　★繰り返し
+TALK7_2:
+	// 3619	TK B-9d シャル、誘導後に石板を読んだ
+	check_game_flag(3619)
+	on_jump TALK7_3
+
+	MSG("You've managed to explore all of|Harlech Island!")
+	MSG("There might be some clue as to Strangerock's|whereabouts hidden in those memoirs and tabulae.")
+	MSG("You've been fighting so much, #N0.|'Twould be good for you to take a break from|battle and just have a nice stroll about town.")
+	RET
+
+TALK7_3:
+	MSG("While the tabulae say 'tis but a legend,|there might be some truth to it all...")
+	MSG("You know, we might find some|clues at the bottom of the lake!")
+	RET
+
+//▼カニグモ戦後
+TALK6:
+	// 3624	TK B-6b カニグモ戦後、クラウンについてのシャルの会話
+	check_game_flag(3624)
+	on_jump TALK6_1
+
+//　　⇒以前にもクラウンを見せている(GF管理で一回のみ)
+	MSG("Oh, you've found another crown!")
+	MSG("...'Tis called, ah, Tairone.")
+	MSG("Counting what that swordsman has, three|crowns have been collected thus far...")
+
+	// 石板「四つの王冠」
+	check_game_flag(3907)
+	off_jump TALK6_0
+
+//　　⇒石板「四つの王冠」を読んでいる
+	MSG("If I recall rightly, there was a tabula which|mentioned that there were four crowns in all!")
+	jump TALK6_0B
+
+TALK6_0:
+//　　⇒石板「四つの王冠」を読んでいない
+	MSG("I wonder just how many there are in total...")
+
+TALK6_0B:
+	// 3624	TK B-6b カニグモ戦後、クラウンについてのシャルの会話
+	game_flag_on(3624)
+	ret
+
+TALK6_1:
+	check_room_flag(0)
+	on_jump TALK6_2
+	MSG("Lately, the people downstairs at the|bar have been just the friendliest!")
+	MSG("Miss Frieda, the barkeep...|Everyone has been so kind to me.")
+	MSG("Even the old man said the food was on the|house, like it was bad or something...")
+	MSG("The nicest person there is Dusty,|though.")
+	MSG("But, I kind of wonder what such a nice guy|like him is doing in the bar all the time...")
+	room_flag_on(0)
+	ret
+
+//　　★繰り返し
+TALK6_2:
+	MSG("Lately, the people downstairs at the|bar have been just the friendliest!")
+	MSG("The nicest person there is Dusty,|though.")
+	MSG("But, I kind of wonder what such a nice guy|like him is doing in the bar all the time...")
+	RET
+
+//▼トレント戦後
+TALK5:
+	check_room_flag(0)
+	on_jump TALK5_2
+
+TALK5_1:
+	MSG("Huh? You're saying that|old man was a statue?")
+	MSG("Ummm...|Maybe you need to get more sleep, #N0.")
+	MSG("Sorry, sorry, it was a joke!")
+	MSG("I've heard that golems can animate stone,|but...")
+	MSG("From the way you're telling it, though, it sounds|more like that man was turned into a statue.")
+	MSG("...Hey, do you think that swordsman|was once a statue too?")
+	room_flag_on(0)
+	RET
+
+//　　★繰り返し
+TALK5_2:
+	MSG("So there was a person in the ruins|who had been petrified...")
+	MSG("How in the world did he become that way,|though?")
+	RET
+
+//会話４（EV 手記を預けたことがある)
+TALK4:
+	check_room_flag(0)
+	on_jump TALK4_2
+
+TALK4_1:
+	MSG("#N0, there might be something important|written on the stone tabulae.")
+	MSG("'Twould be best to look them over and|see if anything catches your eye.")
+	MSG("Those memoirs don't really seem that important|when compared to what the tabulae say...")
+	MSG("But they, too, might hold valuable clues. If you've|got time, it wouldn't hurt to check them over.")
+	room_flag_on(0)
+	RET
+
+TALK4_2:
+	MSG("#N0, there might be something important|written on the stone tabulae.")
+	MSG("'Twould be best to look them over and|see if anything catches your eye.")
+	RET
+
+//会話３（EV 降霊の儀式終了、シャルとの会話）
+TALK3:
+	MSG("Oh, did you hear? It seems the town's|main gate is now open for passage.")
+	MSG("Lady Liese informed me as such. She said the|investigation had concluded, and that adventurers|and tourists were allowed out into the ruins again.")
+	MSG("Though, if you're going, be sure you're prepared|for what's out there, okay? Stock up on items,|wear your best armor, and such.")
+	RET
+
+//会話２（街の中で遺跡が見つかったというスペンスの話を聞いてから）
+TALK2:
+	check_room_flag(0)
+	on_jump TALK2_2
+
+TALK2_1:
+	MSG("#N0! Just the person I was looking for.|Have you heard the news?")
+	MSG("Apparently, some ruins were uncovered right within|Harlech's own reaches! There's an entrance in the|back-alley with stairs leading underground.")
+	MSG("Not much is known about it, though. The passages|are swarming with monsters, and the townsfolk|have stayed well clear.")
+	MSG("But...well, I thought you might find such|a formidable discovery worth a closer look.")
+	MSG("You told me before that knights thrive in|dangerous environments, no?")
+	room_flag_on(0)
+	RET
+
+TALK2_2:
+	MSG("I'd like for you to explore the Back-Alley Ruins|on my behalf, if you would.")
+	MSG("Of course, I'd love to join you, but my weapon|of choice is a book. I wouldn't stand a chance|against real monsters!")
+	RET
+
+//会話１（初期）
+TALK1:
+	MSG("Ah, and if your bags get a bit overloaded,|feel free to leave some stuff here.")
+	MSG("I'll make sure to keep a close eye on things!")
+	RET
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 05/09/10
+//////////////////////////////////////////////////////////////////////
+// 初入店時HELPメッセージ（預かり所編）
+@help
+{
+	MSG_EX("#W0",70,0x00000002)
+	SYS_EX("#F0#C2This is your room at the inn.",-1,0x20000400)
+	SYS_EX("#F0#C2You may leave items or money here in Char's|care for safekeeping while you're out.",-1,0x20000400)
+	SYS_EX("#F0#C2The tabs marked I, II, and III each represent|bags available to you for inventory storage,|and the button marked [Manage] can be clicked|to open the money storage window.",-1,0x20000400)
+	SYS_EX("#F0#C2To store or retrieve items here, simply drag|and drop them into or out of the slots in|the inventory storage bags.",-1,0x20000400)
+	SYS_EX("#F0#C2To store or retrieve money, use the buttons|to select an amount, then click the up arrow|for storage, or the down arrow for withdrawal.",-1,0x20000400)
+}

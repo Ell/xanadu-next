@@ -1,0 +1,165 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期設定                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+// ストッパーチェック
+	CHECK_GAME_FLAG(596)
+	OFF_JUMP NEXT
+	INIT_SWITCH_ON("stop")
+
+// 水門３読み替え
+	CHECK_GAME_FLAG(538)
+	OFF_JUMP MIZU
+
+	LOAD_MAP("MP_05a6")
+	LOAD_HITMAP("MP_05a6h")
+	JUMP NEXT
+
+MIZU:
+	// 水マップ
+	SE("SE_MIZU")
+
+NEXT:
+
+//鍵チェック
+// 	CHECK_GAME_FLAG(561)
+// 	ON_JUMP next2
+// 	LOCK("lock",1)
+// 	SET_MOTION("lock","STAND",0)
+// 	OFF_JUMP next2
+// next2:
+
+// 敵を倒したことがある
+// 	CHECK_GAME_FLAG(557)
+// 	OFF_JUMP next3
+
+// 		HIDE_CHR("stop")
+// 		SET_POS_EX("tbox","htbox")
+// 		HIDE_CHR("htbox")
+
+next3:
+
+	// スケルトンウォーリア
+	put_monster("m00",378,7,0,0,0)
+	put_monster("m01",378,7,0,0,1)
+	put_monster("m02",378,7,0,0,2)
+	put_monster("m03",378,7,0,0,3)
+	put_monster("m04",378,7,0,0,4)
+	put_monster("m05",378,7,0,0,5)
+	// ゴースト
+	put_monster("m06",419,7,0,0,6)
+	put_monster("m07",419,7,0,0,7)
+
+	// カギ設定
+	CHECK_GAME_FLAG(1530)
+	ON_SKIP(2)
+	KAGI("d1530",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1530")
+
+	// カギ設定
+	CHECK_GAME_FLAG(596)
+	OFF_SKIP(5)
+	CHECK_GAME_FLAG(1531)
+	ON_SKIP(2)
+	KAGI("d1531",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1531")
+
+}
+
+RES("WIN")
+{
+	CHECK_GAME_FLAG(596)
+	ON_JUMP next
+
+		STOP_PC(0)
+		WAIT(60)
+		SE("SE_STOPPER")
+		CINEMA_ON(0)
+		FOCUS_CHR("stop")
+		SWITCH_ON("stop")
+		WAIT(90)
+		CINEMA_OFF(0)
+
+	GAME_FLAG_ON(596)
+
+	// カギ設定
+	CHECK_GAME_FLAG(1531)
+	ON_SKIP(2)
+	KAGI("d1531",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1531")
+
+next:
+
+}
+
+
+// ----------------------------------------------------------------------------
+// カギ開け
+// ----------------------------------------------------------------------------
+
+DEF("d1530")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1530)
+}
+
+DEF("d1531")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1531)
+}
+
+
+// ----------------------------------------------------------------------------
+// 鍵                                                                          
+// ----------------------------------------------------------------------------
+
+// DEF("lock")
+
+// RES("KEY")
+// {
+// 	GAME_FLAG_ON(561)
+// 	SE("SE_EQUIP")
+// 	SWITCH_ON("lock")
+// 	WAIT(30)
+// 	HIDE_CHR("lock")
+// 	end
+
+// }
+
+
+// ----------------------------------------------------------------------------
+// 宝箱                                                                        
+// ----------------------------------------------------------------------------
+
+// DEF("tbox")
+// RES("INIT")
+// {
+// 	CHECK_GAME_FLAG(553)
+// 	ON_JUMP next
+
+// 	SET_TREASURE("tbox",1,7,"ITEM")
+// 	END
+
+// next:
+// 	HIDE_CHR("tbox")
+// 	END
+// }
+
+// DEF("ITEM")
+// RES("CATCH")
+// {
+// 	SE("SE_GETITEM")
+// 	GAME_FLAG_ON(553)
+// }
+
+
+

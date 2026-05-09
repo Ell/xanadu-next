@@ -1,0 +1,53 @@
+//----------------------------------------------------------------------------
+// エリア情報定義ファイル
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+
+BLOCK("Floodgate",	(86,88),"MP_00_A",0,0x10000001)
+BLOCK("Floodgate",	(8c,8c),"MP_00_A",0,0x10000001)
+
+BLOCK("Lakebed Ruins",	(85,85),"MP_00_A",0,0x00000002)
+BLOCK("Lakebed Ruins",	(89,89),"MP_00_A",0,0x00000002)
+BLOCK("Lakebed Ruins",	(8a,8a),"MP_00_A",0,0x00000002)
+BLOCK("Lakebed Ruins",	(8b,8b),"MP_00_A",0,0x10000001)
+BLOCK("Lakebed Ruins",	(8c,8c),"MP_00_A",0,0x00000002)
+
+BLOCK("Inn/Tavern",	(9b,9b),"MP_00_A",0,0x00000000)
+BLOCK("Shrine",		(93,93),"MP_00_A",0,0x00000000)
+BLOCK("Tool Shop",	(94,94),"MP_00_A",0,0x00000000)
+BLOCK("Mayor's House",	(95,95),"MP_00_A",0,0x00000000)
+BLOCK("Weapon Shop",	(96,96),"MP_00_A",0,0x00000000)
+BLOCK("Harlech Village",(97,97),"MP_00_A",0,0x00000002)
+BLOCK("Harlech Village",(8d,8d),"MP_00_A",0,0x00000002)
+
+BLOCK("Inn/Tavern 2F",	(9c,9e),"MP_00_B",0,0x00000000)
+
+
+// 足音
+FOOT("@","SE_FOOT_G")
+
+//地面
+FOOT("AREA00_0p","SE_FOOT_B")
+FOOT("AREA00_0q","SE_FOOT_B")
+
+//砂
+FOOT("AREA00_0s","SE_FOOT_E")
+
+//木
+FOOT("AREA00_40","SE_FOOT_H")
+FOOT("AREA00_14","SE_FOOT_H")
+FOOT("AREA00_25","SE_FOOT_H")
+FOOT("AREA00_53","SE_FOOT_H")
+FOOT("AREA00_54","SE_FOOT_H")
+
+//カーペット
+FOOT("AREA00_57","SE_FOOT_A")
+
+//石
+//FOOT("AREA00_2c","SE_FOOT_G")
+//FOOT("AREA00_28","SE_FOOT_G")
+
+//砂リバーブ
+
+

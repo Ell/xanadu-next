@@ -1,0 +1,47 @@
+
+// ----------------------------------------------------------------------------
+// É}ÉbÉvèâä˙èÛë‘                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+	put_monster("skull1",	319,1,0,0,0)
+	put_monster("skull2",	319,1,0,0,1)
+	put_monster("skull3",	319,1,0,0,2)
+	put_monster("skull4",	319,1,0,0,3)
+//	put_monster("zombie1",	010,1,0,0,4)
+
+
+// door(S) ------------------------------------------
+	check_game_flag(1008)
+	off_jump skip_S
+	init_switch_on("map36_A")
+skip_S:
+// door(N) ------------------------------------------
+	check_game_flag(1009)
+	off_jump skip_N
+	init_switch_on("map36_B")
+skip_S:
+}
+
+RES("WIN")
+{
+	switch_on("map36_B")
+	game_flag_on(1009)
+}
+
+// çÚ ////////////////////////////////////////////////////////////////////////
+
+// ñk ------------------------------
+DEF("map36_B")
+RES("CLICK")
+{
+	check_game_flag(1009)
+	on_jump unlocked
+	wait(0)
+	end
+unlocked:
+}
+
+

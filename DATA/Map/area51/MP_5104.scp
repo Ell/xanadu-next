@@ -1,0 +1,64 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期状態                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+}
+
+DEF("door")
+RES("CLICK")
+{
+}
+
+DEF("oyaji")
+RES("INIT")
+{
+	sys("#c2Test out 'new magic' here.|If you want to know what each type of magic does,|talk to the guy in the center.")
+}
+RES("CLICK")
+{
+	focus_chr("oyaji")
+
+START:
+	sel("Which magic do you want to know about?|Needle|Thunder|Fire|Changing Magic|Cancel")
+	check_select(0)
+	off_jump SEL_A
+	// ニードル /////////////////////
+	msg("Needle is [projectile] magic.|#c2It will be cast to the location of the mouse cursor.")
+	msg("If the mouse is over a target, then|it will fly over and hit that target.")
+	msg("Well, that's pretty much magic in a nutshell,|isn't it?")
+	jump START
+SEL_A:
+	check_select(1)
+	off_jump SEL_B
+	// サンダー /////////////////////
+	msg("Thunder is [channeled] magic.|#c2The direction of the magic will change as you move the mouse.")
+	msg("While you hold down right-click,|you can control the magic, but be careful|as #c2SP will slowly drain#c*.")
+	msg("Well, right now as a courtesy to you,|SP won't be drained.")
+	jump START
+SEL_B:
+	check_select(2)
+	off_jump SEL_C
+	// ファイア /////////////////////
+	msg("Fire magic uses a [pinpoint system].|#c2The magic will ignite directly where the mouse cursor is.")
+	msg("If the mouse is hovering over a target, then|the target will get hit by the magic immediately.")
+	jump START
+SEL_C:
+	// やめる /////////////////////
+	check_select(3)
+	off_jump SEL_D
+	msg("In order to switch spells, left-click on the|magic you want in the magic slots displayed|on the upper right corner of the screen.")
+	msg("The selected magic will have|its slot highlighted #c2in red#c*.")
+	jump START
+SEL_D:
+	// やめる /////////////////////
+	check_select(4)
+	off_jump SEL_E
+SEL_E:
+	end
+
+}
+

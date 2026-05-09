@@ -62,6 +62,7 @@ class Monster:
     ai_summary: str = ""
     sprite_rel: str = ""
     families: list[str] = field(default_factory=list)
+    sprites: list[str] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
@@ -104,13 +105,29 @@ def _build_monsters(out_root: Path, records: list[ObjRecord]) -> list[Monster]:
     for mid, recs in variants.items():
         recs.sort(key=lambda r: r.lv)
         rec = recs[-1]  # highest Lv
-        sprite = monster_root / rec.id / f"{rec.id}.png"
-        sprite_rel = (
-            f"DATA/chr/monster/{rec.id}/{rec.id}.png" if sprite.exists() else ""
-        )
-        alg = monster_root / rec.id / f"{rec.id}.alg"
+        folder = monster_root / rec.id
+        # Some monsters have variant textures (M_xxxxa.png, M_xxxxb.png) and
+        # no canonical M_xxxx.png — surface every PNG so the bestiary shows
+        # them all, with the canonical one (if any) listed first.
+        # Catch any PNG in the folder (e.g. M_xxxxa.png variants, or oddly
+        # named ones like core.png) — Falcom isn't consistent.
+        all_pngs = sorted(folder.glob("*.png")) if folder.is_dir() else []
+        canonical = folder / f"{rec.id}.png"
+        if canonical in all_pngs:
+            all_pngs.remove(canonical)
+            all_pngs.insert(0, canonical)
+        sprites = [
+            f"DATA/chr/monster/{rec.id}/{p.name}" for p in all_pngs
+        ]
+        alg = folder / f"{rec.id}.alg"
         jp, ai = _read_alg(alg)
-        m = Monster(rec=rec, jp=jp, ai_summary=ai, sprite_rel=sprite_rel)
+        m = Monster(
+            rec=rec,
+            jp=jp,
+            ai_summary=ai,
+            sprite_rel=sprites[0] if sprites else "",
+            sprites=sprites,
+        )
         m.families = [f"Lv{r.lv}/HP{r.hp}/ATK{r.atk}" for r in recs]
         by_id[mid] = m
     return list(by_id.values())
@@ -201,11 +218,27 @@ def _render_drops(rec: ObjRecord, equips: list[EquipRecord]) -> str:
 
 def _render_one(m: Monster, equips: list[EquipRecord], areas_for: dict[str, list[str]]) -> str:
     rec = m.rec
-    sprite = (
-        f'<img src="{html.escape(m.sprite_rel)}" alt="{html.escape(rec.id)}" />'
-        if m.sprite_rel
-        else '<div class="no-sprite">no sprite</div>'
-    )
+    if m.sprites:
+        if len(m.sprites) == 1:
+            sprite = (
+                f'<img src="{html.escape(m.sprites[0])}" '
+                f'alt="{html.escape(rec.id)}" />'
+            )
+        else:
+            sprite = (
+                '<div class="m-sprite-strip">'
+                + "".join(
+                    f'<img src="{html.escape(s)}" '
+                    f'alt="{html.escape(rec.id)} variant" '
+                    f'title="{html.escape(s.rsplit("/", 1)[-1])}" />'
+                    for s in m.sprites
+                )
+                + "</div>"
+            )
+    else:
+        sprite = (
+            '<div class="no-sprite">texture-only<br>(check .chr)</div>'
+        )
     stat = lambda k, v: f'<div class="stat"><span class="k">{k}</span><span class="v">{v}</span></div>'
     stats_grid = "".join(
         [
@@ -306,11 +339,18 @@ EXTRA_CSS = """
             border-radius: 4px; padding: 14px 16px; }
 .m-head { display: grid; grid-template-columns: auto 1fr; gap: 16px;
           align-items: center; }
-.m-sprite { width: 96px; height: 96px; background: #0c0d10; border-radius: 3px;
+.m-sprite { width: 120px; min-height: 96px; background: #0c0d10; border-radius: 3px;
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden; }
-.m-sprite img { max-width: 100%; max-height: 100%;
-                image-rendering: pixelated; }
+            overflow: hidden; padding: 4px; }
+.m-sprite img { max-width: 100%; max-height: 96px;
+                image-rendering: pixelated; object-fit: contain; }
+.m-sprite .no-sprite { color: var(--muted); font-size: 10px;
+                       text-align: center; line-height: 1.4;
+                       font-style: italic; }
+.m-sprite-strip { display: flex; gap: 4px; overflow-x: auto;
+                  width: 100%; height: 96px; }
+.m-sprite-strip img { flex: 0 0 auto; height: 96px; max-width: 96px;
+                      object-fit: contain; image-rendering: pixelated; }
 .m-id { color: var(--muted); font: 11px ui-monospace, monospace; }
 .m-name { margin: 2px 0 6px; font-size: 16px; font-weight: 600; }
 .m-name .t-jp { color: var(--accent-soft); font-weight: 400;

@@ -130,13 +130,11 @@ PAGE = """<!doctype html>
 </header>
 <nav>
   <button data-view="images" class="active">Images</button>
-  <button data-view="audio">Audio</button>
   <button data-view="video">Video</button>
   <input id="filter" type="search" placeholder="Filter by name…">
 </nav>
 <main>
   <div id="view-images">{images_html}</div>
-  <div id="view-audio" class="hidden">{audio_html}</div>
   <div id="view-video" class="hidden">{video_html}</div>
 </main>
 
@@ -162,7 +160,6 @@ PAGE = """<!doctype html>
 const buttons = document.querySelectorAll('nav button');
 const views = {{
   images: document.getElementById('view-images'),
-  audio:  document.getElementById('view-audio'),
   video:  document.getElementById('view-video'),
 }};
 buttons.forEach(b => b.addEventListener('click', () => {{
@@ -447,22 +444,16 @@ def build_html(root: Path) -> str:
         render_image_section(g, paths, root)
         for g, paths in sorted(groups["images"].items())
     ) or "<p>No PNGs extracted.</p>"
-    aud_html = "".join(
-        render_audio_section(g, paths, root)
-        for g, paths in sorted(groups["audio"].items())
-    ) or "<p>No audio extracted.</p>"
     vid_html = "".join(
         render_video_section(g, paths, root)
         for g, paths in sorted(groups["video"].items())
     ) or "<p>No video extracted.</p>"
     n_img = sum(len(v) for v in groups["images"].values())
-    n_aud = sum(len(v) for v in groups["audio"].values())
     n_vid = sum(len(v) for v in groups["video"].values())
-    counts = f"{n_img} images · {n_aud} audio · {n_vid} video"
+    counts = f"{n_img} images · {n_vid} video"
     return PAGE.format(
         counts=html.escape(counts),
         images_html=img_html,
-        audio_html=aud_html,
         video_html=vid_html,
     )
 

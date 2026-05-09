@@ -1,7 +1,0 @@
-DEF("switch")
-RES("CLICK")
-{
-	area_flag_on(1)
-	wait(60)
-}
-	

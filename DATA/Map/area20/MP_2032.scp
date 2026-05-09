@@ -1,0 +1,81 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期状態                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+// treasure -----------------------------------------
+
+trs1:
+	check_game_flag(1010)
+	on_jump open_trs1
+	set_treasure("trs1",1,226,"t1")
+	jump trs2
+open_trs1:
+	hide_chr("trs1")
+
+trs2:
+	check_game_flag(1011)
+	on_jump open_trs2
+	set_treasure("trs2",1,210,"t2")
+	jump trs3
+open_trs2:
+	hide_chr("trs2")
+
+trs3:
+	check_game_flag(1012)
+	on_jump open_trs3
+	set_treasure("trs3",0,500,"t3")
+	jump trsE
+open_trs3:
+	hide_chr("trs3")
+trsE:
+
+
+// door(E) ------------------------------------------
+	check_game_flag(1004)
+	off_jump skip_E
+	init_switch_on("door_E")
+skip_E:
+}
+
+
+// 宝箱 //////////////////////////////////////////////////////
+DEF("trs1")
+RES("CLICK")
+{
+	OPEN_BOX("CUR")
+	put_monster("bat1",		005,1,0,0,3)
+}
+DEF("trs2")
+RES("CLICK")
+{
+	OPEN_BOX("CUR")
+	put_monster("zombie1",	010,1,0,0,0)
+	put_monster("zombie2",	010,1,0,0,1)
+	put_monster("zombie3",	010,1,0,0,2)
+}
+DEF("trs3")
+RES("CLICK")
+{
+	OPEN_BOX("CUR")
+}
+
+// 中身 //////////////////////////////////////////////////////
+DEF("t1")
+RES("CATCH")
+{
+	game_flag_on(1010)
+}
+DEF("t2")
+RES("CATCH")
+{
+	game_flag_on(1011)
+}
+DEF("t3")
+RES("CATCH")
+{
+	game_flag_on(1012)
+}

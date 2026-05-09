@@ -1,0 +1,30 @@
+DEF("door")
+RES("CLICK")
+{
+	check_area_flag(1)
+	off_skip(18)
+	check_area_flag(2)
+	off_skip(16)
+	check_area_flag(3)
+	off_skip(14)
+	check_area_flag(4)
+	off_skip(12)
+	
+//‚n‚j
+	check_room_flag(1)
+	on_skip(4)
+
+	switch_on("door")
+	wait(60)
+	room_flag_on(1)
+	end
+
+	switch_off("door")
+	wait(60)
+	room_flag_off(1)
+	end
+//NG
+
+	end
+}
+	

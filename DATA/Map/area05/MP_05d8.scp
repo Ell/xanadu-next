@@ -1,0 +1,358 @@
+
+// ----------------------------------------------------------------------------
+// 初期状態                                                                    
+// ----------------------------------------------------------------------------
+//
+// ROOM_FLAG
+//	0 ドヴォルザーク
+//	1 ティオバルト
+//
+
+DEF("MAP")
+
+RES("INIT")
+{
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_ON(254)
+
+	// 石像使用済みなら明滅アニメを止めておく
+	check_game_flag(3944)
+	off_skip 1
+	room_flag_on(253)
+
+	// とりあえず消しとく
+	HIDE_CHR("Beatrice")
+	HIDE_CHR("Dvorak")
+	HIDE_CHR("Tiowald")
+
+	// EV B-4 トレント戦後(ドヴォルザークとの会話)
+	CHECK_GAME_FLAG(3603)
+	OFF_JUMP NEXT2
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	CHECK_GAME_FLAG(3605)
+	ON_JUMP NEXT2
+
+	SHOW_CHR("Dvorak")
+	SHOW_CHR("Tiowald")
+
+NEXT2:
+	// カニグモ倒したか
+	CHECK_GAME_FLAG(1)
+	ON_JUMP NEXT3
+
+	SHOW_CHR("Beatrice")
+	SET_MOTION("Beatrice","STAND",0)
+	jump NEXT4
+
+NEXT3:
+	SHOW_CHR("Beatrice")
+	SET_MOTION("Beatrice","HOOK",0)
+
+NEXT4:
+	// カギ設定
+	CHECK_GAME_FLAG(1550)
+	ON_SKIP(2)
+	KAGI("d1550",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1550")
+
+	// カギ設定
+	CHECK_GAME_FLAG(1551)
+	ON_SKIP(2)
+	KAGI("d1551",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1551")
+
+	// 岩をガントレットで破壊したか？
+	CHECK_GAME_FLAG(588)
+	OFF_SKIP(1)
+	HIDE_CHR("iwa")
+
+	// マップ読み替え
+	CHECK_GAME_FLAG(1)
+	OFF_JUMP NEXT
+
+	LOAD_MAP("MP_05fc")
+	LOAD_HITMAP("MP_05fch")
+
+	END
+
+NEXT:
+
+	HIDE_CHR("iwa")
+
+}
+
+
+// ----------------------------------------------------------------------------
+// カギ開け
+// ----------------------------------------------------------------------------
+
+DEF("d1550")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1550)
+}
+
+DEF("d1551")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1551)
+}
+
+
+// ----------------------------------------------------------------------------
+// 柵
+// ----------------------------------------------------------------------------
+
+DEF("iwa")
+RES("KILL")
+{
+	KILL_CHR("iwa",0,0,-1)
+	GAME_FLAG_ON(588)
+}
+
+
+// ----------------------------------------------------------------------------
+// セーブ
+// ----------------------------------------------------------------------------
+
+DEF("save")
+RES("CLICK")
+{
+	CINEMA_ON(0)
+	STOP_PC(0)
+
+	refresh("PC")
+	se("SE_HEAL")
+
+	SEL("Record your deeds?|#c2Save|Cancel")
+	CHECK_SELECT(0)
+	OFF_JUMP SEL_A
+
+		CALL_SHOP(4)
+//		SE("SE_UP_PRM")
+//		SYS("#c2今までの冒険を記録しました。")
+
+SEL_A:
+	CHECK_SELECT(1)
+
+	CINEMA_OFF(0)
+}
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+// ベアトリーチェ前イベント
+
+DEF("Beatrice")
+
+RES("INIT")
+{
+	// EV B-4 トレント戦後(ドヴォルザークとの会話)
+	CHECK_GAME_FLAG(3603)
+	OFF_JUMP EXIT
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	CHECK_GAME_FLAG(3605)
+	ON_JUMP EXIT
+
+	set_skip_label("SKIP")
+
+//▼ベアトリーチェ石像前
+
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_OFF(254)
+
+	STOP_PC(0)
+	SET_MOTION("PC","STAND",-1)
+	load_npc_eqp(7,00)
+	DVORAK(0)
+	SET_SPOT_ORG( 1, 0.58,0.00,8.73 )
+	// イベント汎用曲
+	BGM( 18, 1, 1000 )
+
+//　　マップに入るとイベント開始
+//　　ベアトリーチェの石像の前でドヴォルザークとティオバルトが
+//　　向かい合っている。
+
+//	set_deg_ex("Dvorak", "Beatrice")
+//	set_deg_ex("Tiowald", "Beatrice")
+	look_chr("Dvorak", "Beatrice")
+	look_chr("Tiowald", "Beatrice")
+
+	permit_script_camera(1)
+	set_script_camera(1.02,1.00,6.42, 3.5,200.0,0.0, 4.0, 15.0)
+	rotate_script_camera(0,-20,0, 600, 1)
+
+	CINEMA_ON(0)
+
+	MSG_EX("#S3#C3Male Voice|#C0Ah-ha, so Lady Beatrice was here...",-1,2)
+
+	MSG_EX("#S3#C3Eldery Voice|#C0Indeed, were it not for her assistance at the crucial|moment in that battle, all would have been lost.",-1,2)
+	MSG_EX("#S3#C3Eldery Voice|#C0As for the other five...|Rather, four people are also in a similar condition.",-1,2)
+	MSG_EX("#S3#C3Eldery Voice|#C0Even now, scattered as they are across|this island, time stands still for them.",-1,2)
+	wait(20)
+
+	cross_fade(40)
+	set_script_camera(0.97,2.00,4.15, -20,170.0,0.0, 5.0, 15.0)
+	rotate_script_camera(0,60,0,1500, 1)
+	wait(80)
+
+	set_motion("Dvorak", "ATTACK1", -1)
+	MSG_EX("#S3#C3Dvorak|#C0Truly a perplexing dilemma...",-1,2)
+	wait(50)
+
+//	set_deg("Dvorak", 291)
+	look_chr("Dvorak", "Tiowald")
+	MSG_EX("#S3#C3Dvorak|#C0Well, can naught be done for this one here?",-1,2)
+	wait(60)
+	look_chr("Tiowald", "Dvorak")
+	wait(20)
+	MSG_EX("#S3#C3Theobald|#C0I'm unsure as of yet...",-1,2)
+	MSG_EX("#S3#C3Theobald|#C0And we have other pressing matters.",-1,2)
+
+	wait(120)
+	cross_fade(60)
+	set_script_camera(0.29,1.00,5.96, -10.5,150.0,0.0, 4.0, 15.0)
+//	set_deg_ex("Tiowald", "Dvorak")
+	look_chr("Tiowald", "Dvorak")
+	set_deg("Tiowald", 60)
+	rotate_script_camera(0,-10,0, 1000, 1)
+	wait(60)
+
+	MSG_EX("#S3#C3Theobald|#C0Something is stirring in the wind...",-1,2)
+	MSG_EX("#S3#C3Theobald|#C0And the matter of our own release from|those stony prisons is something that in|itself requires understanding.",-1,2)
+	wait(60)
+
+	look_chr("Dvorak", "-")
+	set_motion("Dvorak", "ATTACK1", -1)
+	MSG_EX("#S3#C3Dvorak|#C0'Tis quite the unsettling mystery,|I agree...",-1,2)
+	wait(60)
+
+	look_chr("Tiowald", "-")
+	MSG_EX("#S3#C3Theobald|#C0For the time being, all we can do is attempt|to divine the truth behind our circumstances.",-1,2)
+
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	GAME_FLAG_ON(3605)
+
+	focus_chr("PC")
+	cross_fade(60)
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+	BGM( -1, 0, 1000 )
+
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_ON(254)
+
+EXIT:
+	SET_SPOT_ORG( 0, 0.58,0.00,8.73 )
+	END
+
+SKIP:
+	// EV B-6 地下道２Ｂ(ドヴォルザークとティオバルト)
+	GAME_FLAG_ON(3605)
+
+	focus_chr("PC")
+	permit_script_camera(0)
+	CINEMA_OFF(0)
+	SET_SPOT_ORG( 0, 0.58,0.00,8.73 )
+	BGM( -1, 0, 1000 )
+	fade_in(60)
+
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_ON(254)
+	END
+}
+
+RES("CLICK")
+{
+	//カニグモ倒したか
+	CHECK_GAME_FLAG(1)
+	ON_JUMP NEXT
+
+	SYS("A statue of a woman stands here, arms spread wide.|A feeling of strength emanates from her chiseled features.")
+	END
+NEXT:
+	SYS("Stone fragments litter the ground.")
+}
+
+//////////////////////////////////////////////////////////////////////
+// ドヴォルザーク
+
+DEF("Dvorak")
+
+RES("CLICK")
+{
+
+	FOCUS_CHR("Dvorak")
+	SET_NAME("Dvorak", "Dvorak")
+
+	MSG("...We are unwilling to admit defeat.")
+	MSG("Our standing here today is a testament to that.")
+
+}
+
+//////////////////////////////////////////////////////////////////////
+// ティオバルト
+
+DEF("Tiowald")
+
+RES("CLICK")
+{
+
+	FOCUS_CHR("Tiowald")
+	SET_NAME("Tiowald", "Theobald")
+	SET_MOTION("Tiowald", "ATTACK1",-1)
+
+	check_room_flag(1)
+	on_jump TALK2
+
+	MSG("Mmm, you wonder who we truly are?")
+	MSG("Heh heh, even if one were able to scale a mountain|in a single bound, taking it step by careful step|reaches much the same conclusion.")
+	MSG("'Tis important to remember that the journey allows|one to partake of the flowers and other...scenery.")
+	MSG("There is naught more important than taking things|one step at a time. I trust you will understand that.")
+
+	room_flag_on(1)
+	end
+//　　→以降繰り返し
+
+TALK2:
+	MSG("...Further ahead I sense a hint|of something sinister.")
+	MSG("At one point in time, this location was the place|in which Lady Beatrice sealed away a great|monster behind a wall of ice...")
+	MSG("If you plan to press on, do take care.")
+
+}
+
+// ----------------------------------------------------------------------------
+// 石像のリアクション
+// ----------------------------------------------------------------------------
+DEF("Statue")
+RES("CLICK")
+{
+	check_game_flag(3944)
+	on_jump no_res
+
+	check_spirit_lv_max(0)
+	on_jump max_lv
+
+	// まだLVが上げられるならレベルアップ
+	room_flag_on(253)
+	attach_efc("EFC_SPIRIT_LVUP2","Statue","POS")
+	wait(50)
+	spirit_lv_up( 1 )
+	sys_ex("Your Guardian has improved a level!",-1,0x00000200)
+	game_flag_on(3944)
+	end
+
+max_lv:
+	sys("The Guardian which you bear within you|is unable to improve any further.")
+	end
+
+no_res:
+	sys("Nothing happens.")
+	end
+}

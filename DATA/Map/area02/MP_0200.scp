@@ -1,0 +1,13 @@
+
+
+// map -----------------------------------------------------------------------
+DEF("MAP")
+RES("INIT")
+{
+	set_encount_info(8,10,8)
+        entry_monster(0,00)
+	entry_monster(182,000)
+	entry_monster(3,020)
+	encount(100)
+}
+

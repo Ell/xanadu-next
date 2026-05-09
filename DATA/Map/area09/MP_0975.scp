@@ -1,0 +1,141 @@
+
+// ----------------------------------------------------------------------------
+// マップ                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_ON(254)
+
+	ROOM_FLAG_ON(0)
+
+	// ストッパー用侵入ゲートチェック
+	CHECK_ENTRY_GATE("0975_E")
+	ON_JUMP E
+	CHECK_ENTRY_GATE("0975_W")
+	ON_JUMP W
+
+	E:
+	INIT_SWITCH_ON("stop_e")
+	ON_JUMP PASS
+
+	W:
+	INIT_SWITCH_ON("stop_w")
+	ON_JUMP PASS
+
+PASS:
+
+	// 箱操作後
+	CHECK_AREA_FLAG(75)
+	OFF_SKIP(4)
+		INIT_SWITCH_ON("stop_e")
+		INIT_SWITCH_ON("stop_w")
+		MOVE_VEC("box",-4.5,-1.5,0,1)
+		ROOM_FLAG_ON(1)
+
+}
+
+
+// ----------------------------------------------------------------------------
+// ボタンが押されているかチェック                                              
+// ----------------------------------------------------------------------------
+
+DEF("sw")
+RES("FOOT")
+{
+	// INITイベント避け
+	CHECK_ROOM_FLAG(1)
+	ON_SKIP(1)
+
+	CALL BOXCHECK
+
+	ROOM_FLAG_OFF(1)
+}
+
+@BOXCHECK
+{
+	// 箱置きチェック
+	CHECK_GRID(1,2,"box")
+	OFF_JUMP NEXT
+
+	// きえる
+	STOP_PC(0)
+	SE("SE_STOPPER")
+	CINEMA_ON(0)
+		// ストッパー用侵入ゲートチェック（逆指定）
+		CHECK_ENTRY_GATE("0975_W")
+		ON_JUMP E1
+		CHECK_ENTRY_GATE("0975_E")
+		ON_JUMP W1
+		E1:
+		INIT_SWITCH_ON("stop_e")
+		ON_JUMP PASS1
+		W1:
+		INIT_SWITCH_ON("stop_w")
+		ON_JUMP PASS1
+		PASS1:
+	WAIT(90)
+	CINEMA_OFF(0)
+
+	AREA_FLAG_ON(75)
+
+	RET
+
+NEXT:
+
+	// 消えているなら、あらわれるにジャンプ
+	CHECK_AREA_FLAG(75)
+	ON_JUMP NEXT2
+
+	// あらわれているなら、リターン
+	RET
+
+NEXT2:
+
+	// あらわれる
+	STOP_PC(0)
+	SE("SE_STOPPER")
+	CINEMA_ON(0)
+		// ストッパー用侵入ゲートチェック（逆指定）
+		CHECK_ENTRY_GATE("0975_W")
+		ON_JUMP E2
+		CHECK_ENTRY_GATE("0975_E")
+		ON_JUMP W2
+		E2:
+		INIT_SWITCH_OFF("stop_e")
+		ON_JUMP PASS2
+		W2:
+		INIT_SWITCH_OFF("stop_w")
+		ON_JUMP PASS2
+		PASS2:
+	WAIT(90)
+	CINEMA_OFF(0)
+
+	AREA_FLAG_OFF(75)
+
+	RET
+
+}
+
+// ----------------------------------------------------------------------------
+// 扉閉め                                                                      
+// ----------------------------------------------------------------------------
+
+DEF("stop_e")
+RES("CLICK")
+{
+	CHECK_ROOM_FLAG(0)
+	OFF_SKIP(1)
+	WAIT(0)
+}
+
+DEF("stop_w")
+RES("CLICK")
+{
+	CHECK_ROOM_FLAG(0)
+	OFF_SKIP(1)
+	WAIT(0)
+}
+

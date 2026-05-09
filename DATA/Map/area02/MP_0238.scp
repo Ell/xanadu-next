@@ -1,0 +1,7 @@
+DEF("switch")
+RES("CLICK")
+{
+	area_flag_on(4)
+	wait(60)
+}
+	

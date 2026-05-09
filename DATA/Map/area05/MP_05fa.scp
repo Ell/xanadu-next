@@ -1,0 +1,108 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期化                                                                
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_ON(254)
+
+	// 水マップ
+	SE("SE_MIZU")
+
+	// カギ設定
+	CHECK_GAME_FLAG(1552)
+	ON_SKIP(2)
+	KAGI("d1552",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1552")
+}
+
+
+// ----------------------------------------------------------------------------
+// カギ開け
+// ----------------------------------------------------------------------------
+
+DEF("d1552")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1552)
+}
+
+
+// ----------------------------------------------------------------------------
+// はりがみ
+// ----------------------------------------------------------------------------
+
+DEF("kami")
+RES("CLICK")
+{
+	FOCUS_CHR("kami")
+	SET_NAME("kami","Signpost")
+	SYS("For those unable to see through lies,|reaching the other side will be difficult.")
+}
+
+// ----------------------------------------------------------------------------
+// 宝箱                                                                        
+// ----------------------------------------------------------------------------
+DEF("tbox")
+RES("INIT")
+{
+	CHECK_GAME_FLAG(510)
+	OFF_JUMP NEXT
+// ★05/06/21:イベントアイテム箱→開けっぱで残す。
+//	HIDE_CHR("tbox")
+	INIT_SWITCH_ON("tbox")
+NEXT:
+}
+
+RES("CLICK")
+{
+	CINEMA_ON(0)
+	STOP_PC(0)
+	FOCUS_CHR("tbox")
+
+//スペクタクル
+	SWITCH_ON("tbox")
+	POP_ITEM_ICON("tbox", 178, 0,0.25,0, 1,80,0)
+	WAIT(140)
+
+	CHECK_MAX_ITEM(0)
+	ON_JUMP EXIT
+
+	DEL_ITEM_ICON("tbox")
+	ATTACH_EFC("EFC_99ITEM_GET","tbox","POS")
+//	WAIT(45)
+
+	GET_ITEM(178, 1)
+	GAME_FLAG_ON(510)
+
+	sys_ex("Acquired [Spectacles]!",-1,0x00000200)
+	//----------------------------
+	novel_on(0,1)
+	wait(60)
+	sys_ex("About the Key Item [Spectacles]",-1,0x00000200)
+	sys_ex("When you put on the [Spectacles],|#C2that which was unseen #C0becomes visible to the eye.",-1,0x00000200)
+	sys_ex("#C2When there are sparkles of light on the map#C0, the [Spectacles]|will allow you to see what lies hidden there.",-1,0x00000200)
+	sys_ex("However, just as the [Spectacles] make the unseen visible,|so too does the visible become unseen when you put them on,|so please take note.",-1,0x00000200)
+	novel_off(0)
+	wait(60)
+	//----------------------------
+
+//	SET_COLOR("tbox",0x00000000,45,1)
+	FOCUS_CHR("PC")
+	CINEMA_OFF(0)
+	END
+
+EXIT:
+	SE("SE_ERROR")
+	DEL_ITEM_ICON("tbox")
+	sys_ex("Your bags are full. You have no room for this item.",-1,0x00000200)
+	SWITCH_OFF("tbox")
+	FOCUS_CHR("PC")
+	CINEMA_OFF(0)
+}
+

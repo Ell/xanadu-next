@@ -1,0 +1,59 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期状態                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	check_game_flag(1002)
+	off_jump skip
+	init_switch_on("swich1")
+	set_pos_ex("box1","swich1")
+	init_switch_on("map30_A")
+skip:
+}
+
+// 踏みスイッチ //////////////////////////////////////////////////////////////
+
+DEF("swich1")
+RES("FOOT")
+{
+	check_switch("swich1")
+	on_jump SIZUMI
+	
+		// 踏みスイッチが元に戻った場合 --------------------------------------
+		check_switch("map30_A")
+		on_jump AITERU
+		end
+	AITERU:
+		// もし扉が開いていたなら閉じる
+		game_flag_off(1002)
+		switch_off("map30_A")
+		end
+
+SIZUMI:
+		// 踏みスイッチが完全に沈んだ場合 ------------------------------------
+		check_game_flag(1002)
+		on_jump next
+
+		game_flag_on(1002)
+		switch_on("map30_A")
+	next:
+}
+
+// 扉 ////////////////////////////////////////////////////////////////////////
+
+DEF("map30_A")
+RES("CLICK")
+{
+	check_game_flag(1002)
+	on_jump unlocked
+
+//	stop_pc(0)
+//	sys("扉は硬く閉ざされている…。")
+	wait(0)
+	end
+unlocked:
+}

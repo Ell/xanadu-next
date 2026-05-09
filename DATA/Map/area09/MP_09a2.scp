@@ -1,0 +1,152 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期化                                                                
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+RES("INIT")
+{
+	// シネスコ時スペクタクルズON
+	ROOM_FLAG_ON(254)
+
+	INIT_SWITCH_ON("stop")
+
+	// 中ボス出現の前フリ
+	CHECK_GAME_FLAG(940)
+	ON_SKIP(1)
+	stop_bgm(0,2000)
+
+	// 宝箱消し
+	CHECK_GAME_FLAG(940)
+	OFF_SKIP(4)
+	HIDE_CHR("tbox")
+	put_monster("m04",391,14,0,0,4)
+	put_monster("m06",182,14,0,0,6)
+	put_monster("m07",182,14,0,0,7)
+
+	// カギ設定
+	CHECK_GAME_FLAG(1902)
+	ON_SKIP(2)
+	KAGI("d1902",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1902")
+
+}
+
+RES("WIN")
+{
+	CHECK_GAME_FLAG(940)
+	ON_JUMP next3
+
+	CHECK_ROOM_FLAG(1)
+	ON_JUMP next
+
+	// ゴブリンウォーリア―
+	put_monster("m04",391,14,2,0,4)
+//	put_monster("m05",391,14,2,0,5)
+	put_monster("m06",391,14,2,0,6)
+	put_monster("m07",391,14,2,0,7)
+	ROOM_FLAG_ON(1)
+
+	END
+
+next:
+	CHECK_ROOM_FLAG(2)
+	ON_JUMP next2
+
+	// ゴブリンシャーマン
+	put_monster("m08",182,14,2,0,8)
+	put_monster("m09",182,14,2,0,9)
+//	put_monster("m10",182,14,2,0,10)
+	put_monster("m11",182,14,2,0,11)
+	ROOM_FLAG_ON(2)
+
+	END
+
+next2:
+	CINEMA_ON(0)
+	STOP_PC(0)
+	FOCUS_CHR("stop")
+	SWITCH_ON("stop")
+	WAIT(120)
+	CINEMA_OFF(0)
+
+	GAME_FLAG_ON(940)
+
+	bgm(-1,0,-1)
+
+next3:
+}
+
+RES("EXIT")
+{
+	// 中ボスで消えたＢＧＭ対策
+	CHECK_GAME_FLAG(940)
+	ON_SKIP(1)
+	BGM(-1, 0, -1)
+}
+
+// ----------------------------------------------------------------------------
+// ストッパー初期イベント
+// ----------------------------------------------------------------------------
+
+DEF("tbox")
+RES("CLICK")
+{
+	OPEN_BOX("CUR")
+	WAIT(60)
+
+	CINEMA_ON(0)
+	STOP_PC(0)
+
+	FOCUS_CHR("stop")
+	QUAKE(0,10,60)
+	SWITCH_OFF("stop")
+	WAIT(60)
+	FOCUS_CHR("null")
+
+	// 小ボス曲
+	BGM(14,0,-1)
+
+	// ゴブリン
+	put_monster("m00",389,14,2,0,0)
+//	put_monster("m01",389,14,2,0,1)
+	put_monster("m02",389,14,2,0,2)
+//	put_monster("m03",389,14,2,0,3)
+
+	QUAKE(0,10,60)
+	WAIT(120)
+	CINEMA_OFF(0)
+
+next:
+}
+
+
+// ----------------------------------------------------------------------------
+// カギ開け
+// ----------------------------------------------------------------------------
+
+DEF("d1902")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1902)
+}
+
+
+// ----------------------------------------------------------------------------
+// マップ移動                                                                  
+// ----------------------------------------------------------------------------
+
+DEF("09a2_09a1")
+RES("EVENT")
+{
+	// 中ボスで消えたＢＧＭ対策
+	CHECK_GAME_FLAG(940)
+	ON_SKIP 1
+	BGM(-1, 0, -1)
+
+	wait(1)
+
+	ENTRY_MAP("09a1_09a2")
+}
+

@@ -1,0 +1,59 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期状態                                                              
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	// モンスター配置
+	put_monster("jely1",	004,1,0,0,0)
+	put_monster("zombie1",	010,1,0,0,1)
+	put_monster("zombie2",	010,1,0,0,2)
+
+	// カギ設定
+door_w:
+	check_game_flag(1000)
+	on_jump door_n
+	kagi("door_w",1)
+door_n:
+	check_game_flag(1001)
+	on_jump door_x
+	kagi("door_n",1)
+door_x
+}
+
+// 開錠時の処理 -------------------------------------------------------------
+
+DEF("door_w")
+RES("KAGI")
+{
+	game_flag_on(1000)
+}
+
+DEF("door_n")
+RES("KAGI")
+{
+	game_flag_on(1001)
+}
+
+// カギ屋の処理 -------------------------------------------------------------
+
+DEF("key_shop")
+RES("EVENT")
+{
+	stop_pc(0)
+	fade_out(30)
+	wait(30)
+
+	erase_shop_list(0)
+	entry_shop_list("227")
+	call_shop(10000)
+
+	switch_off("door_e")
+	set_pos_ex("PC","key_shop_out")
+	set_deg("PC",270)
+	fade_in(30)
+	wait(30)
+}

@@ -1,0 +1,79 @@
+
+// ----------------------------------------------------------------------------
+// マップ初期状態                                                              
+// ----------------------------------------------------------------------------
+DEF("MAP")
+RES("INIT")
+{
+// モンスター配置 -------------------------------------------------------------
+	put_monster("khimaira",019,1,2,0x00000018,0)
+	put_monster("bat1",	005,1,0,0x00000018,1)
+	put_monster("bat2",	005,1,0,0x00000018,2)
+	put_monster("bat3",	005,1,0,0x00000018,3)
+	put_monster("bat4",	005,1,0,0x00000018,4)
+	put_monster("bat5",	005,1,0,0x00000018,5)
+	put_monster("bat6",	005,1,0,0x00000018,6)
+	put_monster("bat7",	005,1,0,0x00000018,7)
+	put_monster("bat8",	005,1,0,0x00000018,8)
+	put_monster("bat9",	005,1,0,0x00000018,9)
+	put_monster("bat10",005,1,0,0x00000018,10)
+	put_monster("bat11",005,1,0,0x00000018,11)
+	put_monster("bat12",005,1,0,0x00000018,12)
+	put_monster("bat13",005,1,0,0x00000018,13)
+
+
+// door(S) ------------------------------------------
+	check_game_flag(1009)
+	off_jump skip_S
+	init_switch_on("map37_A")
+skip_S:
+// door(N) ------------------------------------------
+	check_game_flag(1014)
+	off_jump skip_N
+	init_switch_on("map37_B")
+skip_N:
+
+}
+
+RES("WIN")
+{
+	switch_on("map37_B")
+	game_flag_on(1014)
+}
+
+// 柵 ////////////////////////////////////////////////////////////////////////
+
+// 北 ------------------------------
+DEF("map37_B")
+RES("CLICK")
+{
+	check_game_flag(1014)
+	on_jump unlocked
+	wait(0)
+	end
+unlocked:
+}
+
+
+// ----------------------------------------------------------------------------
+// ボス戦開始トリガ
+// ----------------------------------------------------------------------------
+DEF("boss_on")
+RES("EVENT")
+{
+	// 一定エリアを越えたらモンスターにＰＣの存在を気づかせる
+	set_monster_flag("khimaira",0,0x00000008)
+	set_monster_flag("bat1",	0,0x00000008)
+	set_monster_flag("bat2",	0,0x00000008)
+	set_monster_flag("bat3",	0,0x00000008)
+	set_monster_flag("bat4",	0,0x00000008)
+	set_monster_flag("bat5",	0,0x00000008)
+	set_monster_flag("bat6",	0,0x00000008)
+	set_monster_flag("bat7",	0,0x00000008)
+	set_monster_flag("bat8",	0,0x00000008)
+	set_monster_flag("bat9",	0,0x00000008)
+	set_monster_flag("bat10",	0,0x00000008)
+	set_monster_flag("bat11",	0,0x00000008)
+	set_monster_flag("bat12",	0,0x00000008)
+	set_monster_flag("bat13",	0,0x00000008)
+}

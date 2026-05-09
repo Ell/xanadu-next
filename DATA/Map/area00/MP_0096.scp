@@ -1,0 +1,849 @@
+// ----------------------------------------------------------------------------
+// マップ  武器や
+// ----------------------------------------------------------------------------
+
+//-- ROOM_FLAG -------------------------------------------------------
+//  0 バギンズ会話
+//  1 ラザレス会話
+//  2 ネイハム会話
+
+// 武器屋ポートレイト処理 ///////////////////////////////////////////////////////
+
+// 武器屋画像(512x512)読み込み＆チップ登録
+@entry_BUKIYA
+{
+	entry_img(0,"PIC_ARM_A",0)
+	entry_img(1,"PIC_ARM_B",0)
+	entry_img(2,"PIC_ARM_C",0)
+	entry_img(3,"PIC_ARM_D",0)
+	set_img( 0, 184, 10, 0, 0,0,256,256, 0, 0x00ffffff, 0xff000000, 1,1, 0, 0,1)
+	img_on(0)
+	set_img( 1, 440, 10, 1, 0,0,256,256, 0, 0x00ffffff, 0xff000000, 1,1, 0, 0,1)
+	img_on(1)
+	set_img( 2, 184,266, 2, 0,0,256,256, 0, 0x00ffffff, 0xff000000, 1,1, 0, 0,1)
+	img_on(2)
+	set_img( 3, 440,266, 3, 0,0,256,256, 0, 0x00ffffff, 0xff000000, 1,1, 0, 0,1)
+	img_on(3)
+	ret
+}
+
+// 武器屋消去
+@erase_BUKIYA
+{
+	img_off(0)
+	img_off(1)
+	img_off(2)
+	img_off(3)
+	ret
+}
+
+// 武器屋フレームIN
+@fi_BUKIYA
+{
+	//move_img(0, -456,0, 30, 1)
+	color_img(0, 0xffffffff, 0xff000000, 30, 1)
+	//move_img(1, -456,0, 30, 1)
+	color_img(1, 0xffffffff, 0xff000000, 30, 1)
+	//move_img(2, -456,0, 30, 1)
+	color_img(2, 0xffffffff, 0xff000000, 30, 1)
+	//move_img(3, -456,0, 30, 1)
+	color_img(3, 0xffffffff, 0xff000000, 30, 1)
+	ret
+}
+
+// 武器屋フレームOUT
+@fo_BUKIYA
+{
+	//move_img(0, 456,0, 30, 1)
+	color_img(0, 0x00ffffff, 0xff000000, 30, 1)
+	//move_img(1, 456,0, 30, 1)
+	color_img(1, 0x00ffffff, 0xff000000, 30, 1)
+	//move_img(2, 456,0, 30, 1)
+	color_img(2, 0x00ffffff, 0xff000000, 30, 1)
+	//move_img(3, 456,0, 30, 1)
+	color_img(3, 0x00ffffff, 0xff000000, 30, 1)
+	ret
+}
+
+
+
+// ============================================================================
+// マップ初期設定
+// ============================================================================
+
+DEF("MAP")
+RES("INIT")
+{
+	// NPCのうろつきっぷり設定
+//	set_walk_range("exp", 1.5, 50, 90)
+	set_walk_range("kis", 1.5, 50, 90)
+	
+	// 店員とカウンターの関連付け
+	link_ev_pop("Buggins2","Buggins")
+}
+
+
+// ============================================================================
+// 武器屋（イベントトリガー）
+// ============================================================================
+
+DEF("Buggins2")
+
+RES("INIT")
+{
+	// マップの回転角度を強制変更（所要時間 1 フレームで方向 6 に回転）
+	RESET_MAP_ROT_Y(1,1)
+}
+
+RES("CLICK")
+{
+	SET_DEG_EX("Buggins","")
+	ACTIVE_CHR("Buggins")
+	FOCUS_CHR("Buggins")
+	SET_NAME("Buggins","Merchant Baggins")
+	SET_MOTION("Buggins","ATTACK1",-1)
+
+	// 3511	TK 武器屋の店主バギンズの台詞
+	check_game_flag(3511)
+	off_jump TALK
+
+MENU:
+	SEL("#c1Welcome, welcome!|#c2Talk to Baggins|Examine Wares|Nothing")
+//	SEL("#c1　武器屋バギンズ　|#c2話す|買い物をする|やめる")
+	check_select(0)
+	on_jump TALK
+	check_select(1)
+	on_jump ITEM
+
+	jump EXIT
+
+TALK:
+	call TALK_Buggins
+	jump MENU
+
+ITEM:
+	// 進み具合で品揃えチェンジ
+	CHECK_GAME_FLAG(6)
+	ON_JUMP s5
+	CHECK_GAME_FLAG(4)
+	ON_JUMP s4
+	CHECK_GAME_FLAG(1)
+	ON_JUMP s3
+	CHECK_GAME_FLAG(3)
+	ON_JUMP s2
+
+	// 最初
+	// いったん全部クリア
+	erase_shop_list(0)
+	// 次に並べたい品物をセット
+	// 武器系
+	entry_shop_list("1/28/15/0/29")
+	// 鎧系
+	entry_shop_list("80/81/83/87/84")
+	// 盾系
+	entry_shop_list("60/61/62")
+	// 兜系
+	entry_shop_list("45/46/47/49")
+	JUMP next
+
+s2:
+	// 木ボス後
+	// いったん全部クリア
+	erase_shop_list(0)
+	// 次に並べたい品物をセット
+	// 武器系
+	entry_shop_list("1/28/15/0/29/2/3/9/11")
+	// 鎧系
+	entry_shop_list("80/81/83/87/84")
+	// 盾系
+	entry_shop_list("60/61/62")
+	// 兜系
+	entry_shop_list("45/46/47/49")
+	JUMP next
+
+s3:
+	// カニグモ後
+	// いったん全部クリア
+	erase_shop_list(0)
+	// 次に並べたい品物をセット
+	// 武器系
+	entry_shop_list("1/28/15/0/29/2/3/9/11/7/14/20")
+	// 鎧系
+	entry_shop_list("80/81/83/87/84/85/86/82/88")
+	// 盾系
+	entry_shop_list("60/61/62/63/64/65")
+	// 兜系
+	entry_shop_list("45/46/47/49")
+	JUMP next
+
+s4:
+	// インフェルノ後
+	// いったん全部クリア
+	erase_shop_list(0)
+	// 次に並べたい品物をセット
+	// 武器系
+	entry_shop_list("1/28/15/0/29/2/3/9/11/7/14/20/17/10")
+	// 鎧系
+	entry_shop_list("80/81/83/87/84/85/86/82/88")
+	// 盾系
+	entry_shop_list("60/61/62/63/64/65")
+	// 兜系
+	entry_shop_list("45/46/47/49")
+	JUMP next
+
+s5:
+	// デス後
+	// いったん全部クリア
+	erase_shop_list(0)
+	// 次に並べたい品物をセット
+	// 武器系
+	entry_shop_list("1/28/15/0/29/2/3/9/11/7/14/20/17/10/32/23")
+	// 鎧系
+	entry_shop_list("80/81/83/87/84/85/86/82/88/97")
+	// 盾系
+	entry_shop_list("60/61/62/63/64/65")
+	// 兜系
+	entry_shop_list("45/46/47/49")
+	JUMP next
+
+next:
+	// 呼び出し
+
+	////////////////////////////////////////////////////
+	// ★05/09/10:ショップ説明スクリプトを入店時に再生
+	check_game_flag(73)
+	on_jump skip_help
+	game_flag_on(73)
+	add_shop_script("help")
+skip_help:
+	////////////////////////////////////////////////////
+	CALL_SHOP(0)
+	jump MENU
+
+EXIT:
+	SET_MOTION("Buggins","STAND",-1)
+	END
+}
+
+//////////////////////////////////////////////////////////////////////
+// バギンズ
+
+@TALK_Buggins
+{
+	// 3511	TK 武器屋の店主バギンズの台詞
+	check_game_flag(3511)
+	off_jump TALK1
+
+
+	//3711	EV C-12 聖剣の巫女姫(▽ドラゴンスレイヤー入手後)
+	check_game_flag(3711)
+	on_jump TALK8
+	//▼障壁消滅後
+	check_game_flag(3710)
+	on_jump TALK7
+	//▼奇岩城出現後
+	check_game_flag(3702)
+	on_jump TALK6
+	//▼インフェルノ戦後
+	check_game_flag(4)
+	on_jump TALK5
+	//▼カニグモ戦後
+	check_game_flag(1)
+	on_jump TALK4
+	//▼トレント戦後
+	check_game_flag(3)
+	on_jump TALK3
+	//▼ガーディアン取得後
+	check_game_flag(3532)
+	on_jump TALK2
+	//▼ゲーム開始直後
+	jump TALK1
+
+//--------------------------------------------------------------------
+
+//3711	EV C-12 聖剣の巫女姫(▽ドラゴンスレイヤー入手後)
+TALK8:
+	game_flag_on(3511)
+	MSG("Ain't that sword...")
+	MSG("...You got my support,|so just do your best!")
+	jump EXIT
+//▼障壁消滅後
+TALK7:
+	game_flag_on(3511)
+	MSG("The barrier has vanished, huh?|So it's finally started.")
+	MSG("We're countin' on you, knight.")
+	jump EXIT
+//▼奇岩城出現後
+TALK6:
+	game_flag_on(3511)
+	MSG("So you're planning on headin'|into Castle Strangerock, eh?")
+	MSG("...")
+	MSG("Wouldn't be surprised at all if it were|full o' all sortsa wonders.")
+	MSG("But I don't want ta hear one peep 'bout it.")
+	jump EXIT
+//▼インフェルノ戦後
+TALK5:
+	game_flag_on(3511)
+	MSG("A lady came by just a moment ago tryin'|ta sell me some strange old bow...")
+	MSG("I told her, 'Look, lady, I ain't no|curio dealer,' and sent her on her way.")
+	MSG("If you're wantin' it, though, you might|wanna check Spence's shop.")
+	jump EXIT
+//▼カニグモ戦後
+TALK4:
+	game_flag_on(3511)
+	check_room_flag(0)
+	on_jump TALK4_2
+
+TALK4_1:
+	MSG("Seems they haven't found the nut who|killed that feller the other day.")
+	MSG("Harlech ain't that big o' an island,|but it's got a lot o' hidin' spots.")
+	MSG("Ifin' I had ta guess, I'd say that bugger|probably hid himself in the ruins.|Plenty spots in there ta lay low.")
+	MSG("Gotta be pretty skilled ta last in there,|though.")
+	MSG("When you think about it, hidin' in them|ruins ain't so strange, after all.")
+	room_flag_on(0)
+	jump EXIT
+
+//　　★繰り返し
+TALK4_2:
+	MSG("Harlech ain't that big o' an island, but|it's got a lot o' spots ta get lost in,|if you know what I mean.")
+	MSG("When you think about it, hidin' in them|ruins ain't so strange, after all.")
+	jump EXIT
+//▼トレント戦後
+TALK3:
+	game_flag_on(3511)
+	check_room_flag(0)
+	on_jump TALK3_2
+
+TALK3_1:
+	MSG("I heard what yer up ta, knight.")
+	MSG("You're lookin' for some kinda sacred weapon,|ain'tcha? Dragon-somethin' or other.")
+	MSG("Countless folks've been lookin' for|that sword for years.")
+	MSG("Nobles, adventurers...|Even seen a knight like you once.")
+	MSG("Well, as you can guess, they figger'd|out it's part o' the mystery that's|Castle Strangerock.")
+	MSG("Eh, just give it your all, I say!")
+	room_flag_on(0)
+	jump EXIT
+
+//　　★繰り返し
+TALK3_2:
+	MSG("Countless folk've been lookin' for|that sword for years.")
+	MSG("Well, as you can guess, they figger'd|out it's part o' the mystery that's|Castle Strangerock.")
+	MSG("Eh, just give it your all, I say!")
+	jump EXIT
+
+//▼ガーディアン取得後
+TALK2:
+	game_flag_on(3511)
+	check_room_flag(0)
+	on_jump TALK2_2
+
+TALK2_1:
+	MSG("There's all kinds o' junk in the ruins, so you'll|probably get yourself quite the collection o'|weapons and armor durin' your travels.")
+	MSG("If you do wind up with more than you need,|feel free ta bring 'em here. I'll gladly|take 'em off your hands.")
+	MSG("Might as well get some money for 'em, right?|A knight like you's bound ta need a lot o'|supplies if you're ta be survivin' out there.")
+	MSG("Just be sure you think it through before you close|the deal, 'cause all transactions are final here.|You sell it ta me, you'll never see it again.")
+	room_flag_on(0)
+	jump EXIT
+
+//　　★繰り返し
+TALK2_2:
+	MSG("There's all kinds o' junk in the ruins, so you'll|probably get yourself quite the collection o'|weapons and armor durin' your travels.")
+	MSG("If you do wind up with more than you need,|feel free ta bring 'em here. I'll gladly|take 'em off your hands.")
+	jump EXIT
+
+//▼ゲーム開始直後
+TALK1:
+	// 3511	TK 武器屋の店主バギンズの台詞
+	check_game_flag(3511)
+	on_jump TALK1_2
+
+TALK1_1:
+	MSG("Well, now, welcome...")
+	MSG("What do we have here? You s'posed ta be|a knight or somethin'?")
+	MSG("The knight hunt might be over, but I still wouldn't|recommend walkin' 'round in that getup, lest some|loyalist snitch you out and get you thrown in jail!")
+	MSG("That ain't just some costume, though...|You're the real deal, ain't ya!")
+	MSG("Northseas, if I'm not mistaken. You've gotta be damn near|the last o' your kind out there! One of Furnival's men, no?|Poor bastard got publicly executed, I hear...")
+	MSG("He and the rest o' you helped so much in the Leylands'|early days, and what thanks do you get? All your honor,|property, and land is taken, and your leader's killed!")
+	MSG("Makes me sick thinkin' about it. Marquis Furnival|was a good, honest man. And the Northseas used|ta be the best...")
+	MSG("Well, you ain't got a thing ta worry 'bout with|me. I won't tell anyone who you are. Don't think|no one else here would turn you in, neither.")
+	MSG("Still, you'd best find yourself a new job, and get as|far away from knighthood as you can. Soldier, mercenary...|Take whatever you can get, and never look back!")
+	game_flag_on(3511)
+	jump EXIT
+
+//　　★繰り返し
+TALK1_2:
+	MSG("Come ta think, I heard 'bout one o' the Northsea knights|that served as Marquis Furnival's right-hand man.")
+	MSG("And apparently, he's the only one whose whereabouts|are still completely unknown...")
+	MSG("An imperial search party even came here lookin' for|'im, at one point, but got nothin'. I don't suppose...")
+	MSG("...|You know what? Never you mind! I don't wanna know!|You're a customer, and that's all you are! If that's good|enough for you, then it's sure as hell good enough for me!")
+	jump EXIT
+
+EXIT:
+	RET
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+// ラザレス
+
+DEF("Lazarus")
+
+RES("CLICK")
+{
+
+	FOCUS_CHR("Lazarus")
+	SET_NAME("Lazarus", "Lazarus")
+	SET_MOTION("Lazarus", "ATTACK1",-1)
+
+	// 3519	TK ラザレスの台詞
+	check_game_flag(3519)
+	off_jump TALK
+
+MENU:
+	SEL("#c1Something you need?|#c2Talk|Learn About Combat|Nothing")
+	check_select(0)
+	on_jump TALK
+	check_select(1)
+	on_jump MENU2
+
+	jump EXIT
+
+//-- 聞きたいことがある ----------------------------------------------
+MENU2:
+	SEL("#c1What would you like to know?|#c2Skills|Skill Internalization|Skill Types|Leveling Up|Equip Conditions|Magic|Headgear|Nothing")
+	check_select(0)
+	on_jump ANSWER_1
+	check_select(1)
+	on_jump ANSWER_2
+	check_select(2)
+	on_jump ANSWER_3
+	check_select(3)
+	on_jump ANSWER_4
+	check_select(4)
+	on_jump ANSWER_5
+	check_select(5)
+	on_jump ANSWER_6
+	check_select(6)
+	on_jump ANSWER_7
+
+	jump MENU
+
+//▽「スキルについて」を選んだ場合
+ANSWER_1:
+	MSG("Each weapon has a special battle technique sealed|within it, and anyone wielding that weapon can|make use of it at will.")
+	MSG("This technique is known as a [skill].")
+	MSG("In order to use the skill associated with your currently- |equipped weapon, you need to open the menu and attach|the skill's icon to your [hotbar] at the top of the screen.")
+	MSG("Be mindful that you can only attach up to four|skills or magic spells at any given time.")
+	MSG("And do be careful, as you'll lose the ability to use|a weapon's skill as soon as you unequip that weapon.")
+	MSG("However, as you continue fighting with each weapon, you'll|build up a [proficiency] with it. And once this reaches a|certain level, you'll be able to [internalize] its skill.")
+	jump MENU2
+
+//▽「スキルの体得」を選んだ場合
+ANSWER_2:
+	MSG("The more you fight with a weapon, the more|proficient you'll become with it.")
+	MSG("And once your proficiency with that weapon|reaches 100%, you'll internalize its skill.|Basically, you'll learn it inside and out.")
+	MSG("What this means is, even if you switch to a different|weapon, you'll still be able to use that skill.|You'll pretty much know it by heart!")
+	MSG("Even after you've internalized a weapon's skill, you|can still continue building up your proficiency with|that weapon, making it more formidable with each hit.")
+	MSG("Still, the best you'll be able|to achieve is 200% proficiency.|That's as good as it gets.")
+	MSG("Keep on wielding a weapon you're 200% proficient with,|and nothing more will come of it. So be sure and switch|out from time to time, lest you start to stagnate!")
+	jump MENU2
+
+//▽「スキルの種類」を選んだ場合
+ANSWER_3:
+	MSG("There are two kinds of skills: active and passive.|Active skills can be used by right-clicking on an|enemy or pressing the skill button on your gamepad.")
+	MSG("Passive skills, on the other hand, take effect|just by attaching them to your hotbar.")
+	MSG("Active skills like [Thrust] and [Cyclone] are the most|common variety, and produce an immediate result when|used, in exchange for 1 SP from that skill's meter.")
+	MSG("Passive skills like [Searing Blade] and [Strong Arm]|don't require any SP at all, though. The only|downside is that they take up space on your hotbar.")
+	MSG("SP use is not universal to all skills, but unique to|each individual one. If one skill's SP meter runs out,|you can always switch to another.")
+	MSG("In other words, if you're using a skill that has 20 SP|on its meter, that means you can only use that skill|20 times over the course of one expedition.")
+	MSG("To recover your skills' SP, you'll need either a|good night's sleep, or to touch a Guardian shrine|like the one at the town's front gate.")
+	jump MENU2
+
+//▽「レベルアップ」を選んだ場合
+ANSWER_4:
+	MSG("When you level up, you'll not only receive an increase|in your maximum HP, but also a few [Bonus Points] to|spend at the Spirit Sanctum.")
+	MSG("Bonus Points can be assigned to various attributes,|such as STR and INT, in order to increase those|attributes and strengthen your character.")
+	MSG("Always be sure to visit the Spirit Sanctum after you|level up, as soon as you're able or those Bonus Points|won't be much help to you at all!")
+	jump MENU2
+
+//▽「武具の装備条件」を選んだ場合
+ANSWER_5:
+	MSG("Every weapon and piece of armor has a set of|[equip conditions] that determine whether or not|you have the stamina needed to wield or wear it.")
+	MSG("If your STR, INT, REF, CON and/or MND don't meet the|conditions indicated in the item's information window,|then for you, it's basically just a paperweight!")
+	MSG("You'll need to level up and distribute Bonus Points|to the appropriate attributes before you'll gain|the stamina needed to properly equip that item.")
+	jump MENU2
+
+//▽魔法について
+ANSWER_6:
+	MSG("In order to cast magic spells, you'll first need|to learn the necessary incantations from a Spell Book.")
+	MSG("Select the Spell Book in your inventory and use it,|and you'll remember the magic it imparts forevermore!")
+	MSG("Spell Books can be found hidden away in dungeon areas,|though I hear Spence over at the curio shop also has|a modest selection of them available to customers.")
+	MSG("As for how to cast these magic spells...|Well, they work just like active skills,|unique SP meter and all!")
+	MSG("Attach a spell to your hotbar, and use it|by right-clicking the enemy or pressing the|appropriate button on your gamepad.")
+	jump MENU2
+
+//▽「兜について」を選択した場合
+ANSWER_7:
+	MSG("Headgear is a bit of a special case, as armor goes.|It doesn't just grant you defensive power.|Sometimes it has a unique effect, as well!")
+	MSG("The right headgear can give you resistance to|fire, or protect you from enemy attacks that|might otherwise seal your magic away...")
+	MSG("Always best to check what special effect a piece of|headgear has to offer before you shell out money for|it, as the effect can really make all the difference!")
+	jump MENU2
+
+//-- 話す ------------------------------------------------------------
+TALK:
+
+	//▼障壁消滅後
+	check_game_flag(3710)
+	on_jump TALK7
+	//▼奇岩城出現後
+	check_game_flag(3702)
+	on_jump TALK6
+	//▼インフェルノ戦後
+	check_game_flag(4)
+	on_jump TALK5
+	//▼カニグモ戦後
+	check_game_flag(1)
+	on_jump TALK4
+	//▼トレント戦後
+	check_game_flag(3)
+	on_jump TALK3
+	//▼ガーディアン取得後
+	check_game_flag(3532)
+	on_jump TALK2
+	//▼ゲーム開始直後
+	jump TALK1
+
+//--------------------------------------------------------------------
+
+//▼障壁消滅後
+TALK7:
+	game_flag_on(3519)
+	//3730	TK ラザレスに正体がばれた
+	check_game_flag(3730)
+	on_jump TALK7_1
+
+	//3730	TK ラザレスに正体がばれた
+	game_flag_on(3730)
+	MSG("...I remember now.")
+	MSG("Weren't you Marquis Furnival's right hand man?|The knight called #N0?")
+	MSG("I remember during the War of the Knights that|a bounty was put on your head and your capture|decreed.")
+	MSG("...Be at ease.|I have no quarrel with you.")
+	MSG("Truly, though, to meet you in|a place like this...")
+	jump EXIT
+
+TALK7_1:
+	check_room_flag(1)
+	on_jump TALK7_2
+
+	MSG("If something like that has appeared, then the|Prime Minister's men will not be far behind.")
+	MSG("Before long, even researchers and lawmen|will make their way to Harlech.")
+	MSG("I would counsel you to not be here|when that time comes.")
+	MSG("If you've business with that haunted place,|then you'd best hurry and attend to it.")
+	room_flag_on(1)
+	jump EXIT
+
+//　　★繰り返し
+TALK7_2:
+	MSG("Before long, even researchers and lawmen|will make their way to Harlech.")
+	MSG("If you've business with that haunted place,|then you'd best hurry and attend to it.")
+	jump EXIT
+//▼奇岩城出現後
+TALK6:
+	game_flag_on(3519)
+	//3730	TK ラザレスに正体がばれた
+	game_flag_on(3730)
+
+	check_room_flag(1)
+	on_jump TALK6_2
+
+TALK6_1:
+	MSG("...I remember now.")
+	MSG("Weren't you Marquis Furnival's right hand man?|The knight called #N0?")
+	MSG("I remember during the War of the Knights that|a bounty was put on your head and your capture|decreed.")
+	MSG("...Be at ease.|I have no quarrel with you.")
+	MSG("Truly, though, to meet you in|a place like this...")
+	room_flag_on(1)
+	jump EXIT
+
+//　　★繰り返し
+TALK6_2:
+	MSG("Truly, though, to meet you in|a place like this...")
+	jump EXIT
+//▼インフェルノ戦後
+TALK5:
+	game_flag_on(3519)
+	check_room_flag(1)
+	on_jump TALK5_2
+
+TALK5_1:
+	MSG("Your face is familiar to mine eyes...")
+	MSG("That fearless countenance caught me|off guard a little.")
+	MSG("...")
+	MSG("...I KNOW I've seen your face|somewhere before.")
+	room_flag_on(1)
+	jump EXIT
+
+//　　★繰り返し
+TALK5_2:
+	MSG("...I KNOW I've seen your face|somewhere before.")
+	jump EXIT
+//▼カニグモ戦後
+TALK4:
+	game_flag_on(3519)
+	check_room_flag(1)
+	on_jump TALK4_2
+
+TALK4_1:
+	MSG("It's hard to find a good time to|swap around equipment, isn't it?")
+	MSG("Once you've reached 200% proficiency,|you may want to use it all the time...")
+	MSG("When you get a new weapon, it may be best to raise|your skill with it as soon as possible...")
+	MSG("Well, with time and experience, the style|that best suits you will become clear.")
+	room_flag_on(1)
+	jump EXIT
+
+//　　★繰り返し
+TALK4_2:
+	MSG("It's hard to find a good time to|swap around equipment, isn't it?")
+	MSG("Well, with time and experience, the style|that best suits you will become clear.")
+	jump EXIT
+//▼トレント戦後
+TALK3:
+	game_flag_on(3519)
+	check_room_flag(1)
+	on_jump TALK3_2
+
+TALK3_1:
+	MSG("Greetings, knight. How fare you?")
+	MSG("You should improve your weapon proficiency up|to at least 100%, lest you miss out on useful|skills.")
+	MSG("No matter what the skill is, you may|find it a boon on your search.")
+	room_flag_on(1)
+	jump EXIT
+
+//　　★繰り返し
+TALK3_2:
+	MSG("You should improve your weapon proficiency up|to at least 100%, lest you miss out on useful|skills.")
+	MSG("No matter what the skill is, you may|find it a boon on your search.")
+	jump EXIT
+
+//▼ガーディアン取得後
+TALK2:
+	game_flag_on(3519)
+	check_room_flag(1)
+	on_jump TALK2_2
+
+TALK2_1:
+	MSG("I was enlisted to partake in the War of the Knights|and fought against the Northsea Chevaliers...")
+	MSG("Just by watching them battle, it was obvious|that their methods were outdated.")
+	MSG("However...")
+	MSG("They feared NOTHING. They were a proud lot of|a different age, bolstered by perceived honor|and driven by the thought of an injustice done...")
+	room_flag_on(1)
+	jump EXIT
+
+//　　★繰り返し
+TALK2_2:
+	MSG("Just by watching them battle, it was obvious|that their methods were outdated.")
+	MSG("But, they feared NOTHING. They were a proud lot|of a different age, bolstered by perceived honor|and driven by the thought of an injustice done...")
+	jump EXIT
+
+//▼ゲーム開始直後
+TALK1:
+	// 3519	TK ラザレスの台詞
+	check_game_flag(3519)
+	on_jump TALK1_2
+
+TALK1_1:
+	MSG("Fancy that, a knight.|Truly a rare sight in this day and age.")
+	MSG("Hmm...?")
+	MSG("Your face...|I swear I've seen it somewhere before.")
+	MSG("Ah, well, no matter...|I'm Lazarus, a mercenary by trade.")
+	MSG("While I probably need not tell a knight, in|order to equip armor and weapons you'll need|to have the appropriate amount of [stamina].")
+	MSG("Beautiful plate or a handsome sword are|wonderful to own, but you'll look a fool|if you haven't the aptitude to bear them.")
+	MSG("If there's something you've forgotten,|I will gladly refresh your training by|reviewing a wide range of tactics.")
+	game_flag_on(3519)
+	jump EXIT
+
+//　　★繰り返し
+TALK1_2:
+	MSG("You can raise or lower your attributes|at the [Spirit Sanctum].")
+	MSG("If I were you, the first thing I'd do would|be to check the shop and see which weapon|I wanted so that I knew what stats I needed.")
+	MSG("That way, when visiting the Spirit Sanctum,|I'd know which attributes to adjust.")
+	jump EXIT
+
+EXIT:
+	SET_MOTION("Lazarus","STAND",-1)
+	END
+}
+
+
+
+//////////////////////////////////////////////////////////////////////
+// ネイハム
+
+DEF("Nahum")
+
+RES("CLICK")
+{
+
+	FOCUS_CHR("Nahum")
+	SET_NAME("Nahum", "Nihilm")
+	SET_MOTION("Nahum", "ATTACK1",-1)
+
+	//▼障壁消滅後
+	check_game_flag(3710)
+	on_jump TALK7
+	//▼奇岩城出現後
+	check_game_flag(3702)
+	on_jump TALK6
+	//▼インフェルノ戦後
+	check_game_flag(4)
+	on_jump TALK5
+	//▼カニグモ戦後
+	check_game_flag(1)
+	on_jump TALK4
+	//▼トレント戦後
+	check_game_flag(3)
+	on_jump TALK3
+	//▼ガーディアン取得後
+	check_game_flag(3532)
+	on_jump TALK2
+	//▼ゲーム開始直後
+	jump TALK1
+
+//--------------------------------------------------------------------
+
+//▼障壁消滅後
+TALK7:
+	MSG("Unlike the knights, the aristocrats are more|likely to use purse strings than swords to|save their necks.")
+	MSG("Hmm, it's quite possible that after this war the|aristocrats will find themselves hung by those purse|strings just as the knights fell on their swords...")
+	MSG("One can't help but wonder if such an outcome|is the Prime Minister's goal all along.")
+	jump EXIT
+//▼奇岩城出現後
+TALK6:
+	check_room_flag(2)
+	on_jump TALK6_2
+	MSG("I wish to return to the capital|before the royal army and noble|militia come to odds...")
+	MSG("But ever since that castle appeared,|the ferry hasn't left at all.")
+	MSG("What a dilemma... This opportunity is a|once in a lifetime chance!")
+	room_flag_on(2)
+	jump EXIT
+//　　★繰り返し
+TALK6_2:
+	MSG("Still, though, the aristocracy aided|in the destruction of the knights.")
+	MSG("I wonder just what in Xanadu's name|is the Prime Minister thinking...")
+	jump EXIT
+//▼インフェルノ戦後
+TALK5:
+	check_room_flag(2)
+	on_jump TALK5_2
+
+TALK5_1:
+	MSG("Ah! Disaster!|Incredible news just reached my ears...")
+	MSG("Prime Minister Zordius is planning|to declare war on the aristocrats!")
+	MSG("Speaking of the aristocrats, these were the|very ones who sided with the Prime Minister|during the War of the Knights...")
+	MSG("A-anyway, if a war is going to break out,|then I must make my way there.")
+	MSG("I simply CANNOT let this chance for|gold pass me by!")
+	MSG("...Come to think of it, the lord of this|land is on friendly terms with the|Prime Minister.")
+	MSG("If the lord weren't ill, his influence would|surely have had an impact on this situation.")
+	MSG("Certainly, if his daughter were around, she|could have spoken on his behalf as well...")
+	room_flag_on(2)
+	jump EXIT
+
+//　　★繰り返し
+TALK5_2:
+	MSG("...Come to think of it, the lord of this|land is on friendly terms with the|Prime Minister.")
+	MSG("If the lord weren't ill, his influence would|surely have had an impact on this situation.")
+	MSG("Certainly, if his daughter were around, she|could have spoken on his behalf as well...")
+	jump EXIT
+//▼カニグモ戦後
+TALK4:
+	check_room_flag(2)
+	on_jump TALK4_2
+
+TALK4_1:
+	MSG("The strength of this country is substantial, and|Prime Minister Zordius' grip is equally powerful.")
+	MSG("I've heard tell from many a place that the Prime|Minister opened the royal keep's food reserves and|has been sending aid to areas damaged by the war.")
+	MSG("He even dispatched doctors to see to the recovery|of those people injured in the turmoil.")
+	MSG("In the royal capital, the Prime Minister has|the boisterous support of the citizenry.")
+	MSG("Well, I guess winning the hearts of|the peasantry is quite vital.")
+	room_flag_on(2)
+	jump EXIT
+
+//　　★繰り返し
+TALK4_2:
+	MSG("The Prime Minister opened the royal keep's food reserves|and has been sending aid to areas damaged by the war.")
+	MSG("He even dispatched doctors to see to the recovery|of those people injured in the turmoil.")
+	MSG("Well, I guess winning the hearts of|the peasantry is quite vital.")
+	jump EXIT
+//▼トレント戦後
+TALK3:
+	check_room_flag(2)
+	on_jump TALK3_2
+
+TALK3_1:
+	MSG("Once the War of the Knights ended|I thought peace would return.")
+	MSG("After all these years since a champion|was decreed in the hills of Leyland, you'd|think the military force would decrease.")
+	MSG("Even though it's not widespread, unrest has|been growing, and small revolts have been|occurring here and there...")
+	MSG("Thanks to those, we arms dealers are|able to rake in the gold, you see.")
+	MSG("Heh heh heh.")
+	room_flag_on(2)
+	jump EXIT
+
+//　　★繰り返し
+TALK3_2:
+	MSG("So you see, if peace were to occur,|then business would dry up.")
+	MSG("I've got mixed feelings, hahaha.")
+	jump EXIT
+
+//▼ガーディアン取得後
+TALK2:
+	MSG("During the War of the Knights I made|QUITE the killing, you know.")
+	MSG("Be it the knights or the royal army,|those weapons just flew off the shelves.")
+	jump EXIT
+
+//▼ゲーム開始直後
+TALK1:
+	check_room_flag(2)
+	on_jump TALK1_2
+
+TALK1_1:
+	MSG("Dragonslayer, you say?")
+	MSG("Hmmm... Rumor says it rests deep within|Castle Strangerock.")
+	MSG("If such a sword did truly exist, then|I'd most assuredly wish to acquire it.")
+	MSG("It'd fetch a pretty sum from an aristocrat,|after all.")
+	room_flag_on(2)
+	jump EXIT
+
+//　　★繰り返し
+TALK1_2:
+	MSG("Dragonslayer, you say?")
+	MSG("If such a sword did truly exist, then|I'd most assuredly wish to acquire it.")
+	jump EXIT
+
+EXIT:
+	SET_MOTION("Nahum","STAND",-1)
+	END
+}
+
+
+
+
+
+
+
+
+
+
+
+// 05/09/10
+//////////////////////////////////////////////////////////////////////
+// 初入店時HELPメッセージ（武器屋編）
+@help
+{
+	MSG_EX("#W0",70,0x00000002)
+	SYS_EX("#F0#C2About the [Weapon Shop]",-1,0x20000400)
+	SYS_EX("#F0#C2All sorts of equipment can be purchased|at the weapon shop.",-1,0x20000400)
+	SYS_EX("#F0#C2At the top of the shop menu you'll see tabs designating|various categories. Simply click the type of gear you wish|to browse.",-1,0x20000400)
+	SYS_EX("#F0#C2You may also sell unwanted items here. To do so,|simply click on the item in your own inventory.",-1,0x20000400)
+}

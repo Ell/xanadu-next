@@ -1,0 +1,95 @@
+
+// ----------------------------------------------------------------------------
+// 初期状態                                                                    
+// ----------------------------------------------------------------------------
+
+DEF("MAP")
+
+RES("INIT")
+{
+	// SE再生
+	SE("SE_WIND")
+
+//鍵チェック
+	CHECK_GAME_FLAG(703)
+	ON_JUMP next
+	LOCK("lock",0)
+	JUMP next2
+next:
+	INIT_SWITCH_ON("lock")
+
+next2:
+
+
+	// ゴブリン
+	put_monster("m00",000,6,0,0,0)
+	put_monster("m01",000,6,0,0,1)
+	put_monster("m02",000,6,0,0,2)
+	// ゴブリンウォーリア      
+	put_monster("m03",002,6,0,0,3)
+	put_monster("m04",002,6,0,0,4)
+	put_monster("m05",002,6,0,0,5)
+
+
+	// カギ設定
+	CHECK_GAME_FLAG(1708)
+	ON_SKIP(2)
+	KAGI("d1708",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1708")
+
+	// カギ設定
+	CHECK_GAME_FLAG(1709)
+	ON_SKIP(2)
+	KAGI("d1709",1)
+	SKIP(1)
+	INIT_SWITCH_ON("d1709")
+
+}
+
+
+// ----------------------------------------------------------------------------
+// カギ開け
+// ----------------------------------------------------------------------------
+
+DEF("d1708")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1708)
+}
+
+DEF("d1709")
+RES("KAGI")
+{
+	GAME_FLAG_ON(1709)
+}
+
+
+// ----------------------------------------------------------------------------
+// 鍵                                                                          
+// ----------------------------------------------------------------------------
+DEF("lock")
+RES("KEY")
+{
+	GAME_FLAG_ON(703)
+
+	STOP_PC(0)
+	CROSS_FADE(10)
+	RESET_MAP_ROT_Y(0,1)
+	WAIT(2)
+	CINEMA_ON(0)
+	PERMIT_SCRIPT_CAMERA(1)
+	SET_SCRIPT_CAMERA_EX( "lock", -1, -45,180,0,10,32)
+	WAIT(60)
+	
+	SE("SE_KEY")
+	SWITCH_ON("lock")
+	WAIT(30)
+	
+	CINEMA_OFF(0)
+	CROSS_FADE(10)
+	PERMIT_SCRIPT_CAMERA(0)
+	end
+}
+
+

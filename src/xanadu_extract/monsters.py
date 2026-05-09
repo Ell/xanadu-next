@@ -251,7 +251,24 @@ def _render_one(
     spawns_in: dict[str, list[tuple[str, int]]] | None = None,
 ) -> str:
     rec = m.rec
-    if m.sprites:
+    # Prefer the 3D model if we have a glb for this monster, fall back to
+    # texture sprite(s) otherwise.
+    glb_rel = f"models/{rec.id}.glb"
+    has_glb = (Path(__file__).resolve().parents[2] / "out" / glb_rel).exists()
+    if has_glb:
+        # Google's <model-viewer> web component (loaded once at the top
+        # of the page).  No poster img — the texture sheet shows through
+        # if the canvas isn't ready, which looks worse than a black box.
+        sprite = (
+            f'<model-viewer src="{glb_rel}" alt="{html.escape(rec.id)}" '
+            f'camera-controls auto-rotate auto-rotate-delay="1500" '
+            f'rotation-per-second="20deg" '
+            f'shadow-intensity="0.6" exposure="1.0" '
+            f'loading="lazy" reveal="auto" '
+            f'style="width:100%;height:100%;background:#0c0d10">'
+            f"</model-viewer>"
+        )
+    elif m.sprites:
         if len(m.sprites) == 1:
             sprite = (
                 f'<img src="{html.escape(m.sprites[0])}" '
@@ -397,10 +414,11 @@ EXTRA_CSS = """
             border-radius: 4px; padding: 14px 16px; }
 .m-head { display: grid; grid-template-columns: auto 1fr; gap: 16px;
           align-items: center; }
-.m-sprite { width: 120px; min-height: 96px; background: #0c0d10; border-radius: 3px;
+.m-sprite { width: 200px; height: 200px; background: #0c0d10; border-radius: 3px;
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden; padding: 4px; }
-.m-sprite img { max-width: 100%; max-height: 96px;
+            overflow: hidden; padding: 0; }
+.m-sprite model-viewer { width: 100%; height: 100%; }
+.m-sprite img { max-width: 100%; max-height: 192px;
                 image-rendering: pixelated; object-fit: contain; }
 .m-sprite .no-sprite { color: var(--muted); font-size: 10px;
                        text-align: center; line-height: 1.4;
@@ -565,6 +583,7 @@ def render_monsters_page(out_root: Path) -> str:
         for m in monsters
     )
     body = f"""
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <div class="layout">
   <aside class="sidebar">
     <input id="search" placeholder="filter by name, id, drop, area..." autofocus>

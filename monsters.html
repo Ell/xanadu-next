@@ -78,11 +78,18 @@ h2 .count { color: var(--muted); font-weight: 400; }
             border-radius: 4px; padding: 14px 16px; }
 .m-head { display: grid; grid-template-columns: auto 1fr; gap: 16px;
           align-items: center; }
-.m-sprite { width: 96px; height: 96px; background: #0c0d10; border-radius: 3px;
+.m-sprite { width: 120px; min-height: 96px; background: #0c0d10; border-radius: 3px;
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden; }
-.m-sprite img { max-width: 100%; max-height: 100%;
-                image-rendering: pixelated; }
+            overflow: hidden; padding: 4px; }
+.m-sprite img { max-width: 100%; max-height: 96px;
+                image-rendering: pixelated; object-fit: contain; }
+.m-sprite .no-sprite { color: var(--muted); font-size: 10px;
+                       text-align: center; line-height: 1.4;
+                       font-style: italic; }
+.m-sprite-strip { display: flex; gap: 4px; overflow-x: auto;
+                  width: 100%; height: 96px; }
+.m-sprite-strip img { flex: 0 0 auto; height: 96px; max-width: 96px;
+                      object-fit: contain; image-rendering: pixelated; }
 .m-id { color: var(--muted); font: 11px ui-monospace, monospace; }
 .m-name { margin: 2px 0 6px; font-size: 16px; font-weight: 600; }
 .m-name .t-jp { color: var(--accent-soft); font-weight: 400;
@@ -150,7 +157,7 @@ pre.ai { margin: 0; white-space: pre-wrap; font: 11px/1.55 ui-monospace, monospa
 <div class="layout">
   <aside class="sidebar">
     <input id="search" placeholder="filter by name, id, drop, area..." autofocus>
-    <div class="s-list"><a href="#m-M_0000"><img src="DATA/chr/monster/M_0000/M_0000.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_0000 · Lv3</span></span></a><a href="#m-M_0001"><img src="DATA/chr/monster/M_0001/M_0001.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_0001 · Lv3</span></span></a><a href="#m-M_0002"><img src="DATA/chr/monster/M_0002/M_0002.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_0002 · Lv6</span></span></a><a href="#m-M_0003"><img src="DATA/chr/monster/M_0003/M_0003.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_0003 · Lv14</span></span></a><a href="#m-M_0004"><img src="DATA/chr/monster/M_0004/M_0004.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Master Goblin</span><span class="s-id">M_0004 · Lv16</span></span></a><a href="#m-M_0005"><img src="DATA/chr/monster/M_0005/M_0005.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Healer</span><span class="s-id">M_0005 · Lv16</span></span></a><a href="#m-M_0010"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Jumbo Green Slime</span><span class="s-id">M_0010 · Lv3</span></span></a><a href="#m-M_0011"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Red Slime</span><span class="s-id">M_0011 · Lv4</span></span></a><a href="#m-M_0012"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Poison Slime</span><span class="s-id">M_0012 · Lv9</span></span></a><a href="#m-M_0013"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Black Slime</span><span class="s-id">M_0013 · Lv15</span></span></a><a href="#m-M_0014"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Virus Slime</span><span class="s-id">M_0014 · Lv18</span></span></a><a href="#m-M_0015"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Giant Slime</span><span class="s-id">M_0015 · Lv5</span></span></a><a href="#m-M_0020"><img src="DATA/chr/monster/M_0020/M_0020.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_0020 · Lv4</span></span></a><a href="#m-M_0021"><img src="DATA/chr/monster/M_0021/M_0021.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Flame Bat</span><span class="s-id">M_0021 · Lv12</span></span></a><a href="#m-M_0022"><img src="DATA/chr/monster/M_0022/M_0022.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Vampire Bat</span><span class="s-id">M_0022 · Lv18</span></span></a><a href="#m-M_0030"><img src="DATA/chr/monster/M_0030/M_0030.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton</span><span class="s-id">M_0030 · Lv10</span></span></a><a href="#m-M_0031"><img src="DATA/chr/monster/M_0031/M_0031.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Archer</span><span class="s-id">M_0031 · Lv5</span></span></a><a href="#m-M_0032"><img src="DATA/chr/monster/M_0032/M_0032.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bone</span><span class="s-id">M_0032 · Lv4</span></span></a><a href="#m-M_0033"><img src="DATA/chr/monster/M_0033/M_0033.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Priest</span><span class="s-id">M_0033 · Lv17</span></span></a><a href="#m-M_0040"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0040 · Lv4</span></span></a><a href="#m-M_0041"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Frozen Salamander</span><span class="s-id">M_0041 · Lv17</span></span></a><a href="#m-M_0042"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Dark Salamander</span><span class="s-id">M_0042 · Lv17</span></span></a><a href="#m-M_0043"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0043 · Lv9</span></span></a><a href="#m-M_0044"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0044 · Lv12</span></span></a><a href="#m-M_0045"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0045 · Lv17</span></span></a><a href="#m-M_0050"><img src="DATA/chr/monster/M_0050/M_0050.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizardman</span><span class="s-id">M_0050 · Lv6</span></span></a><a href="#m-M_0051"><img src="DATA/chr/monster/M_0051/M_0051.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizard Shaman</span><span class="s-id">M_0051 · Lv11</span></span></a><a href="#m-M_0052"><img src="DATA/chr/monster/M_0052/M_0052.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Elder Lizardman</span><span class="s-id">M_0052 · Lv11</span></span></a><a href="#m-M_0060"><img src="DATA/chr/monster/M_0060/M_0060.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Hippogriff</span><span class="s-id">M_0060 · Lv10</span></span></a><a href="#m-M_0061"><img src="DATA/chr/monster/M_0061/M_0061.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Griffon</span><span class="s-id">M_0061 · Lv13</span></span></a><a href="#m-M_0070"><img src="DATA/chr/monster/M_0070/M_0070.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Zombie</span><span class="s-id">M_0070 · Lv7</span></span></a><a href="#m-M_0071"><img src="DATA/chr/monster/M_0071/M_0071.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Ghoul</span><span class="s-id">M_0071 · Lv17</span></span></a><a href="#m-M_0072"><img src="DATA/chr/monster/M_0072/M_0072.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Wight</span><span class="s-id">M_0072 · Lv17</span></span></a><a href="#m-M_0080"><img src="DATA/chr/monster/M_0080/M_0080.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Rose</span><span class="s-id">M_0080 · Lv15</span></span></a><a href="#m-M_0081"><img src="DATA/chr/monster/M_0081/M_0081.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Viola</span><span class="s-id">M_0081 · Lv15</span></span></a><a href="#m-M_0082"><img src="DATA/chr/monster/M_0082/M_0082.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Catria</span><span class="s-id">M_0082 · Lv15</span></span></a><a href="#m-M_0083"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Lorelei</span><span class="s-id">M_0083 · Lv15</span></span></a><a href="#m-M_0084"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Lorelei</span><span class="s-id">M_0084 · Lv0</span></span></a><a href="#m-M_0090"><img src="DATA/chr/monster/M_0090/M_0090.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Mummy</span><span class="s-id">M_0090 · Lv10</span></span></a><a href="#m-M_0091"><img src="DATA/chr/monster/M_0091/M_0091.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Quick Mummy</span><span class="s-id">M_0091 · Lv18</span></span></a><a href="#m-M_0092"><img src="DATA/chr/monster/M_0092/M_0092.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Armed Mummy</span><span class="s-id">M_0092 · Lv18</span></span></a><a href="#m-M_0100"><img src="DATA/chr/monster/M_0100/M_0100.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">未使用</span><span class="s-id">M_0100 · Lv10</span></span></a><a href="#m-M_0101"><img src="DATA/chr/monster/M_0101/M_0101.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Spend Devil</span><span class="s-id">M_0101 · Lv18</span></span></a><a href="#m-M_0102"><img src="DATA/chr/monster/M_0102/M_0102.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Gatekeeper</span><span class="s-id">M_0102 · Lv14</span></span></a><a href="#m-M_0120"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Will&#x27;o&#x27;Wisp</span><span class="s-id">M_0120 · Lv11</span></span></a><a href="#m-M_0121"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Blast Wisp</span><span class="s-id">M_0121 · Lv18</span></span></a><a href="#m-M_0130"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Lamia</span><span class="s-id">M_0130 · Lv0</span></span></a><a href="#m-M_0140"><img src="DATA/chr/monster/M_0140/M_0140.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Harpy</span><span class="s-id">M_0140 · Lv17</span></span></a><a href="#m-M_0150"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Rust Monster</span><span class="s-id">M_0150 · Lv0</span></span></a><a href="#m-M_0160"><img src="DATA/chr/monster/M_0160/M_0160.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Minotaur</span><span class="s-id">M_0160 · Lv8</span></span></a><a href="#m-M_0161"><img src="DATA/chr/monster/M_0161/M_0161.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berserk Minotaur</span><span class="s-id">M_0161 · Lv18</span></span></a><a href="#m-M_0170"><img src="DATA/chr/monster/M_0170/M_0170.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Chimera</span><span class="s-id">M_0170 · Lv16</span></span></a><a href="#m-M_0171"><img src="DATA/chr/monster/M_0171/M_0171.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Crimson Chimera</span><span class="s-id">M_0171 · Lv18</span></span></a><a href="#m-M_0172"><img src="DATA/chr/monster/M_0172/M_0172.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Chimera Zombie</span><span class="s-id">M_0172 · Lv11</span></span></a><a href="#m-M_0173"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Chimera Zombie</span><span class="s-id">M_0173 · Lv17</span></span></a><a href="#m-M_0180"><img src="DATA/chr/monster/M_0180/M_0180.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Mud Golem</span><span class="s-id">M_0180 · Lv15</span></span></a><a href="#m-M_0181"><img src="DATA/chr/monster/M_0181/M_0181.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Stone Golem</span><span class="s-id">M_0181 · Lv16</span></span></a><a href="#m-M_0190"><img src="DATA/chr/monster/M_0190/M_0190.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lich</span><span class="s-id">M_0190 · Lv18</span></span></a><a href="#m-M_0191"><img src="DATA/chr/monster/M_0191/M_0191.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lich&#x27;s Shade</span><span class="s-id">M_0191 · Lv1</span></span></a><a href="#m-M_0200"><img src="DATA/chr/monster/M_0200/M_0200.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Hydra</span><span class="s-id">M_0200 · Lv5</span></span></a><a href="#m-M_0201"><img src="DATA/chr/monster/M_0201/M_0201.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">未使用</span><span class="s-id">M_0201 · Lv17</span></span></a><a href="#m-M_0210"><img src="DATA/chr/monster/M_0210/M_0210.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Evil Eye</span><span class="s-id">M_0210 · Lv15</span></span></a><a href="#m-M_0211"><img src="DATA/chr/monster/M_0211/M_0211.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Dead Eye</span><span class="s-id">M_0211 · Lv18</span></span></a><a href="#m-M_0220"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0220 · Lv0</span></span></a><a href="#m-M_0230"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0230 · Lv0</span></span></a><a href="#m-M_0240"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0240 · Lv0</span></span></a><a href="#m-M_0250"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0250 · Lv0</span></span></a><a href="#m-M_0260"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0260 · Lv0</span></span></a><a href="#m-M_0270"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Ogre</span><span class="s-id">M_0270 · Lv17</span></span></a><a href="#m-M_0280"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Scoltula</span><span class="s-id">M_0280 · Lv10</span></span></a><a href="#m-M_0281"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Scoltula&#x27;s Foot</span><span class="s-id">M_0281 · Lv19</span></span></a><a href="#m-M_0300"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Dragon</span><span class="s-id">M_0300 · Lv0</span></span></a><a href="#m-M_0310"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Inferno</span><span class="s-id">M_0310 · Lv25</span></span></a><a href="#m-M_0320"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Galsis</span><span class="s-id">M_0320 · Lv20</span></span></a><a href="#m-M_0321"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Galsis&#x27; Head</span><span class="s-id">M_0321 · Lv20</span></span></a><a href="#m-M_0322"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Galsis</span><span class="s-id">M_0322 · Lv20</span></span></a><a href="#m-M_0323"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Galsis&#x27; Core</span><span class="s-id">M_0323 · Lv20</span></span></a><a href="#m-M_0324"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Galsis&#x27; Foot</span><span class="s-id">M_0324 · Lv20</span></span></a><a href="#m-M_0325"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Galsis&#x27; Bit</span><span class="s-id">M_0325 · Lv18</span></span></a><a href="#m-M_0326"><img src="DATA/chr/monster/M_0326/M_0326.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bit</span><span class="s-id">M_0326 · Lv18</span></span></a><a href="#m-M_0327"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Ball Lightning</span><span class="s-id">M_0327 · Lv1</span></span></a><a href="#m-M_0328"><img src="DATA/chr/monster/M_0328/M_0328.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Testamental</span><span class="s-id">M_0328 · Lv18</span></span></a><a href="#m-M_0330"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Berilard&#x27;s Arm</span><span class="s-id">M_0330 · Lv6</span></span></a><a href="#m-M_0331"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Berilard</span><span class="s-id">M_0331 · Lv6</span></span></a><a href="#m-M_0332"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Berilard&#x27;s Core</span><span class="s-id">M_0332 · Lv6</span></span></a><a href="#m-M_0333"><img src="DATA/chr/monster/M_0333/M_0333.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berilard&#x27;s Tentacle</span><span class="s-id">M_0333 · Lv6</span></span></a><a href="#m-M_0334"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Berilard&#x27;s Core</span><span class="s-id">M_0334 · Lv6</span></span></a><a href="#m-M_0340"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Evilwurm</span><span class="s-id">M_0340 · Lv13</span></span></a><a href="#m-M_0350"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Ascomoid</span><span class="s-id">M_0350 · Lv14</span></span></a><a href="#m-M_1000"><img src="DATA/chr/monster/M_1000/M_1000.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Random Monster LV1</span><span class="s-id">M_1000 · Lv0</span></span></a><a href="#m-M_1010"><img src="DATA/chr/monster/M_1010/M_1010.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Ghost</span><span class="s-id">M_1010 · Lv8</span></span></a><a href="#m-M_1020"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Dvorak</span><span class="s-id">M_1020 · Lv1</span></span></a><a href="#m-M_8000"><img src="DATA/chr/monster/M_8000/M_8000.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_8000 · Lv1</span></span></a><a href="#m-M_8001"><img src="DATA/chr/monster/M_8001/M_8001.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_8001 · Lv14</span></span></a><a href="#m-M_8002"><img src="DATA/chr/monster/M_8002/M_8002.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_8002 · Lv16</span></span></a><a href="#m-M_8010"><img src="DATA/chr/monster/M_8010/M_8010.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_8010 · Lv8</span></span></a><a href="#m-M_8011"><img src="DATA/chr/monster/M_8011/M_8011.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_8011 · Lv14</span></span></a><a href="#m-M_8012"><img src="DATA/chr/monster/M_8012/M_8012.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_8012 · Lv16</span></span></a><a href="#m-M_8020"><img src="DATA/chr/monster/M_8020/M_8020.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_8020 · Lv8</span></span></a><a href="#m-M_8021"><img src="DATA/chr/monster/M_8021/M_8021.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_8021 · Lv14</span></span></a><a href="#m-M_8022"><img src="DATA/chr/monster/M_8022/M_8022.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_8022 · Lv16</span></span></a><a href="#m-M_8030"><img src="DATA/chr/monster/M_8030/M_8030.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_8030 · Lv2</span></span></a><a href="#m-M_8031"><img src="DATA/chr/monster/M_8031/M_8031.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_8031 · Lv5</span></span></a><a href="#m-M_8032"><img src="DATA/chr/monster/M_8032/M_8032.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_8032 · Lv16</span></span></a><a href="#m-M_8040"><img src="DATA/chr/monster/M_8040/M_8040.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Poison Slime</span><span class="s-id">M_8040 · Lv12</span></span></a><a href="#m-M_8050"><img src="DATA/chr/monster/M_8050/M_8050.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_8050 · Lv7</span></span></a><a href="#m-M_8051"><img src="DATA/chr/monster/M_8051/M_8051.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_8051 · Lv16</span></span></a><a href="#m-M_8052"><img src="DATA/chr/monster/M_8052/M_8052.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_8052 · Lv1</span></span></a><a href="#m-M_8060"><img src="DATA/chr/monster/M_8060/M_8060.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Flame Bat</span><span class="s-id">M_8060 · Lv17</span></span></a><a href="#m-M_8070"><img src="DATA/chr/monster/M_8070/M_8070.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton</span><span class="s-id">M_8070 · Lv17</span></span></a><a href="#m-M_8080"><img src="DATA/chr/monster/M_8080/M_8080.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Archer</span><span class="s-id">M_8080 · Lv7</span></span></a><a href="#m-M_8081"><img src="DATA/chr/monster/M_8081/M_8081.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Archer</span><span class="s-id">M_8081 · Lv17</span></span></a><a href="#m-M_8090"><img src="DATA/chr/monster/M_8090/M_8090.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Warrior</span><span class="s-id">M_8090 · Lv7</span></span></a><a href="#m-M_8091"><img src="DATA/chr/monster/M_8091/M_8091.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Warrior</span><span class="s-id">M_8091 · Lv17</span></span></a><a href="#m-M_8100"><img src="DATA/chr/monster/M_8100/M_8100.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizardman</span><span class="s-id">M_8100 · Lv11</span></span></a><a href="#m-M_8101"><img src="DATA/chr/monster/M_8101/M_8101.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizardman</span><span class="s-id">M_8101 · Lv18</span></span></a><a href="#m-M_8110"><img src="DATA/chr/monster/M_8110/M_8110.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizard Shaman</span><span class="s-id">M_8110 · Lv18</span></span></a><a href="#m-M_8120"><img src="DATA/chr/monster/M_8120/M_8120.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Elder Lizardman</span><span class="s-id">M_8120 · Lv18</span></span></a><a href="#m-M_8130"><img src="DATA/chr/monster/M_8130/M_8130.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Griffon</span><span class="s-id">M_8130 · Lv16</span></span></a><a href="#m-M_8140"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Will&#x27;o&#x27;Wisp</span><span class="s-id">M_8140 · Lv15</span></span></a><a href="#m-M_8150"><img src="DATA/chr/monster/M_8150/M_8150.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Minotaur</span><span class="s-id">M_8150 · Lv13</span></span></a><a href="#m-M_8160"><img src="DATA/chr/monster/M_8160/M_8160.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Hydra</span><span class="s-id">M_8160 · Lv16</span></span></a><a href="#m-M_8170"><img src="DATA/chr/monster/M_8170/M_8170.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Evil Eye</span><span class="s-id">M_8170 · Lv16</span></span></a></div>
+    <div class="s-list"><a href="#m-M_0000"><img src="DATA/chr/monster/M_0000/M_0000.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_0000 · Lv3</span></span></a><a href="#m-M_0001"><img src="DATA/chr/monster/M_0001/M_0001.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_0001 · Lv3</span></span></a><a href="#m-M_0002"><img src="DATA/chr/monster/M_0002/M_0002.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_0002 · Lv6</span></span></a><a href="#m-M_0003"><img src="DATA/chr/monster/M_0003/M_0003.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_0003 · Lv14</span></span></a><a href="#m-M_0004"><img src="DATA/chr/monster/M_0004/M_0004.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Master Goblin</span><span class="s-id">M_0004 · Lv16</span></span></a><a href="#m-M_0005"><img src="DATA/chr/monster/M_0005/M_0005.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Healer</span><span class="s-id">M_0005 · Lv16</span></span></a><a href="#m-M_0010"><img src="DATA/chr/monster/M_0010/M_0010b.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Jumbo Green Slime</span><span class="s-id">M_0010 · Lv3</span></span></a><a href="#m-M_0011"><img src="DATA/chr/monster/M_0011/M_0011b.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Red Slime</span><span class="s-id">M_0011 · Lv4</span></span></a><a href="#m-M_0012"><img src="DATA/chr/monster/M_0012/M_0012a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Poison Slime</span><span class="s-id">M_0012 · Lv9</span></span></a><a href="#m-M_0013"><img src="DATA/chr/monster/M_0013/M_0013b.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Black Slime</span><span class="s-id">M_0013 · Lv15</span></span></a><a href="#m-M_0014"><img src="DATA/chr/monster/M_0014/M_0014a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Virus Slime</span><span class="s-id">M_0014 · Lv18</span></span></a><a href="#m-M_0015"><img src="DATA/chr/monster/M_0015/M_0015a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Giant Slime</span><span class="s-id">M_0015 · Lv5</span></span></a><a href="#m-M_0020"><img src="DATA/chr/monster/M_0020/M_0020.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_0020 · Lv4</span></span></a><a href="#m-M_0021"><img src="DATA/chr/monster/M_0021/M_0021.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Flame Bat</span><span class="s-id">M_0021 · Lv12</span></span></a><a href="#m-M_0022"><img src="DATA/chr/monster/M_0022/M_0022.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Vampire Bat</span><span class="s-id">M_0022 · Lv18</span></span></a><a href="#m-M_0030"><img src="DATA/chr/monster/M_0030/M_0030.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton</span><span class="s-id">M_0030 · Lv10</span></span></a><a href="#m-M_0031"><img src="DATA/chr/monster/M_0031/M_0031.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Archer</span><span class="s-id">M_0031 · Lv5</span></span></a><a href="#m-M_0032"><img src="DATA/chr/monster/M_0032/M_0032.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bone</span><span class="s-id">M_0032 · Lv4</span></span></a><a href="#m-M_0033"><img src="DATA/chr/monster/M_0033/M_0033.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Priest</span><span class="s-id">M_0033 · Lv17</span></span></a><a href="#m-M_0040"><img src="DATA/chr/monster/M_0040/M_0040a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0040 · Lv4</span></span></a><a href="#m-M_0041"><img src="DATA/chr/monster/M_0041/M_0041a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Frozen Salamander</span><span class="s-id">M_0041 · Lv17</span></span></a><a href="#m-M_0042"><img src="DATA/chr/monster/M_0042/M_0042a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Dark Salamander</span><span class="s-id">M_0042 · Lv17</span></span></a><a href="#m-M_0043"><img src="DATA/chr/monster/M_0043/M_0040a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0043 · Lv9</span></span></a><a href="#m-M_0044"><img src="DATA/chr/monster/M_0044/M_0040a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0044 · Lv12</span></span></a><a href="#m-M_0045"><img src="DATA/chr/monster/M_0045/M_0040a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Salamander</span><span class="s-id">M_0045 · Lv17</span></span></a><a href="#m-M_0050"><img src="DATA/chr/monster/M_0050/M_0050.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizardman</span><span class="s-id">M_0050 · Lv6</span></span></a><a href="#m-M_0051"><img src="DATA/chr/monster/M_0051/M_0051.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizard Shaman</span><span class="s-id">M_0051 · Lv11</span></span></a><a href="#m-M_0052"><img src="DATA/chr/monster/M_0052/M_0052.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Elder Lizardman</span><span class="s-id">M_0052 · Lv11</span></span></a><a href="#m-M_0060"><img src="DATA/chr/monster/M_0060/M_0060.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Hippogriff</span><span class="s-id">M_0060 · Lv10</span></span></a><a href="#m-M_0061"><img src="DATA/chr/monster/M_0061/M_0061.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Griffon</span><span class="s-id">M_0061 · Lv13</span></span></a><a href="#m-M_0070"><img src="DATA/chr/monster/M_0070/M_0070.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Zombie</span><span class="s-id">M_0070 · Lv7</span></span></a><a href="#m-M_0071"><img src="DATA/chr/monster/M_0071/M_0071.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Ghoul</span><span class="s-id">M_0071 · Lv17</span></span></a><a href="#m-M_0072"><img src="DATA/chr/monster/M_0072/M_0072.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Wight</span><span class="s-id">M_0072 · Lv17</span></span></a><a href="#m-M_0080"><img src="DATA/chr/monster/M_0080/M_0080.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Rose</span><span class="s-id">M_0080 · Lv15</span></span></a><a href="#m-M_0081"><img src="DATA/chr/monster/M_0081/M_0081.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Viola</span><span class="s-id">M_0081 · Lv15</span></span></a><a href="#m-M_0082"><img src="DATA/chr/monster/M_0082/M_0082.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Catria</span><span class="s-id">M_0082 · Lv15</span></span></a><a href="#m-M_0083"><img src="DATA/chr/monster/M_0083/M_0083A.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lorelei</span><span class="s-id">M_0083 · Lv15</span></span></a><a href="#m-M_0084"><img src="DATA/chr/monster/M_0084/M_0083B.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lorelei</span><span class="s-id">M_0084 · Lv0</span></span></a><a href="#m-M_0090"><img src="DATA/chr/monster/M_0090/M_0090.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Mummy</span><span class="s-id">M_0090 · Lv10</span></span></a><a href="#m-M_0091"><img src="DATA/chr/monster/M_0091/M_0091.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Quick Mummy</span><span class="s-id">M_0091 · Lv18</span></span></a><a href="#m-M_0092"><img src="DATA/chr/monster/M_0092/M_0092.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Armed Mummy</span><span class="s-id">M_0092 · Lv18</span></span></a><a href="#m-M_0100"><img src="DATA/chr/monster/M_0100/M_0100.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">未使用</span><span class="s-id">M_0100 · Lv10</span></span></a><a href="#m-M_0101"><img src="DATA/chr/monster/M_0101/M_0101.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Spend Devil</span><span class="s-id">M_0101 · Lv18</span></span></a><a href="#m-M_0102"><img src="DATA/chr/monster/M_0102/M_0102.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Gatekeeper</span><span class="s-id">M_0102 · Lv14</span></span></a><a href="#m-M_0120"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Will&#x27;o&#x27;Wisp</span><span class="s-id">M_0120 · Lv11</span></span></a><a href="#m-M_0121"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Blast Wisp</span><span class="s-id">M_0121 · Lv18</span></span></a><a href="#m-M_0130"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Lamia</span><span class="s-id">M_0130 · Lv0</span></span></a><a href="#m-M_0140"><img src="DATA/chr/monster/M_0140/M_0140.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Harpy</span><span class="s-id">M_0140 · Lv17</span></span></a><a href="#m-M_0150"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Rust Monster</span><span class="s-id">M_0150 · Lv0</span></span></a><a href="#m-M_0160"><img src="DATA/chr/monster/M_0160/M_0160.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Minotaur</span><span class="s-id">M_0160 · Lv8</span></span></a><a href="#m-M_0161"><img src="DATA/chr/monster/M_0161/M_0161.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berserk Minotaur</span><span class="s-id">M_0161 · Lv18</span></span></a><a href="#m-M_0170"><img src="DATA/chr/monster/M_0170/M_0170.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Chimera</span><span class="s-id">M_0170 · Lv16</span></span></a><a href="#m-M_0171"><img src="DATA/chr/monster/M_0171/M_0171.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Crimson Chimera</span><span class="s-id">M_0171 · Lv18</span></span></a><a href="#m-M_0172"><img src="DATA/chr/monster/M_0172/M_0172.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Chimera Zombie</span><span class="s-id">M_0172 · Lv11</span></span></a><a href="#m-M_0173"><img src="DATA/chr/monster/M_0173/M_0172.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Chimera Zombie</span><span class="s-id">M_0173 · Lv17</span></span></a><a href="#m-M_0180"><img src="DATA/chr/monster/M_0180/M_0180.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Mud Golem</span><span class="s-id">M_0180 · Lv15</span></span></a><a href="#m-M_0181"><img src="DATA/chr/monster/M_0181/M_0181.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Stone Golem</span><span class="s-id">M_0181 · Lv16</span></span></a><a href="#m-M_0190"><img src="DATA/chr/monster/M_0190/M_0190.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lich</span><span class="s-id">M_0190 · Lv18</span></span></a><a href="#m-M_0191"><img src="DATA/chr/monster/M_0191/M_0191.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lich&#x27;s Shade</span><span class="s-id">M_0191 · Lv1</span></span></a><a href="#m-M_0200"><img src="DATA/chr/monster/M_0200/M_0200.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Hydra</span><span class="s-id">M_0200 · Lv5</span></span></a><a href="#m-M_0201"><img src="DATA/chr/monster/M_0201/M_0201.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">未使用</span><span class="s-id">M_0201 · Lv17</span></span></a><a href="#m-M_0210"><img src="DATA/chr/monster/M_0210/M_0210.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Evil Eye</span><span class="s-id">M_0210 · Lv15</span></span></a><a href="#m-M_0211"><img src="DATA/chr/monster/M_0211/M_0211.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Dead Eye</span><span class="s-id">M_0211 · Lv18</span></span></a><a href="#m-M_0220"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0220 · Lv0</span></span></a><a href="#m-M_0230"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0230 · Lv0</span></span></a><a href="#m-M_0240"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0240 · Lv0</span></span></a><a href="#m-M_0250"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0250 · Lv0</span></span></a><a href="#m-M_0260"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">未作成</span><span class="s-id">M_0260 · Lv0</span></span></a><a href="#m-M_0270"><img src="DATA/chr/monster/M_0270/M_0270a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Ogre</span><span class="s-id">M_0270 · Lv17</span></span></a><a href="#m-M_0280"><img src="DATA/chr/monster/M_0280/M_0280A.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Scoltula</span><span class="s-id">M_0280 · Lv10</span></span></a><a href="#m-M_0281"><img src="DATA/chr/monster/M_0281/core.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Scoltula&#x27;s Foot</span><span class="s-id">M_0281 · Lv19</span></span></a><a href="#m-M_0300"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Dragon</span><span class="s-id">M_0300 · Lv0</span></span></a><a href="#m-M_0310"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Inferno</span><span class="s-id">M_0310 · Lv25</span></span></a><a href="#m-M_0320"><img src="DATA/chr/monster/M_0320/M_0320A.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Galsis</span><span class="s-id">M_0320 · Lv20</span></span></a><a href="#m-M_0321"><img src="DATA/chr/monster/M_0321/core.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Galsis&#x27; Head</span><span class="s-id">M_0321 · Lv20</span></span></a><a href="#m-M_0322"><img src="DATA/chr/monster/M_0322/AREA06_99.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Galsis</span><span class="s-id">M_0322 · Lv20</span></span></a><a href="#m-M_0323"><img src="DATA/chr/monster/M_0323/core.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Galsis&#x27; Core</span><span class="s-id">M_0323 · Lv20</span></span></a><a href="#m-M_0324"><img src="DATA/chr/monster/M_0324/core.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Galsis&#x27; Foot</span><span class="s-id">M_0324 · Lv20</span></span></a><a href="#m-M_0325"><img src="DATA/chr/monster/M_0325/core.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Galsis&#x27; Bit</span><span class="s-id">M_0325 · Lv18</span></span></a><a href="#m-M_0326"><img src="DATA/chr/monster/M_0326/M_0326.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bit</span><span class="s-id">M_0326 · Lv18</span></span></a><a href="#m-M_0327"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Ball Lightning</span><span class="s-id">M_0327 · Lv1</span></span></a><a href="#m-M_0328"><img src="DATA/chr/monster/M_0328/M_0328.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Testamental</span><span class="s-id">M_0328 · Lv18</span></span></a><a href="#m-M_0330"><img src="DATA/chr/monster/M_0330/M_0330a.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berilard&#x27;s Arm</span><span class="s-id">M_0330 · Lv6</span></span></a><a href="#m-M_0331"><img src="DATA/chr/monster/M_0331/AREA07_07.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berilard</span><span class="s-id">M_0331 · Lv6</span></span></a><a href="#m-M_0332"><img src="DATA/chr/monster/M_0332/M_0332B_.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berilard&#x27;s Core</span><span class="s-id">M_0332 · Lv6</span></span></a><a href="#m-M_0333"><img src="DATA/chr/monster/M_0333/M_0333.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berilard&#x27;s Tentacle</span><span class="s-id">M_0333 · Lv6</span></span></a><a href="#m-M_0334"><img src="DATA/chr/monster/M_0334/core.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Berilard&#x27;s Core</span><span class="s-id">M_0334 · Lv6</span></span></a><a href="#m-M_0340"><img src="DATA/chr/monster/M_0340/M_0340A.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Evilwurm</span><span class="s-id">M_0340 · Lv13</span></span></a><a href="#m-M_0350"><img src="DATA/chr/monster/M_0350/UV_BEAM.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Ascomoid</span><span class="s-id">M_0350 · Lv14</span></span></a><a href="#m-M_1000"><img src="DATA/chr/monster/M_1000/M_1000.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Random Monster LV1</span><span class="s-id">M_1000 · Lv0</span></span></a><a href="#m-M_1010"><img src="DATA/chr/monster/M_1010/M_1010.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Ghost</span><span class="s-id">M_1010 · Lv8</span></span></a><a href="#m-M_1020"><img src="DATA/chr/monster/M_1020/N_0040.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Dvorak</span><span class="s-id">M_1020 · Lv1</span></span></a><a href="#m-M_8000"><img src="DATA/chr/monster/M_8000/M_8000.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_8000 · Lv1</span></span></a><a href="#m-M_8001"><img src="DATA/chr/monster/M_8001/M_8001.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_8001 · Lv14</span></span></a><a href="#m-M_8002"><img src="DATA/chr/monster/M_8002/M_8002.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin</span><span class="s-id">M_8002 · Lv16</span></span></a><a href="#m-M_8010"><img src="DATA/chr/monster/M_8010/M_8010.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_8010 · Lv8</span></span></a><a href="#m-M_8011"><img src="DATA/chr/monster/M_8011/M_8011.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_8011 · Lv14</span></span></a><a href="#m-M_8012"><img src="DATA/chr/monster/M_8012/M_8012.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Archer</span><span class="s-id">M_8012 · Lv16</span></span></a><a href="#m-M_8020"><img src="DATA/chr/monster/M_8020/M_8020.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_8020 · Lv8</span></span></a><a href="#m-M_8021"><img src="DATA/chr/monster/M_8021/M_8021.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_8021 · Lv14</span></span></a><a href="#m-M_8022"><img src="DATA/chr/monster/M_8022/M_8022.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Warrior</span><span class="s-id">M_8022 · Lv16</span></span></a><a href="#m-M_8030"><img src="DATA/chr/monster/M_8030/M_8030.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_8030 · Lv2</span></span></a><a href="#m-M_8031"><img src="DATA/chr/monster/M_8031/M_8031.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_8031 · Lv5</span></span></a><a href="#m-M_8032"><img src="DATA/chr/monster/M_8032/M_8032.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Goblin Shaman</span><span class="s-id">M_8032 · Lv16</span></span></a><a href="#m-M_8040"><img src="DATA/chr/monster/M_8040/M_8040.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Poison Slime</span><span class="s-id">M_8040 · Lv12</span></span></a><a href="#m-M_8050"><img src="DATA/chr/monster/M_8050/M_8050.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_8050 · Lv7</span></span></a><a href="#m-M_8051"><img src="DATA/chr/monster/M_8051/M_8051.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_8051 · Lv16</span></span></a><a href="#m-M_8052"><img src="DATA/chr/monster/M_8052/M_8052.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Bat</span><span class="s-id">M_8052 · Lv1</span></span></a><a href="#m-M_8060"><img src="DATA/chr/monster/M_8060/M_8060.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Flame Bat</span><span class="s-id">M_8060 · Lv17</span></span></a><a href="#m-M_8070"><img src="DATA/chr/monster/M_8070/M_8070.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton</span><span class="s-id">M_8070 · Lv17</span></span></a><a href="#m-M_8080"><img src="DATA/chr/monster/M_8080/M_8080.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Archer</span><span class="s-id">M_8080 · Lv7</span></span></a><a href="#m-M_8081"><img src="DATA/chr/monster/M_8081/M_8081.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Archer</span><span class="s-id">M_8081 · Lv17</span></span></a><a href="#m-M_8090"><img src="DATA/chr/monster/M_8090/M_8090.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Warrior</span><span class="s-id">M_8090 · Lv7</span></span></a><a href="#m-M_8091"><img src="DATA/chr/monster/M_8091/M_8091.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Skeleton Warrior</span><span class="s-id">M_8091 · Lv17</span></span></a><a href="#m-M_8100"><img src="DATA/chr/monster/M_8100/M_8100.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizardman</span><span class="s-id">M_8100 · Lv11</span></span></a><a href="#m-M_8101"><img src="DATA/chr/monster/M_8101/M_8101.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizardman</span><span class="s-id">M_8101 · Lv18</span></span></a><a href="#m-M_8110"><img src="DATA/chr/monster/M_8110/M_8110.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Lizard Shaman</span><span class="s-id">M_8110 · Lv18</span></span></a><a href="#m-M_8120"><img src="DATA/chr/monster/M_8120/M_8120.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Elder Lizardman</span><span class="s-id">M_8120 · Lv18</span></span></a><a href="#m-M_8130"><img src="DATA/chr/monster/M_8130/M_8130.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Griffon</span><span class="s-id">M_8130 · Lv16</span></span></a><a href="#m-M_8140"><div style="width:28px;height:28px;background:#0c0d10;border-radius:2px"></div><span class="s-meta"><span class="s-name">Will&#x27;o&#x27;Wisp</span><span class="s-id">M_8140 · Lv15</span></span></a><a href="#m-M_8150"><img src="DATA/chr/monster/M_8150/M_8150.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Minotaur</span><span class="s-id">M_8150 · Lv13</span></span></a><a href="#m-M_8160"><img src="DATA/chr/monster/M_8160/M_8160.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Hydra</span><span class="s-id">M_8160 · Lv16</span></span></a><a href="#m-M_8170"><img src="DATA/chr/monster/M_8170/M_8170.png" alt="" loading="lazy" /><span class="s-meta"><span class="s-name">Evil Eye</span><span class="s-id">M_8170 · Lv16</span></span></a></div>
   </aside>
   <div class="bestiary">
     <p class="lede">Every monster pulled from <code>DATA/chr/Object.tbl</code> (1108-byte
@@ -320,7 +327,7 @@ MAGIC：回復弾</pre>
 </section>
 <section class="m-detail" id="m-M_0010" data-id="M_0010">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0010/M_0010b.png" alt="M_0010" /></div>
     <div class="m-title">
       <div class="m-id">M_0010</div>
       <h2 class="m-name">Jumbo Green Slime <span class="t-jp">スライム</span></h2>
@@ -345,7 +352,7 @@ MAGIC：回復弾</pre>
 </section>
 <section class="m-detail" id="m-M_0011" data-id="M_0011">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0011/M_0011b.png" alt="M_0011" /></div>
     <div class="m-title">
       <div class="m-id">M_0011</div>
       <h2 class="m-name">Red Slime <span class="t-jp">レッドスライム</span></h2>
@@ -372,7 +379,7 @@ ATK9：自爆（死亡時に必ず発生）</pre>
 </section>
 <section class="m-detail" id="m-M_0012" data-id="M_0012">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0012/M_0012a.png" alt="M_0012 variant" title="M_0012a.png" /><img src="DATA/chr/monster/M_0012/M_0012b.png" alt="M_0012 variant" title="M_0012b.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0012</div>
       <h2 class="m-name">Poison Slime <span class="t-jp">ポイズンスライム</span></h2>
@@ -398,7 +405,7 @@ ATK2：1段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0013" data-id="M_0013">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0013/M_0013b.png" alt="M_0013" /></div>
     <div class="m-title">
       <div class="m-id">M_0013</div>
       <h2 class="m-name">Black Slime <span class="t-jp">ブラックスライム</span></h2>
@@ -424,7 +431,7 @@ ATK2：黒炎まきちらし（未使用）</pre>
 </section>
 <section class="m-detail" id="m-M_0014" data-id="M_0014">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0014/M_0014a.png" alt="M_0014 variant" title="M_0014a.png" /><img src="DATA/chr/monster/M_0014/M_0014b.png" alt="M_0014 variant" title="M_0014b.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0014</div>
       <h2 class="m-name">Virus Slime <span class="t-jp">ウィルススライム</span></h2>
@@ -450,7 +457,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_0015" data-id="M_0015">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0015/M_0015a.png" alt="M_0015 variant" title="M_0015a.png" /><img src="DATA/chr/monster/M_0015/M_0015b.png" alt="M_0015 variant" title="M_0015b.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0015</div>
       <h2 class="m-name">Giant Slime <span class="t-jp">ジャイアントスライム</span></h2>
@@ -658,7 +665,7 @@ EMPTY3：召還</pre>
 </section>
 <section class="m-detail" id="m-M_0040" data-id="M_0040">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0040/M_0040a.png" alt="M_0040" /></div>
     <div class="m-title">
       <div class="m-id">M_0040</div>
       <h2 class="m-name">Salamander <span class="t-jp">サラマンダー</span></h2>
@@ -684,7 +691,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0041" data-id="M_0041">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0041/M_0041a.png" alt="M_0041" /></div>
     <div class="m-title">
       <div class="m-id">M_0041</div>
       <h2 class="m-name">Frozen Salamander <span class="t-jp">フローズンサラマンダー</span></h2>
@@ -710,7 +717,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0042" data-id="M_0042">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0042/M_0042a.png" alt="M_0042" /></div>
     <div class="m-title">
       <div class="m-id">M_0042</div>
       <h2 class="m-name">Dark Salamander <span class="t-jp">ダークサラマンダー</span></h2>
@@ -736,7 +743,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0043" data-id="M_0043">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0043/M_0040a.png" alt="M_0043" /></div>
     <div class="m-title">
       <div class="m-id">M_0043</div>
       <h2 class="m-name">Salamander <span class="t-jp">サラマンダー</span></h2>
@@ -762,7 +769,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0044" data-id="M_0044">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0044/M_0040a.png" alt="M_0044" /></div>
     <div class="m-title">
       <div class="m-id">M_0044</div>
       <h2 class="m-name">Salamander <span class="t-jp">サラマンダー</span></h2>
@@ -788,7 +795,7 @@ ATK2：尻尾突き</pre>
 </section>
 <section class="m-detail" id="m-M_0045" data-id="M_0045">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0045/M_0040a.png" alt="M_0045" /></div>
     <div class="m-title">
       <div class="m-id">M_0045</div>
       <h2 class="m-name">Salamander <span class="t-jp">サラマンダー</span></h2>
@@ -1102,7 +1109,7 @@ ATK2：魔法（誘導）</pre>
 </section>
 <section class="m-detail" id="m-M_0083" data-id="M_0083">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0083/M_0083A.png" alt="M_0083 variant" title="M_0083A.png" /><img src="DATA/chr/monster/M_0083/M_0083B.png" alt="M_0083 variant" title="M_0083B.png" /><img src="DATA/chr/monster/M_0083/M_0083D.png" alt="M_0083 variant" title="M_0083D.png" /><img src="DATA/chr/monster/M_0083/M_0083E.png" alt="M_0083 variant" title="M_0083E.png" /><img src="DATA/chr/monster/M_0083/M_0083c.png" alt="M_0083 variant" title="M_0083c.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0083</div>
       <h2 class="m-name">Lorelei <span class="t-jp">ですぱぱ</span></h2>
@@ -1127,7 +1134,7 @@ ATK2：魔法（誘導）</pre>
 </section>
 <section class="m-detail" id="m-M_0084" data-id="M_0084">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0084/M_0083B.png" alt="M_0084 variant" title="M_0083B.png" /><img src="DATA/chr/monster/M_0084/M_0083D.png" alt="M_0084 variant" title="M_0083D.png" /><img src="DATA/chr/monster/M_0084/M_0083E.png" alt="M_0084 variant" title="M_0083E.png" /><img src="DATA/chr/monster/M_0084/M_0083a.png" alt="M_0084 variant" title="M_0083a.png" /><img src="DATA/chr/monster/M_0084/M_0083c.png" alt="M_0084 variant" title="M_0083c.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0084</div>
       <h2 class="m-name">Lorelei <span class="t-jp">ですぱぱ</span></h2>
@@ -1306,7 +1313,7 @@ ATK3：スピンターン</pre>
 </section>
 <section class="m-detail" id="m-M_0120" data-id="M_0120">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0120</div>
       <h2 class="m-name">Will&#x27;o&#x27;Wisp <span class="t-jp">ウィル・オー・ウィスプ</span></h2>
@@ -1333,7 +1340,7 @@ ATK3：自爆</pre>
 </section>
 <section class="m-detail" id="m-M_0121" data-id="M_0121">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0121</div>
       <h2 class="m-name">Blast Wisp <span class="t-jp">ブラストウィスプ</span></h2>
@@ -1359,7 +1366,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0130" data-id="M_0130">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0130</div>
       <h2 class="m-name">Lamia </h2>
@@ -1409,7 +1416,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0150" data-id="M_0150">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0150</div>
       <h2 class="m-name">Rust Monster </h2>
@@ -1577,7 +1584,7 @@ EMP1：炎撒き散らしⅡ</pre>
 </section>
 <section class="m-detail" id="m-M_0173" data-id="M_0173">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0173/M_0172.png" alt="M_0173" /></div>
     <div class="m-title">
       <div class="m-id">M_0173</div>
       <h2 class="m-name">Chimera Zombie <span class="t-jp">キマイラゾンビ</span></h2>
@@ -1663,7 +1670,7 @@ ATK3：長距離どーん
 </section>
 <section class="m-detail" id="m-M_0190" data-id="M_0190">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0190/M_0190.png" alt="M_0190" /></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0190/M_0190.png" alt="M_0190 variant" title="M_0190.png" /><img src="DATA/chr/monster/M_0190/THR_0100.png" alt="M_0190 variant" title="THR_0100.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0190</div>
       <h2 class="m-name">Lich <span class="t-jp">リッチ</span></h2>
@@ -1690,7 +1697,7 @@ EMPTY2：デスセンテンス</pre>
 </section>
 <section class="m-detail" id="m-M_0191" data-id="M_0191">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0191/M_0191.png" alt="M_0191" /></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0191/M_0191.png" alt="M_0191 variant" title="M_0191.png" /><img src="DATA/chr/monster/M_0191/THR_0101.png" alt="M_0191 variant" title="THR_0101.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0191</div>
       <h2 class="m-name">Lich&#x27;s Shade <span class="t-jp">リッチの分身（仮）</span></h2>
@@ -1824,7 +1831,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0220" data-id="M_0220">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0220</div>
       <h2 class="m-name">未作成 </h2>
@@ -1849,7 +1856,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0230" data-id="M_0230">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0230</div>
       <h2 class="m-name">未作成 </h2>
@@ -1874,7 +1881,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0240" data-id="M_0240">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0240</div>
       <h2 class="m-name">未作成 </h2>
@@ -1899,7 +1906,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0250" data-id="M_0250">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0250</div>
       <h2 class="m-name">未作成 </h2>
@@ -1924,7 +1931,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0260" data-id="M_0260">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0260</div>
       <h2 class="m-name">未作成 </h2>
@@ -1949,7 +1956,7 @@ ATK2：爆弾投下</pre>
 </section>
 <section class="m-detail" id="m-M_0270" data-id="M_0270">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0270/M_0270a.png" alt="M_0270 variant" title="M_0270a.png" /><img src="DATA/chr/monster/M_0270/M_0270b.png" alt="M_0270 variant" title="M_0270b.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0270</div>
       <h2 class="m-name">Ogre <span class="t-jp">オーガー</span></h2>
@@ -1977,7 +1984,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0280" data-id="M_0280">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0280/M_0280A.png" alt="M_0280 variant" title="M_0280A.png" /><img src="DATA/chr/monster/M_0280/M_0280B.png" alt="M_0280 variant" title="M_0280B.png" /><img src="DATA/chr/monster/M_0280/M_0280C.png" alt="M_0280 variant" title="M_0280C.png" /><img src="DATA/chr/monster/M_0280/M_0280D.png" alt="M_0280 variant" title="M_0280D.png" /><img src="DATA/chr/monster/M_0280/M_0280E.png" alt="M_0280 variant" title="M_0280E.png" /><img src="DATA/chr/monster/M_0280/M_0280F.png" alt="M_0280 variant" title="M_0280F.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0280</div>
       <h2 class="m-name">Scoltula <span class="t-jp">カニグモ本体</span></h2>
@@ -2002,7 +2009,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0281" data-id="M_0281">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0281/core.png" alt="M_0281" /></div>
     <div class="m-title">
       <div class="m-id">M_0281</div>
       <h2 class="m-name">Scoltula&#x27;s Foot <span class="t-jp">カニグモ目玉</span></h2>
@@ -2027,7 +2034,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0300" data-id="M_0300">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0300</div>
       <h2 class="m-name">Dragon </h2>
@@ -2052,7 +2059,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0310" data-id="M_0310">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0310</div>
       <h2 class="m-name">Inferno </h2>
@@ -2077,7 +2084,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0320" data-id="M_0320">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0320/M_0320A.png" alt="M_0320 variant" title="M_0320A.png" /><img src="DATA/chr/monster/M_0320/M_0320B.png" alt="M_0320 variant" title="M_0320B.png" /><img src="DATA/chr/monster/M_0320/M_0320C.png" alt="M_0320 variant" title="M_0320C.png" /><img src="DATA/chr/monster/M_0320/M_0320D.png" alt="M_0320 variant" title="M_0320D.png" /><img src="DATA/chr/monster/M_0320/M_0320E.png" alt="M_0320 variant" title="M_0320E.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0320</div>
       <h2 class="m-name">Galsis </h2>
@@ -2102,7 +2109,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0321" data-id="M_0321">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0321/core.png" alt="M_0321" /></div>
     <div class="m-title">
       <div class="m-id">M_0321</div>
       <h2 class="m-name">Galsis&#x27; Head <span class="t-jp">がるしす</span></h2>
@@ -2127,7 +2134,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0322" data-id="M_0322">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0322/AREA06_99.png" alt="M_0322 variant" title="AREA06_99.png" /><img src="DATA/chr/monster/M_0322/M_0322A.png" alt="M_0322 variant" title="M_0322A.png" /><img src="DATA/chr/monster/M_0322/M_0322B.png" alt="M_0322 variant" title="M_0322B.png" /><img src="DATA/chr/monster/M_0322/M_0322C_.png" alt="M_0322 variant" title="M_0322C_.png" /><img src="DATA/chr/monster/M_0322/M_0322D.png" alt="M_0322 variant" title="M_0322D.png" /><img src="DATA/chr/monster/M_0322/M_0322E.png" alt="M_0322 variant" title="M_0322E.png" /><img src="DATA/chr/monster/M_0322/M_0322F.png" alt="M_0322 variant" title="M_0322F.png" /><img src="DATA/chr/monster/M_0322/M_0322G.png" alt="M_0322 variant" title="M_0322G.png" /><img src="DATA/chr/monster/M_0322/M_0322c.png" alt="M_0322 variant" title="M_0322c.png" /><img src="DATA/chr/monster/M_0322/SL2_0000.png" alt="M_0322 variant" title="SL2_0000.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0322</div>
       <h2 class="m-name">Galsis </h2>
@@ -2152,7 +2159,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0323" data-id="M_0323">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0323/core.png" alt="M_0323" /></div>
     <div class="m-title">
       <div class="m-id">M_0323</div>
       <h2 class="m-name">Galsis&#x27; Core <span class="t-jp">がるしす</span></h2>
@@ -2177,7 +2184,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0324" data-id="M_0324">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0324/core.png" alt="M_0324" /></div>
     <div class="m-title">
       <div class="m-id">M_0324</div>
       <h2 class="m-name">Galsis&#x27; Foot <span class="t-jp">がるしす</span></h2>
@@ -2202,7 +2209,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0325" data-id="M_0325">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0325/core.png" alt="M_0325" /></div>
     <div class="m-title">
       <div class="m-id">M_0325</div>
       <h2 class="m-name">Galsis&#x27; Bit <span class="t-jp">がるしす</span></h2>
@@ -2252,7 +2259,7 @@ ATTACK6：バリア＆吹き飛ばし</pre>
 </section>
 <section class="m-detail" id="m-M_0327" data-id="M_0327">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_0327</div>
       <h2 class="m-name">Ball Lightning <span class="t-jp">ウィル・オー・ウィスプ</span></h2>
@@ -2278,7 +2285,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0328" data-id="M_0328">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0328/M_0328.png" alt="M_0328" /></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0328/M_0328.png" alt="M_0328 variant" title="M_0328.png" /><img src="DATA/chr/monster/M_0328/M_0328B_.png" alt="M_0328 variant" title="M_0328B_.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0328</div>
       <h2 class="m-name">Testamental <span class="t-jp">ガルシス（第二形態）の子分</span></h2>
@@ -2303,7 +2310,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0330" data-id="M_0330">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0330/M_0330a.png" alt="M_0330 variant" title="M_0330a.png" /><img src="DATA/chr/monster/M_0330/M_0330b.png" alt="M_0330 variant" title="M_0330b.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0330</div>
       <h2 class="m-name">Berilard&#x27;s Arm <span class="t-jp">トレントの腕</span></h2>
@@ -2328,7 +2335,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0331" data-id="M_0331">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0331/AREA07_07.png" alt="M_0331 variant" title="AREA07_07.png" /><img src="DATA/chr/monster/M_0331/M_0331A.png" alt="M_0331 variant" title="M_0331A.png" /><img src="DATA/chr/monster/M_0331/M_0331B.png" alt="M_0331 variant" title="M_0331B.png" /><img src="DATA/chr/monster/M_0331/M_0331C.png" alt="M_0331 variant" title="M_0331C.png" /><img src="DATA/chr/monster/M_0331/M_0331D.png" alt="M_0331 variant" title="M_0331D.png" /><img src="DATA/chr/monster/M_0331/M_0331E.png" alt="M_0331 variant" title="M_0331E.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0331</div>
       <h2 class="m-name">Berilard <span class="t-jp">ゴブリン</span></h2>
@@ -2353,7 +2360,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0332" data-id="M_0332">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0332/M_0332B_.png" alt="M_0332 variant" title="M_0332B_.png" /><img src="DATA/chr/monster/M_0332/M_0332a.png" alt="M_0332 variant" title="M_0332a.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0332</div>
       <h2 class="m-name">Berilard&#x27;s Core <span class="t-jp">ゴブリン</span></h2>
@@ -2378,7 +2385,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0333" data-id="M_0333">
   <div class="m-head">
-    <div class="m-sprite"><img src="DATA/chr/monster/M_0333/M_0333.png" alt="M_0333" /></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0333/M_0333.png" alt="M_0333 variant" title="M_0333.png" /><img src="DATA/chr/monster/M_0333/M_0333B.png" alt="M_0333 variant" title="M_0333B.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0333</div>
       <h2 class="m-name">Berilard&#x27;s Tentacle <span class="t-jp">ATTACK1</span></h2>
@@ -2403,7 +2410,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0334" data-id="M_0334">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><img src="DATA/chr/monster/M_0334/core.png" alt="M_0334" /></div>
     <div class="m-title">
       <div class="m-id">M_0334</div>
       <h2 class="m-name">Berilard&#x27;s Core </h2>
@@ -2428,7 +2435,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0340" data-id="M_0340">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0340/M_0340A.png" alt="M_0340 variant" title="M_0340A.png" /><img src="DATA/chr/monster/M_0340/M_0340B.png" alt="M_0340 variant" title="M_0340B.png" /><img src="DATA/chr/monster/M_0340/M_0340C.png" alt="M_0340 variant" title="M_0340C.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0340</div>
       <h2 class="m-name">Evilwurm </h2>
@@ -2453,7 +2460,7 @@ ATK2：ガスクラウド</pre>
 </section>
 <section class="m-detail" id="m-M_0350" data-id="M_0350">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_0350/UV_BEAM.png" alt="M_0350 variant" title="UV_BEAM.png" /><img src="DATA/chr/monster/M_0350/eye.png" alt="M_0350 variant" title="eye.png" /><img src="DATA/chr/monster/M_0350/uv_bump.png" alt="M_0350 variant" title="uv_bump.png" /><img src="DATA/chr/monster/M_0350/uv_part.png" alt="M_0350 variant" title="uv_part.png" /><img src="DATA/chr/monster/M_0350/uv_test.png" alt="M_0350 variant" title="uv_test.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_0350</div>
       <h2 class="m-name">Ascomoid <span class="t-jp">びほるだー</span></h2>
@@ -2529,7 +2536,7 @@ ATK2：2段攻撃</pre>
 </section>
 <section class="m-detail" id="m-M_1020" data-id="M_1020">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="m-sprite-strip"><img src="DATA/chr/monster/M_1020/N_0040.png" alt="M_1020 variant" title="N_0040.png" /><img src="DATA/chr/monster/M_1020/SL1_0030.png" alt="M_1020 variant" title="SL1_0030.png" /></div></div>
     <div class="m-title">
       <div class="m-id">M_1020</div>
       <h2 class="m-name">Dvorak <span class="t-jp">ドヴォルザーク</span></h2>
@@ -3259,7 +3266,7 @@ ATK4：つめ（空中）</pre>
 </section>
 <section class="m-detail" id="m-M_8140" data-id="M_8140">
   <div class="m-head">
-    <div class="m-sprite"><div class="no-sprite">no sprite</div></div>
+    <div class="m-sprite"><div class="no-sprite">texture-only<br>(check .chr)</div></div>
     <div class="m-title">
       <div class="m-id">M_8140</div>
       <h2 class="m-name">Will&#x27;o&#x27;Wisp <span class="t-jp">ウィル・オー・ウィスプ</span></h2>

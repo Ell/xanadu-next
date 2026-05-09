@@ -150,25 +150,53 @@ def _build_area_index(out_root: Path) -> dict[str, list[str]]:
 
 
 def _build_area_blocks(out_root: Path) -> list[dict]:
-    """Map: area metadata — area_id, EN name, blocks list."""
+    """Per-area metadata for the area page.
+
+    Pulls from each ``area*.inf``:
+      - the named BLOCK declarations with their tile-id ranges
+        ``BLOCK("Floodgate", (86,88), "MP_00_A", 0, ...)`` → tiles 0x86–0x88
+      - the M1-M8 spawn slots (numeric id + JP name in trailing comment)
+      - DROP() count (breakable-scenery loot, bookkeeping only)
+    """
     out: list[dict] = []
     for inf in sorted((out_root / "DATA" / "Map").glob("area*/area*.inf")):
         area = inf.parent.name
         text = inf.read_bytes().decode("cp932", errors="replace")
-        blocks: list[str] = []
+        blocks: list[dict] = []
+        seen_block_keys: set[tuple[str, str, str]] = set()
         for line in text.splitlines():
-            m = re.match(r'\s*BLOCK\("([^"]+)"', line)
-            if m and m.group(1) not in blocks:
-                blocks.append(m.group(1))
-        # also count drops + monsters in spawn table
+            m = re.match(
+                r'\s*BLOCK\(\s*"([^"]+)"\s*,\s*\(([0-9a-fA-F]+)\s*,\s*([0-9a-fA-F]+)\)',
+                line,
+            )
+            if not m:
+                continue
+            name, lo, hi = m.group(1), m.group(2), m.group(3)
+            key = (name, lo, hi)
+            if key in seen_block_keys:
+                continue
+            seen_block_keys.add(key)
+            blocks.append(
+                {"name": name, "lo": int(lo, 16), "hi": int(hi, 16)}
+            )
+        spawns: list[dict] = []
+        for line in text.splitlines():
+            m = re.match(r"\s*(M[1-8])\s+(\d+)\s*//\s*(.+?)\s*$", line)
+            if m:
+                spawns.append(
+                    {
+                        "slot": m.group(1),
+                        "id": int(m.group(2)),
+                        "jp": m.group(3).strip(),
+                    }
+                )
         drop_count = len(re.findall(r"\bDROP\(", text))
-        spawn_count = len(re.findall(r"^\s*M[1-8]\s+\d+", text, re.M))
         out.append(
             {
                 "id": area,
                 "blocks": blocks,
+                "spawns": spawns,
                 "drop_count": drop_count,
-                "spawn_count": spawn_count,
             }
         )
     return out
@@ -508,35 +536,195 @@ def render_monsters_page(out_root: Path) -> str:
     )
 
 
-def render_areas_page(out_root: Path) -> str:
-    areas = _build_area_blocks(out_root)
-    rows = []
-    for a in areas:
-        blocks = ", ".join(html.escape(b) for b in a["blocks"]) or "(no blocks)"
-        rows.append(
-            f'<tr id="{a["id"]}"><td><code>{a["id"]}</code></td>'
-            f'<td>{blocks}</td>'
-            f'<td>{a["spawn_count"]}</td>'
-            f'<td>{a["drop_count"]}</td></tr>'
+_AREAS_EXTRA_CSS = """
+.area { background: var(--panel); border: 1px solid var(--border);
+        border-radius: 4px; padding: 16px 18px; margin-bottom: 22px; }
+.area h2 { margin: 0 0 4px; font-size: 16px; color: var(--accent);
+           font-weight: 600; text-transform: none; letter-spacing: 0; }
+.area h2 .id { color: var(--muted); font-size: 12px;
+               font-family: ui-monospace, monospace; margin-left: 10px;
+               font-weight: 400; text-transform: uppercase; letter-spacing: 0.04em; }
+.area .a-blocks { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.area .a-block { background: var(--panel-2); border: 1px solid var(--border);
+                 border-radius: 3px; padding: 4px 9px; font-size: 12px;
+                 color: var(--fg); display: inline-flex; align-items: center;
+                 gap: 6px; }
+.area .a-block .range { color: var(--muted); font-size: 10px;
+                         font-family: ui-monospace, monospace; }
+.area .a-spawns { display: grid; gap: 8px;
+                  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                  margin-top: 12px; }
+.area .a-mob { display: flex; gap: 8px; align-items: center;
+               background: var(--panel-2); border: 1px solid var(--border);
+               border-radius: 3px; padding: 6px 8px;
+               text-decoration: none; color: var(--fg); }
+.area .a-mob:hover { border-color: var(--accent); color: var(--accent); }
+.area .a-mob img { width: 36px; height: 36px; object-fit: contain;
+                   image-rendering: pixelated; background: #0c0d10;
+                   border-radius: 2px; flex-shrink: 0; }
+.area .a-mob .a-meta { font-size: 12px; line-height: 1.25; min-width: 0; }
+.area .a-mob .a-name { white-space: nowrap; overflow: hidden;
+                       text-overflow: ellipsis; }
+.area .a-mob .a-id { color: var(--muted); font: 10px ui-monospace, monospace; }
+.area .a-tiles { display: flex; gap: 3px; flex-wrap: wrap;
+                 margin-top: 6px; }
+.area .a-tiles img { width: 64px; height: 64px; object-fit: cover;
+                     image-rendering: pixelated; border-radius: 2px;
+                     background: #0c0d10; cursor: pointer; }
+.area .a-tiles .more { color: var(--muted); font: 10px ui-monospace, monospace;
+                       align-self: center; padding-left: 6px; }
+.area details { margin-top: 12px; }
+.area details > summary { cursor: pointer; font-size: 11px;
+                          color: var(--muted); padding: 4px 0;
+                          text-transform: uppercase; letter-spacing: 0.04em; }
+.area details > summary:hover { color: var(--accent); }
+"""
+
+
+def _resolve_spawn_to_monster(
+    spawns: list[dict], monsters_by_jp: dict[str, "Monster"]
+) -> list[dict]:
+    out = []
+    for sp in spawns:
+        m = monsters_by_jp.get(sp["jp"])
+        out.append(
+            {
+                **sp,
+                "folder": m.rec.id if m else "",
+                "en": m.rec.en if m else "",
+                "sprite": m.sprite_rel if m else "",
+                "lv": m.rec.lv if m else 0,
+            }
         )
+    return out
+
+
+def render_areas_page(out_root: Path) -> str:
+    obj_path = out_root / "DATA" / "chr" / "Object.tbl"
+    records = parse_object_tbl(obj_path)
+    monsters = _build_monsters(out_root, records)
+    monsters_by_jp = {m.jp: m for m in monsters if m.jp}
+    areas = _build_area_blocks(out_root)
+    map_root = out_root / "DATA" / "Map"
+
+    sections = []
+    for a in areas:
+        # find tiles for each block (case-insensitive hex match)
+        tile_dir = map_root / a["id"]
+        all_tiles: dict[int, Path] = {}
+        if tile_dir.is_dir():
+            for p in tile_dir.glob(f"{a['id'].upper()}_*.png"):
+                stem = p.stem.split("_", 1)[1]
+                try:
+                    all_tiles[int(stem, 16)] = p
+                except ValueError:
+                    pass
+
+        block_html_parts = []
+        for b in a["blocks"]:
+            tiles = sorted(
+                p for k, p in all_tiles.items() if b["lo"] <= k <= b["hi"]
+            )
+            tile_imgs = "".join(
+                f'<img src="DATA/Map/{a["id"]}/{p.name}" '
+                f'alt="{p.stem}" loading="lazy" '
+                f'title="{p.name}" />'
+                for p in tiles[:8]
+            )
+            more = (
+                f'<span class="more">+{len(tiles) - 8}</span>'
+                if len(tiles) > 8
+                else ""
+            )
+            tile_strip = (
+                f'<div class="a-tiles">{tile_imgs}{more}</div>'
+                if tile_imgs
+                else ""
+            )
+            block_html_parts.append(
+                f'<div class="a-block">'
+                f'<span>{html.escape(b["name"])}</span>'
+                f'<span class="range">0x{b["lo"]:02x}–0x{b["hi"]:02x}</span>'
+                f"</div>"
+                + tile_strip
+            )
+
+        spawns = _resolve_spawn_to_monster(a["spawns"], monsters_by_jp)
+        if spawns:
+            spawn_cards = []
+            for sp in spawns:
+                if sp["folder"]:
+                    img = (
+                        f'<img src="{html.escape(sp["sprite"])}" alt="" loading="lazy">'
+                        if sp["sprite"]
+                        else '<div style="width:36px;height:36px;background:#0c0d10;border-radius:2px"></div>'
+                    )
+                    href = f"monsters.html#m-{sp['folder']}"
+                    name = sp["en"] or sp["jp"]
+                    sub = f"{sp['folder']} · Lv{sp['lv']}"
+                    spawn_cards.append(
+                        f'<a class="a-mob" href="{href}">'
+                        f"{img}"
+                        f'<div class="a-meta">'
+                        f'<div class="a-name">{html.escape(name)}</div>'
+                        f'<div class="a-id">{html.escape(sub)}</div>'
+                        f"</div></a>"
+                    )
+                else:
+                    spawn_cards.append(
+                        f'<div class="a-mob" style="opacity:0.55">'
+                        f'<div style="width:36px;height:36px;background:#0c0d10;border-radius:2px"></div>'
+                        f'<div class="a-meta">'
+                        f'<div class="a-name">{html.escape(sp["jp"])}</div>'
+                        f'<div class="a-id">id #{sp["id"]} · unmatched</div>'
+                        f"</div></div>"
+                    )
+            spawns_html = (
+                f'<div style="margin-top:14px;font-size:11px;color:var(--muted);'
+                f'text-transform:uppercase;letter-spacing:0.04em">spawns</div>'
+                f'<div class="a-spawns">{"".join(spawn_cards)}</div>'
+            )
+        else:
+            spawns_html = ""
+
+        # all-tiles dropdown
+        leftover = sorted(all_tiles.values(), key=lambda p: p.name)
+        tiles_summary = (
+            f'<details><summary>all {len(leftover)} tiles in {a["id"]}</summary>'
+            f'<div class="a-tiles" style="max-height:400px;overflow:auto;margin-top:6px">'
+            + "".join(
+                f'<img src="DATA/Map/{a["id"]}/{p.name}" '
+                f'alt="" loading="lazy" title="{p.name}">'
+                for p in leftover
+            )
+            + "</div></details>"
+            if leftover
+            else ""
+        )
+
+        section = f"""
+<section class="area" id="{a["id"]}">
+  <h2>{html.escape(a["id"])}<span class="id">{a["drop_count"]} DROP() · {len(a["blocks"])} blocks · {len(a["spawns"])} spawns</span></h2>
+  <div class="a-blocks">{"".join(block_html_parts)}</div>
+  {spawns_html}
+  {tiles_summary}
+</section>
+""".strip()
+        sections.append(section)
+
     body = f"""
 <p class="lede">17 area definitions from <code>DATA/Map/area*/area*.inf</code>.
-Each one declares one or more named <em>blocks</em> (the English names that
-appear in-game, like &ldquo;Floodgate&rdquo; or &ldquo;Eternal Maze&rdquo;), a list of
-monster slots that the area's encounter system can roll, and DROP() entries
-for breakable scenery. Monster pages cross-link in here.</p>
-<div class="panel">
-<table style="width:100%; font: 12px ui-monospace, monospace; border-collapse: collapse;">
-<thead><tr><th style="text-align:left">area</th><th style="text-align:left">blocks (in-game names)</th>
-<th>spawn slots</th><th>DROP() entries</th></tr></thead>
-<tbody>{"".join(rows)}</tbody>
-</table>
-</div>
+Each area names its in-game regions (BLOCK declarations), the texture-tile
+range each region uses, the M1-M8 monster slots its encounter system can
+roll, and DROP() entries for breakable scenery. Monsters cross-link to the
+bestiary; tile thumbnails are from the extracted G32 → PNG conversion.</p>
+{"".join(sections)}
 """.strip()
     return _layout.page(
         title="Xanadu Next — Areas",
         active="areas.html",
         body=body,
+        extra_css=_AREAS_EXTRA_CSS,
         meta=f"{len(areas)} areas",
     )
 

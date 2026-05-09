@@ -46,6 +46,7 @@ class EquipRecord:
     id: str  # eg "SL1_0020", "ITM_0000", "ARM_0002"
     en: str  # eg "Gladius", "Heal Potion S"
     desc: str
+    stats: dict[str, int] = field(default_factory=dict)
 
     @property
     def kind(self) -> str:
@@ -155,9 +156,10 @@ def index_by_id(records: list[ObjRecord]) -> dict[str, ObjRecord]:
 
 
 def parse_equip_tbl(path: Path) -> list[EquipRecord]:
-    """Parse the item registry. Record stride is 692 bytes; the alphanumeric
-    item id sits at +0x06, the English name at +0x17, the description at
-    +0x53.  Drop ids are direct indices into this list."""
+    """Parse the item registry.  692-byte records: id at +0x06, English
+    name at +0x17, description at +0x58, stat block of uint32 fields at
+    +0x250 (atk-min/atk-max/def + ability requirements) and +0x280 (buy/sell
+    prices and weight). Drop ids index directly into this list."""
     raw = path.read_bytes()
     out: list[EquipRecord] = []
     n = len(raw) // EQUIP_REC_SIZE
@@ -172,12 +174,26 @@ def parse_equip_tbl(path: Path) -> list[EquipRecord]:
             .strip()
         )
         desc = (
-            rec[0x53 : 0x53 + 200]
+            rec[0x58 : 0x58 + 256]
             .split(b"\x00", 1)[0]
             .decode("cp932", "replace")
             .strip()
         )
-        out.append(EquipRecord(idx=i, id=rid, en=en, desc=desc))
+        s = struct.unpack_from("<8I", rec, 0x250)
+        s2 = struct.unpack_from("<8I", rec, 0x280)
+        stats = {
+            "atk_min": s[0],
+            "atk_max": s[1],
+            "def_": s[2],
+            "req_a": s[3],
+            "req_b": s[4],
+            "req_c": s[5],
+            "req_d": s[6],
+            "buy": s2[0],
+            "sell": s2[2],
+            "weight": s2[4],
+        }
+        out.append(EquipRecord(idx=i, id=rid, en=en, desc=desc, stats=stats))
     return out
 
 

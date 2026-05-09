@@ -10,9 +10,7 @@ dependencies = [
 
 [project.scripts]
 xanadu-extract = "xanadu_extract.cli:main"
-xanadu-viewer = "xanadu_extract.viewer:main"
-xanadu-debug = "xanadu_extract.debug:main"
-xanadu-monsters = "xanadu_extract.monsters:main"
+xanadu-build = "xanadu_extract.build:main"
 
 [build-system]
 requires = ["hatchling"]

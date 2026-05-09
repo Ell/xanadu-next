@@ -58,10 +58,9 @@ h2 .count { color: var(--muted); font-weight: 400; }
 """
 
 NAV_PAGES = [
-    ("index.html", "Assets"),
-    ("monsters.html", "Bestiary"),
-    ("areas.html", "Areas"),
-    ("debug.html", "Debug"),
+    ("monsters.html", "Enemies"),
+    ("areas.html", "Map"),
+    ("items.html", "Items"),
 ]
 
 
@@ -76,7 +75,7 @@ def render_top(active: str, *, meta: str = "") -> str:
     )
     return (
         '<div class="top">'
-        '<h1><a href="index.html">Xanadu Next</a></h1>'
+        '<h1><a href="monsters.html">Xanadu Next</a></h1>'
         f'<nav>{"".join(items)}</nav>'
         '<div class="spacer"></div>'
         f'{meta_html}'

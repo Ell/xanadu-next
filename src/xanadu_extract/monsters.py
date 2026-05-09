@@ -244,7 +244,12 @@ def _render_drops(rec: ObjRecord, equips: list[EquipRecord]) -> str:
     return f'<table class="drops"><tbody>{"".join(rows)}</tbody></table>'
 
 
-def _render_one(m: Monster, equips: list[EquipRecord], areas_for: dict[str, list[str]]) -> str:
+def _render_one(
+    m: Monster,
+    equips: list[EquipRecord],
+    areas_for: dict[str, list[str]],
+    spawns_in: dict[str, list[tuple[str, int]]] | None = None,
+) -> str:
     rec = m.rec
     if m.sprites:
         if len(m.sprites) == 1:
@@ -280,19 +285,44 @@ def _render_one(m: Monster, equips: list[EquipRecord], areas_for: dict[str, list
         ]
     )
     drops_html = _render_drops(rec, equips)
-    areas = sorted(a for a, names in areas_for.items() if rec.jp_name in names) if False else []
-    # match by JP name to area inf
-    if m.jp:
+
+    # Areas pulled from real PUT_MONSTER spawn data; fall back to area .inf
+    # comment matching when no static spawn was found (a few monsters are
+    # only declared via the encounter-table M1-M8 slots).
+    spawns_in = spawns_in or {}
+    if spawns_in:
+        area_blocks = []
+        for area in sorted(spawns_in):
+            map_pills = " ".join(
+                f'<a href="areas.html#{area}" class="map-pill" '
+                f'title="{count} spawn{"s" if count > 1 else ""}">'
+                f"{html.escape(map_id)}</a>"
+                for map_id, count in sorted(spawns_in[area])
+            )
+            area_blocks.append(
+                f'<div class="area-grp">'
+                f'<a href="areas.html#{area}" class="area-pill">{area}</a>'
+                f'<div class="map-pills">{map_pills}</div>'
+                f"</div>"
+            )
+        area_html = '<div class="areas-list">' + "".join(area_blocks) + "</div>"
+    elif m.jp:
         areas = sorted(a for a, names in areas_for.items() if m.jp in names)
-    area_html = (
-        '<div class="areas">'
-        + " ".join(
-            f'<a href="areas.html#{a}" class="area-pill">{a}</a>' for a in areas
-        )
-        + "</div>"
-        if areas
-        else '<div class="empty">— no area cross-reference recovered —</div>'
-    )
+        if areas:
+            area_html = (
+                '<div class="areas">'
+                + " ".join(
+                    f'<a href="areas.html#{a}" class="area-pill">{a}</a>'
+                    for a in areas
+                )
+                + "</div>"
+            )
+        else:
+            area_html = (
+                '<div class="empty">— no static spawn / encounter slot —</div>'
+            )
+    else:
+        area_html = '<div class="empty">— no static spawn / encounter slot —</div>'
     ai_html = (
         f'<pre class="ai">{html.escape(m.ai_summary)}</pre>'
         if m.ai_summary
@@ -429,11 +459,18 @@ table.drops { border-collapse: collapse; width: 100%;
 .drops .drop-tier .d-name { color: var(--accent-soft); font-style: italic; }
 .drops .drop-tier .d-id { color: var(--accent); }
 
-.areas { display: flex; gap: 6px; flex-wrap: wrap; }
+.areas, .areas-list { display: flex; flex-direction: column; gap: 8px; }
+.area-grp { display: flex; gap: 8px; align-items: flex-start; }
 .area-pill { padding: 3px 9px; background: var(--bg);
              border: 1px solid var(--border); border-radius: 3px;
-             font: 11px ui-monospace, monospace; color: var(--fg); }
+             font: 11px ui-monospace, monospace; color: var(--fg);
+             flex-shrink: 0; }
 .area-pill:hover { color: var(--accent); border-color: var(--accent); }
+.map-pills { display: flex; flex-wrap: wrap; gap: 3px; }
+.map-pill { padding: 1px 6px; background: var(--panel-2);
+            border: 1px solid var(--border); border-radius: 2px;
+            font: 10px ui-monospace, monospace; color: var(--muted); }
+.map-pill:hover { color: var(--accent); border-color: var(--accent); }
 
 pre.ai { margin: 0; white-space: pre-wrap; font: 11px/1.55 ui-monospace, monospace;
          color: var(--fg); }
@@ -489,6 +526,23 @@ def render_monsters_page(out_root: Path) -> str:
     monsters.sort(key=lambda m: m.rec.id)
     areas_for = _build_area_index(out_root)
 
+    # Cross-reference: where does each monster id actually spawn in scp?
+    # Builds {M_xxxx: {area: [(map_id, count), ...]}}
+    spawn_data = _parse_map_spawns(out_root)
+    spawns_for: dict[str, dict[str, list[tuple[str, int]]]] = defaultdict(
+        lambda: defaultdict(list)
+    )
+    for area, by_map in spawn_data.items():
+        for map_id, spawns in by_map.items():
+            agg: dict[int, int] = defaultdict(int)
+            for sp in spawns:
+                agg[sp["id"]] += 1
+            for spid, count in agg.items():
+                if 0 <= spid < len(records):
+                    row = records[spid]
+                    if row.id.startswith("M_"):
+                        spawns_for[row.id][area].append((map_id, count))
+
     # sidebar
     s_items = []
     for m in monsters:
@@ -506,7 +560,10 @@ def render_monsters_page(out_root: Path) -> str:
             f"</span></a>"
         )
 
-    bestiary = "\n".join(_render_one(m, equips, areas_for) for m in monsters)
+    bestiary = "\n".join(
+        _render_one(m, equips, areas_for, spawns_for.get(m.rec.id, {}))
+        for m in monsters
+    )
     body = f"""
 <div class="layout">
   <aside class="sidebar">

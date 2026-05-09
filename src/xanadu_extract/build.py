@@ -80,8 +80,9 @@ def _keep_file(rel: Path) -> bool:
     if s.startswith("DATA/chr/monster/"):
         return rel.suffix.lower() in {".png", ".alg", ".chr"}
     if s.startswith("DATA/Map/area") and "/" in s.split("/", 2)[2]:
-        # keep area*.inf and AREA*_*.png; drop scp, mtn, dec etc.
-        return rel.suffix.lower() in {".png", ".inf"}
+        # keep area*.inf, AREA*_*.png, and MP_*.scp (used at build time
+        # to extract PUT_MONSTER spawns; can be dropped post-build).
+        return rel.suffix.lower() in {".png", ".inf", ".scp"}
     if s.startswith("DATA/equip/equip/EQUIP.tbl"):
         return True
     if s.startswith("icons/"):

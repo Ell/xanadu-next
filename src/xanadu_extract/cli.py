@@ -27,6 +27,13 @@ SKIP_ARCHIVE_PARENTS = {"BGM", "WAVE"}
 COPY_ALONGSIDE = {
     Path("DATA/chr/Object.tbl"),
     Path("DATA/chr/motion.tbl"),
+    Path("DATA/SYSTEM/system/ITEM.png"),
+}
+# Per-archive name suffixes we want to ship.  Map archives carry .scp
+# script files alongside G32 tiles — the .scp files contain the static
+# PUT_MONSTER spawn declarations that drive the map viewer.
+ARCHIVE_KEEP_EXT = {
+    "Map": {".g32", ".scp", ".inf"},
 }
 
 
@@ -58,11 +65,16 @@ def extract_archive(
 ) -> Counter[str]:
     rel = dir_path.parent.relative_to(game_root)
     archive_out = out_root / rel / dir_path.stem
+    parent = rel.parts[1] if len(rel.parts) > 1 else ""
+    keep_ext = ARCHIVE_KEEP_EXT.get(parent)
     stats: Counter[str] = Counter()
     for entry, blob in iter_arc(dir_path, arc_path):
         rel_inner = safe_relpath(entry.name)
         target = archive_out / rel_inner
         ext = rel_inner.suffix.lower()
+        if keep_ext is not None and ext not in keep_ext:
+            stats[f"skip-{ext.lstrip('.')}"] += 1
+            continue
 
         if ext == ".g32" and do_images:
             try:

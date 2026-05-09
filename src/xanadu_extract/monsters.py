@@ -551,9 +551,16 @@ _AREAS_EXTRA_CSS = """
                  gap: 6px; }
 .area .a-block .range { color: var(--muted); font-size: 10px;
                          font-family: ui-monospace, monospace; }
-.area .a-spawns { display: grid; gap: 8px;
-                  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                  margin-top: 12px; }
+.area .a-map { background: var(--panel-2); border: 1px solid var(--border);
+               border-radius: 3px; padding: 10px 12px; margin: 10px 0; }
+.area .a-map-id { font: 12px ui-monospace, monospace; color: var(--accent);
+                  margin-bottom: 8px; font-weight: 600; }
+.area .a-map-id .a-map-meta { color: var(--muted); font-weight: 400;
+                              margin-left: 10px; font-size: 11px;
+                              text-transform: uppercase;
+                              letter-spacing: 0.04em; }
+.area .a-spawns { display: grid; gap: 6px;
+                  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
 .area .a-mob { display: flex; gap: 8px; align-items: center;
                background: var(--panel-2); border: 1px solid var(--border);
                border-radius: 3px; padding: 6px 8px;
@@ -599,13 +606,59 @@ def _resolve_spawn_to_monster(
     return out
 
 
+_PUT_MONSTER_RE = re.compile(
+    r'\bPUT_MONSTER\s*\(\s*"([^"]+)"\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)',
+    re.IGNORECASE,
+)
+
+
+def _parse_map_spawns(out_root: Path) -> dict[str, dict[str, list[dict]]]:
+    """Walk every MP_*.scp and pull PUT_MONSTER static-spawn declarations.
+
+    Returns: {area: {map_id: [{slot, id, lv, ...}, ...]}}.
+    """
+    by_area: dict[str, dict[str, list[dict]]] = defaultdict(dict)
+    for scp in sorted((out_root / "DATA" / "Map").glob("area*/MP_*.scp")):
+        area = scp.parent.name
+        map_id = scp.stem
+        text = scp.read_bytes().decode("cp932", errors="replace")
+        spawns: list[dict] = []
+        for line in text.splitlines():
+            s = line.strip()
+            if s.startswith("//"):
+                continue
+            m = _PUT_MONSTER_RE.search(s)
+            if not m:
+                continue
+            slot, mid, lv, a, b, idx = m.groups()
+            spawns.append(
+                {
+                    "slot": slot,
+                    "id": int(mid),
+                    "lv": int(lv),
+                    "_a": int(a),
+                    "_b": int(b),
+                    "idx": int(idx),
+                }
+            )
+        if spawns:
+            by_area[area][map_id] = spawns
+    return by_area
+
+
 def render_areas_page(out_root: Path) -> str:
     obj_path = out_root / "DATA" / "chr" / "Object.tbl"
     records = parse_object_tbl(obj_path)
+    # Spawn ids are direct row indices into Object.tbl (verified against
+    # known correspondences from area*.inf comments — Goblin=0, Slime=4,
+    # Bat=5, Skeleton=6, Lizardman=8, Red Slime=63, Black Slime=177, …).
+    by_idx = records  # list, indexable by spawn id
     monsters = _build_monsters(out_root, records)
     monsters_by_jp = {m.jp: m for m in monsters if m.jp}
+    monsters_by_id = {m.rec.id: m for m in monsters}
     areas = _build_area_blocks(out_root)
     map_root = out_root / "DATA" / "Map"
+    spawn_data = _parse_map_spawns(out_root)
 
     sections = []
     for a in areas:
@@ -649,20 +702,42 @@ def render_areas_page(out_root: Path) -> str:
                 + tile_strip
             )
 
-        spawns = _resolve_spawn_to_monster(a["spawns"], monsters_by_jp)
-        if spawns:
-            spawn_cards = []
+        # ----- per-map static spawn lists (from PUT_MONSTER) -----
+        maps = spawn_data.get(a["id"], {})
+        map_sections: list[str] = []
+        for map_id in sorted(maps):
+            spawns = maps[map_id]
+            # group by spawn id so we don't render the same monster
+            # five times for a five-slot spawn block
+            agg: dict[int, dict] = {}
             for sp in spawns:
-                if sp["folder"]:
+                cur = agg.setdefault(
+                    sp["id"], {"id": sp["id"], "count": 0, "lv": sp["lv"]}
+                )
+                cur["count"] += 1
+                cur["lv"] = max(cur["lv"], sp["lv"])
+
+            cards: list[str] = []
+            for spid, info in sorted(
+                agg.items(), key=lambda x: (-x[1]["count"], x[0])
+            ):
+                row = (
+                    by_idx[info["id"]]
+                    if 0 <= info["id"] < len(by_idx)
+                    else None
+                )
+                if row and row.id.startswith("M_") and row.id in monsters_by_id:
+                    m = monsters_by_id[row.id]
                     img = (
-                        f'<img src="{html.escape(sp["sprite"])}" alt="" loading="lazy">'
-                        if sp["sprite"]
+                        f'<img src="{html.escape(m.sprite_rel)}" alt="" loading="lazy">'
+                        if m.sprite_rel
                         else '<div style="width:36px;height:36px;background:#0c0d10;border-radius:2px"></div>'
                     )
-                    href = f"monsters.html#m-{sp['folder']}"
-                    name = sp["en"] or sp["jp"]
-                    sub = f"{sp['folder']} · Lv{sp['lv']}"
-                    spawn_cards.append(
+                    href = f"monsters.html#m-{row.id}"
+                    name = row.en or row.id
+                    extra = f"× {info['count']}" if info["count"] > 1 else ""
+                    sub = f"{row.id} · Lv{info['lv']} {extra}".strip()
+                    cards.append(
                         f'<a class="a-mob" href="{href}">'
                         f"{img}"
                         f'<div class="a-meta">'
@@ -670,22 +745,48 @@ def render_areas_page(out_root: Path) -> str:
                         f'<div class="a-id">{html.escape(sub)}</div>'
                         f"</div></a>"
                     )
-                else:
-                    spawn_cards.append(
+                elif row:
+                    label = row.en or row.id
+                    extra = f"× {info['count']}" if info["count"] > 1 else ""
+                    cards.append(
                         f'<div class="a-mob" style="opacity:0.55">'
                         f'<div style="width:36px;height:36px;background:#0c0d10;border-radius:2px"></div>'
                         f'<div class="a-meta">'
-                        f'<div class="a-name">{html.escape(sp["jp"])}</div>'
-                        f'<div class="a-id">id #{sp["id"]} · unmatched</div>'
+                        f'<div class="a-name">{html.escape(label)}</div>'
+                        f'<div class="a-id">id #{info["id"]} · Lv{info["lv"]} {extra}</div>'
                         f"</div></div>"
                     )
+                else:
+                    cards.append(
+                        f'<div class="a-mob" style="opacity:0.4">'
+                        f'<div style="width:36px;height:36px;background:#0c0d10;border-radius:2px"></div>'
+                        f'<div class="a-meta">'
+                        f'<div class="a-name">unknown #{info["id"]}</div>'
+                        f'<div class="a-id">Lv{info["lv"]}</div>'
+                        f"</div></div>"
+                    )
+
+            map_sections.append(
+                f'<div class="a-map">'
+                f'<div class="a-map-id">{html.escape(map_id)} '
+                f'<span class="a-map-meta">'
+                f'{len(spawns)} spawns · {len(agg)} types</span></div>'
+                f'<div class="a-spawns">{"".join(cards)}</div>'
+                f"</div>"
+            )
+
+        if map_sections:
             spawns_html = (
-                f'<div style="margin-top:14px;font-size:11px;color:var(--muted);'
-                f'text-transform:uppercase;letter-spacing:0.04em">spawns</div>'
-                f'<div class="a-spawns">{"".join(spawn_cards)}</div>'
+                f'<div style="margin-top:18px;font-size:11px;color:var(--muted);'
+                f'text-transform:uppercase;letter-spacing:0.04em">'
+                f'maps &amp; static spawns ({len(maps)})</div>'
+                + "".join(map_sections)
             )
         else:
-            spawns_html = ""
+            spawns_html = (
+                '<div style="margin-top:14px;color:var(--muted);font-style:italic;'
+                'font-size:11px">— no static PUT_MONSTER declarations in this area —</div>'
+            )
 
         # all-tiles dropdown
         leftover = sorted(all_tiles.values(), key=lambda p: p.name)

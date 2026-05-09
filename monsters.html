@@ -120,8 +120,13 @@ table.drops { border-collapse: collapse; width: 100%;
                 font-weight: 600; width: 56px; text-align: right; }
 .drops .d-lbl { color: var(--fg); padding-left: 12px; line-height: 1.35; }
 .drops .d-name { font-size: 13px; color: var(--fg); }
-.drops .d-id { display: inline-block; min-width: 40px; color: var(--muted);
-               font: 11px ui-monospace, monospace; margin-right: 6px; }
+.drops .d-id { color: var(--muted); font: 10px ui-monospace, monospace;
+               margin-left: 8px; }
+.drops .d-kind { display: inline-block; padding: 1px 6px; margin-right: 8px;
+                 background: var(--bg); border: 1px solid var(--border);
+                 border-radius: 2px; font: 10px ui-monospace, monospace;
+                 color: var(--muted); text-transform: uppercase;
+                 letter-spacing: 0.04em; }
 .drops .d-sub { font-size: 11px; color: var(--muted);
                 font-family: "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
                 margin-top: 2px; }
@@ -168,7 +173,7 @@ pre.ai { margin: 0; white-space: pre-wrap; font: 11px/1.55 ui-monospace, monospa
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">  +1</span> item #001</div><div class="d-sub">石像（識）</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:26%"></div></td><td class="d-pct">26.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:52%"></div></td><td class="d-pct">52.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -20</span> loot pool tier 1 (#20)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">1H Sword</span>Dagger<span class="d-id">#+001</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:26%"></div></td><td class="d-pct">26.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:52%"></div></td><td class="d-pct">52.6%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#20)<span class="d-id">#-020</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -194,7 +199,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +45</span> item #045</div><div class="d-sub">街 海底ギア4</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">2.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +89</span> item #089</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:57%"></div></td><td class="d-pct">57.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -20</span> loot pool tier 1 (#20)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.4%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Helmet</span>Cap<span class="d-id">#+045</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">2.9%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Armor</span>Robe +1<span class="d-id">#+089</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.4%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:57%"></div></td><td class="d-pct">57.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#20)<span class="d-id">#-020</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -221,7 +226,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +22</span> item #022</div><div class="d-sub">街 羽</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:24%"></div></td><td class="d-pct">24.2%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +92</span> item #092</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:60%"></div></td><td class="d-pct">60.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -35</span> loot pool tier 2 (#35)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">2H Sword</span>Besswarr<span class="d-id">#+022</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:24%"></div></td><td class="d-pct">24.2%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Armor</span>Leather Armor +1<span class="d-id">#+092</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:60%"></div></td><td class="d-pct">60.6%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#35)<span class="d-id">#-035</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -247,7 +252,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+237</span> item #237</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+220</span> item #220</div><div class="d-sub">洞窟入り口 壊し柱</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-280</span> loot pool tier 3 (#280)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Spell Book<span class="d-id">#+237</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Black Onyx<span class="d-id">#+220</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#280)<span class="d-id">#-280</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -272,7 +277,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +51</span> item #051</div><div class="d-sub">街 チュートリアル前扉</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-280</span> loot pool tier 3 (#280)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Helmet</span>Closed Helm<span class="d-id">#+051</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#280)<span class="d-id">#-280</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -300,7 +305,7 @@ MAGIC：なんかの魔法</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+237</span> item #237</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+220</span> item #220</div><div class="d-sub">洞窟入り口 壊し柱</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-280</span> loot pool tier 3 (#280)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Spell Book<span class="d-id">#+237</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Black Onyx<span class="d-id">#+220</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#280)<span class="d-id">#-280</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -326,7 +331,7 @@ MAGIC：回復弾</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:28%"></div></td><td class="d-pct">28.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -10</span> loot pool tier 1 (#10)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:28%"></div></td><td class="d-pct">28.6%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#10)<span class="d-id">#-010</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -351,7 +356,7 @@ MAGIC：回復弾</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -30</span> loot pool tier 2 (#30)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#30)<span class="d-id">#-030</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -378,7 +383,7 @@ ATK9：自爆（死亡時に必ず発生）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+216</span> item #216</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -50</span> loot pool tier 2 (#50)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Antidote<span class="d-id">#+216</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#50)<span class="d-id">#-050</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -404,7 +409,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-200</span> loot pool tier 3 (#200)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#200)<span class="d-id">#-200</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -430,7 +435,7 @@ ATK2：黒炎まきちらし（未使用）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-450</span> loot pool tier 4 (#450)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#450)<span class="d-id">#-450</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -456,7 +461,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+221</span> item #221</div><div class="d-sub">洞窟入り口 壷の炎（NULL</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Elixir<span class="d-id">#+221</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -482,7 +487,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:20%"></div></td><td class="d-pct">20.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -20</span> loot pool tier 1 (#20)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:20%"></div></td><td class="d-pct">20.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#20)<span class="d-id">#-020</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -507,7 +512,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -20</span> loot pool tier 1 (#20)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#20)<span class="d-id">#-020</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -532,7 +537,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -40</span> loot pool tier 2 (#40)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#40)<span class="d-id">#-040</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -558,7 +563,7 @@ ATK2：超音波</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +48</span> item #048</div><div class="d-sub">街 海底扉鍵</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:20%"></div></td><td class="d-pct">20.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -30</span> loot pool tier 2 (#30)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Helmet</span>Open Helm<span class="d-id">#+048</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:20%"></div></td><td class="d-pct">20.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#30)<span class="d-id">#-030</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -584,7 +589,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +15</span> item #015</div><div class="d-sub">街 訓練所用光源1</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:25%"></div></td><td class="d-pct">25.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -28</span> loot pool tier 1 (#28)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Hammer</span>Mace<span class="d-id">#+015</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:25%"></div></td><td class="d-pct">25.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#28)<span class="d-id">#-028</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -610,7 +615,7 @@ ATK1：弓矢攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +28</span> item #028</div><div class="d-sub">街 城門炎</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:24%"></div></td><td class="d-pct">24.2%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +90</span> item #090</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:60%"></div></td><td class="d-pct">60.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -25</span> loot pool tier 1 (#25)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">1H Sword</span>Cleaver<span class="d-id">#+028</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:24%"></div></td><td class="d-pct">24.2%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Armor</span>Cloth Jerkin +1<span class="d-id">#+090</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:60%"></div></td><td class="d-pct">60.6%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#25)<span class="d-id">#-025</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -636,7 +641,7 @@ ATK1：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.9%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -690,7 +695,7 @@ ATK2：尻尾突き</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-420</span> loot pool tier 4 (#420)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#420)<span class="d-id">#-420</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -716,7 +721,7 @@ ATK2：尻尾突き</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-450</span> loot pool tier 4 (#450)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#450)<span class="d-id">#-450</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -742,7 +747,7 @@ ATK2：尻尾突き</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+236</span> item #236</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -70</span> loot pool tier 2 (#70)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Spell Book<span class="d-id">#+236</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#70)<span class="d-id">#-070</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -768,7 +773,7 @@ ATK2：尻尾突き</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +95</span> item #095</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-150</span> loot pool tier 3 (#150)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.6%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Armor</span>Splint Mail +1<span class="d-id">#+095</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#150)<span class="d-id">#-150</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -794,7 +799,7 @@ ATK2：尻尾突き</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -820,7 +825,7 @@ ATK2：尻尾突き</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +61</span> item #061</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:18%"></div></td><td class="d-pct">18.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.2%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+216</span> item #216</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -35</span> loot pool tier 2 (#35)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Shield</span>Small Shield<span class="d-id">#+061</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:18%"></div></td><td class="d-pct">18.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.2%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Antidote<span class="d-id">#+216</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#35)<span class="d-id">#-035</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -846,7 +851,7 @@ ATK2：飛び込み</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+239</span> item #239</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-120</span> loot pool tier 3 (#120)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Spell Book<span class="d-id">#+239</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#120)<span class="d-id">#-120</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -872,7 +877,7 @@ MAGIC:魔法</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +31</span> item #031</div><div class="d-sub">街 ゲート石像</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-150</span> loot pool tier 3 (#150)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">1H Axe</span>Gwyndori Slasher<span class="d-id">#+031</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#150)<span class="d-id">#-150</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -898,7 +903,7 @@ ATK2：飛び込み</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-100</span> loot pool tier 3 (#100)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#100)<span class="d-id">#-100</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -925,7 +930,7 @@ ATK4：つめ（空中）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +24</span> item #024</div><div class="d-sub">街 宿屋扉</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +50</span> item #050</div><div class="d-sub">古城 水門柱</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-200</span> loot pool tier 3 (#200)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">2H Sword</span>Drake&#x27;s Claw<span class="d-id">#+024</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Helmet</span>Valkyrie Helm<span class="d-id">#+050</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#200)<span class="d-id">#-200</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -952,7 +957,7 @@ ATK4：つめ（空中）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+216</span> item #216</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Antidote<span class="d-id">#+216</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -978,7 +983,7 @@ ATTACK4:毒霧</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -40</span> loot pool tier 2 (#40)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#40)<span class="d-id">#-040</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1004,7 +1009,7 @@ ATTACK4:毒霧（未使用）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -40</span> loot pool tier 2 (#40)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#40)<span class="d-id">#-040</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1158,7 +1163,7 @@ ATK2：魔法（誘導）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:15%"></div></td><td class="d-pct">15.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -80</span> loot pool tier 2 (#80)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:15%"></div></td><td class="d-pct">15.4%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#80)<span class="d-id">#-080</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1183,7 +1188,7 @@ ATK2：魔法（誘導）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-500</span> loot pool tier 4 (#500)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#500)<span class="d-id">#-500</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1209,7 +1214,7 @@ ATK3：最大3連コンボ</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-550</span> loot pool tier 4 (#550)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#550)<span class="d-id">#-550</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1235,7 +1240,7 @@ ATK3：最大3連コンボ</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+250</span> item #250</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-100</span> loot pool tier 3 (#100)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Spell Book<span class="d-id">#+250</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#100)<span class="d-id">#-100</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1260,7 +1265,7 @@ ATK3：最大3連コンボ</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-300</span> loot pool tier 4 (#300)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#300)<span class="d-id">#-300</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1285,7 +1290,7 @@ ATK3：最大3連コンボ</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +91</span> item #091</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-300</span> loot pool tier 4 (#300)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Armor</span>Half Plate +1<span class="d-id">#+091</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#300)<span class="d-id">#-300</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1312,7 +1317,7 @@ ATK3：スピンターン</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:20%"></div></td><td class="d-pct">20.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+220</span> item #220</div><div class="d-sub">洞窟入り口 壊し柱</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-350</span> loot pool tier 4 (#350)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:20%"></div></td><td class="d-pct">20.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Black Onyx<span class="d-id">#+220</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#350)<span class="d-id">#-350</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1339,7 +1344,7 @@ ATK3：自爆</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-450</span> loot pool tier 4 (#450)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#450)<span class="d-id">#-450</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1390,7 +1395,7 @@ ATK2：ガスクラウド</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:86%"></div></td><td class="d-pct">87.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:86%"></div></td><td class="d-pct">87.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1440,7 +1445,7 @@ ATK2：ガスクラウド</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">  +2</span> item #002</div><div class="d-sub">石像（捷）</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+220</span> item #220</div><div class="d-sub">洞窟入り口 壊し柱</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -50</span> loot pool tier 2 (#50)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">1H Axe</span>Hand Axe<span class="d-id">#+002</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Black Onyx<span class="d-id">#+220</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#50)<span class="d-id">#-050</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1468,7 +1473,7 @@ ATK2：ガスクラウド</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-1000</span> loot pool tier 5 (#1000)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 5 (#1000)<span class="d-id">#-1000</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1496,7 +1501,7 @@ ATK2：ガスクラウド</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1526,7 +1531,7 @@ EMP1：炎撒き散らしⅡ</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-700</span> loot pool tier 4 (#700)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#700)<span class="d-id">#-700</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1553,7 +1558,7 @@ ATK3：炎撒き散らし</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+221</span> item #221</div><div class="d-sub">洞窟入り口 壷の炎（NULL</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Elixir<span class="d-id">#+221</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1583,7 +1588,7 @@ EMP1：炎撒き散らしⅡ</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1613,7 +1618,7 @@ EMP1：炎撒き散らしⅡ</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-300</span> loot pool tier 4 (#300)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#300)<span class="d-id">#-300</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1641,7 +1646,7 @@ ATK3：長距離どーん（&quot;ストーンゴーレム&quot;との差別化�
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1669,7 +1674,7 @@ ATK3：長距離どーん
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1724,7 +1729,7 @@ EMPTY2：デスセンテンス（未作成）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+221</span> item #221</div><div class="d-sub">洞窟入り口 壷の炎（NULL</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Elixir<span class="d-id">#+221</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1751,7 +1756,7 @@ ATK3：くちばし攻撃（地上）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">  +3</span> item #003</div><div class="d-sub">石像（功）</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +34</span> item #034</div><div class="d-sub">街 アニマ板サンプル用ヌ</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">1H Sword</span>Short Sword<span class="d-id">#+003</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.6%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">2H Sword</span>Murasame Blade<span class="d-id">#+034</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1778,7 +1783,7 @@ ATK3：くちばし攻撃（地上）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-300</span> loot pool tier 4 (#300)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#300)<span class="d-id">#-300</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1804,7 +1809,7 @@ ATK2：爆弾投下</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-500</span> loot pool tier 4 (#500)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#500)<span class="d-id">#-500</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -1955,7 +1960,7 @@ ATK2：爆弾投下</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+221</span> item #221</div><div class="d-sub">洞窟入り口 壷の炎（NULL</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Elixir<span class="d-id">#+221</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2459,7 +2464,7 @@ ATK2：ガスクラウド</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+221</span> item #221</div><div class="d-sub">洞窟入り口 壷の炎（NULL</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Elixir<span class="d-id">#+221</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2510,7 +2515,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -90</span> loot pool tier 2 (#90)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#90)<span class="d-id">#-090</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2561,7 +2566,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +60</span> item #060</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:29%"></div></td><td class="d-pct">29.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:58%"></div></td><td class="d-pct">58.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">  -8</span> loot pool tier 1 (#8)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Shield</span>Buckler<span class="d-id">#+060</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:29%"></div></td><td class="d-pct">29.4%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:58%"></div></td><td class="d-pct">58.8%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#8)<span class="d-id">#-008</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2589,7 +2594,7 @@ ATK9：待機
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:15%"></div></td><td class="d-pct">15.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-250</span> loot pool tier 3 (#250)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:15%"></div></td><td class="d-pct">15.4%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#250)<span class="d-id">#-250</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2615,7 +2620,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-350</span> loot pool tier 4 (#350)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#350)<span class="d-id">#-350</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2641,7 +2646,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +61</span> item #061</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -45</span> loot pool tier 2 (#45)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Shield</span>Small Shield<span class="d-id">#+061</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:62%"></div></td><td class="d-pct">62.5%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#45)<span class="d-id">#-045</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2668,7 +2673,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-250</span> loot pool tier 3 (#250)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.9%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#250)<span class="d-id">#-250</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2695,7 +2700,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-350</span> loot pool tier 4 (#350)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#350)<span class="d-id">#-350</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2722,7 +2727,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">  +0</span> item #000</div><div class="d-sub">石像（智）</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:64%"></div></td><td class="d-pct">64.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -45</span> loot pool tier 2 (#45)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.9%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">1H Sword</span>Gladius<span class="d-id">#+000</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:64%"></div></td><td class="d-pct">64.5%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#45)<span class="d-id">#-045</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2748,7 +2753,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-280</span> loot pool tier 3 (#280)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:7%"></div></td><td class="d-pct">7.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#280)<span class="d-id">#-280</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2774,7 +2779,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-350</span> loot pool tier 4 (#350)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#350)<span class="d-id">#-350</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2800,7 +2805,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +45</span> item #045</div><div class="d-sub">街 海底ギア4</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:29%"></div></td><td class="d-pct">29.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:58%"></div></td><td class="d-pct">58.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -15</span> loot pool tier 1 (#15)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Helmet</span>Cap<span class="d-id">#+045</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:29%"></div></td><td class="d-pct">29.4%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:58%"></div></td><td class="d-pct">58.8%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#15)<span class="d-id">#-015</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2826,7 +2831,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+229</span> item #229</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +92</span> item #092</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:68%"></div></td><td class="d-pct">69.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -30</span> loot pool tier 2 (#30)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Spell Book<span class="d-id">#+229</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:3%"></div></td><td class="d-pct">3.4%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Armor</span>Leather Armor +1<span class="d-id">#+092</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:68%"></div></td><td class="d-pct">69.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#30)<span class="d-id">#-030</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2851,7 +2856,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+220</span> item #220</div><div class="d-sub">洞窟入り口 壊し柱</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:60%"></div></td><td class="d-pct">60.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Black Onyx<span class="d-id">#+220</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:60%"></div></td><td class="d-pct">60.6%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2876,7 +2881,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+216</span> item #216</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-120</span> loot pool tier 3 (#120)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Antidote<span class="d-id">#+216</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#120)<span class="d-id">#-120</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2902,7 +2907,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -10</span> loot pool tier 1 (#10)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#10)<span class="d-id">#-010</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2927,7 +2932,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -20</span> loot pool tier 1 (#20)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#20)<span class="d-id">#-020</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2952,7 +2957,7 @@ ATK2：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:23%"></div></td><td class="d-pct">23.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">  -5</span> loot pool tier 1 (#5)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:23%"></div></td><td class="d-pct">23.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 1 (#5)<span class="d-id">#-005</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -2979,7 +2984,7 @@ ATK9：待機
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -30</span> loot pool tier 2 (#30)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#30)<span class="d-id">#-030</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3004,7 +3009,7 @@ ATK9：待機
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-450</span> loot pool tier 4 (#450)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#450)<span class="d-id">#-450</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3030,7 +3035,7 @@ ATK2：2段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +60</span> item #060</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:22%"></div></td><td class="d-pct">22.2%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:55%"></div></td><td class="d-pct">55.6%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -40</span> loot pool tier 2 (#40)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Shield</span>Buckler<span class="d-id">#+060</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:22%"></div></td><td class="d-pct">22.2%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:55%"></div></td><td class="d-pct">55.6%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#40)<span class="d-id">#-040</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3056,7 +3061,7 @@ ATK1：弓矢攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:17%"></div></td><td class="d-pct">17.9%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:10%"></div></td><td class="d-pct">10.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:71%"></div></td><td class="d-pct">71.4%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3082,7 +3087,7 @@ ATK1：弓矢攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">  +0</span> item #000</div><div class="d-sub">石像（智）</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:23%"></div></td><td class="d-pct">23.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:5%"></div></td><td class="d-pct">5.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+210</span> item #210</div><div class="d-sub">洞窟入り口 踏みボタン</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:58%"></div></td><td class="d-pct">58.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> -35</span> loot pool tier 2 (#35)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">1H Sword</span>Gladius<span class="d-id">#+000</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:23%"></div></td><td class="d-pct">23.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:5%"></div></td><td class="d-pct">5.9%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion S<span class="d-id">#+210</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:58%"></div></td><td class="d-pct">58.8%</td><td class="d-lbl"><div class="d-name">loot pool tier 2 (#35)<span class="d-id">#-035</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3108,7 +3113,7 @@ ATK1：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+211</span> item #211</div><div class="d-sub">洞窟入り口 オーガ部屋光</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-350</span> loot pool tier 4 (#350)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:14%"></div></td><td class="d-pct">14.8%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion M<span class="d-id">#+211</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:74%"></div></td><td class="d-pct">74.1%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#350)<span class="d-id">#-350</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3134,7 +3139,7 @@ ATK1：1段攻撃</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +83</span> item #083</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+216</span> item #216</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-100</span> loot pool tier 3 (#100)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Armor</span>Leather Armor<span class="d-id">#+083</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.3%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:6%"></div></td><td class="d-pct">6.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Antidote<span class="d-id">#+216</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:66%"></div></td><td class="d-pct">66.7%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#100)<span class="d-id">#-100</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3160,7 +3165,7 @@ ATK2：飛び込み</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-450</span> loot pool tier 4 (#450)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#450)<span class="d-id">#-450</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3186,7 +3191,7 @@ ATK2：飛び込み</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-500</span> loot pool tier 4 (#500)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:12%"></div></td><td class="d-pct">12.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:8%"></div></td><td class="d-pct">8.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:80%"></div></td><td class="d-pct">80.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#500)<span class="d-id">#-500</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3212,7 +3217,7 @@ MAGIC:魔法</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+226</span> item #226</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+212</span> item #212</div><div class="d-sub">洞窟入り口 扉（鉄の扉）</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-600</span> loot pool tier 4 (#600)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Bone<span class="d-id">#+226</span></div></td></tr><tr class="drop-item"><td class="d-bar"><div style="width:11%"></div></td><td class="d-pct">11.5%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Heal Potion L<span class="d-id">#+212</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:76%"></div></td><td class="d-pct">76.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#600)<span class="d-id">#-600</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3238,7 +3243,7 @@ ATK2：飛び込み</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+217</span> item #217</div><div class="d-sub">洞窟入り口 台座</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:86%"></div></td><td class="d-pct">87.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:13%"></div></td><td class="d-pct">13.0%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Panacea<span class="d-id">#+217</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:86%"></div></td><td class="d-pct">87.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3265,7 +3270,7 @@ ATK4：つめ（空中）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+220</span> item #220</div><div class="d-sub">洞窟入り口 壊し柱</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-250</span> loot pool tier 3 (#250)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:9%"></div></td><td class="d-pct">9.1%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Black Onyx<span class="d-id">#+220</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:90%"></div></td><td class="d-pct">90.9%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#250)<span class="d-id">#-250</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3291,7 +3296,7 @@ ATK2：ガスクラウド（未使用）←&quot;ブラストウィスプ&quot;�
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id"> +50</span> item #050</div><div class="d-sub">古城 水門柱</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-200</span> loot pool tier 3 (#200)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Helmet</span>Valkyrie Helm<span class="d-id">#+050</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 3 (#200)<span class="d-id">#-200</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3318,7 +3323,7 @@ ATK2：ガスクラウド（未使用）←&quot;ブラストウィスプ&quot;�
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-400</span> loot pool tier 4 (#400)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-tier"><td class="d-bar"><div style="width:100%"></div></td><td class="d-pct">100.0%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#400)<span class="d-id">#-400</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>
@@ -3345,7 +3350,7 @@ ATK3：くちばし攻撃（地上）</pre>
   <div class="m-body">
     <div class="m-block">
       <h3>Drop table</h3>
-      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-id">+215</span> item #215</div><div class="d-sub">(no entry in Object.tbl)</div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name"><span class="d-id">-350</span> loot pool tier 4 (#350)</div></td></tr></tbody></table>
+      <table class="drops"><tbody><tr class="drop-item"><td class="d-bar"><div style="width:16%"></div></td><td class="d-pct">16.7%</td><td class="d-lbl"><div class="d-name"><span class="d-kind">Item</span>Magic Potion<span class="d-id">#+215</span></div></td></tr><tr class="drop-tier"><td class="d-bar"><div style="width:83%"></div></td><td class="d-pct">83.3%</td><td class="d-lbl"><div class="d-name">loot pool tier 4 (#350)<span class="d-id">#-350</span></div></td></tr></tbody></table>
     </div>
     <div class="m-block">
       <h3>Appears in</h3>

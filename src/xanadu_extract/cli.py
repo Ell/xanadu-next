@@ -1,7 +1,7 @@
 """xanadu-extract: pull every shipping asset out of Xanadu Next.
 
 Usage:
-    xanadu-extract [--game DIR] [--out DIR] [--no-images | --no-audio]
+    xanadu-extract [--game DIR] [--out DIR] [--no-images]
 """
 
 from __future__ import annotations
@@ -9,7 +9,6 @@ from __future__ import annotations
 import argparse
 import shutil
 import sys
-import wave
 from collections import Counter
 from pathlib import Path
 
@@ -21,8 +20,14 @@ from .g32 import G32Error, decode_to_rgba
 DEFAULT_GAME = Path.home() / ".local/share/Steam/steamapps/common/Xanadu Next"
 DEFAULT_OUT = Path(__file__).resolve().parents[2] / "out"
 
-LOOSE_AUDIO_DIRS = ("BGM", "WAVE")
 LOOSE_VIDEO_DIRS = ("movie",)
+# Top-level archive paths whose contents we never want to ship: BGM/WAVE
+# carry hundreds of MBs of audio that the bestiary doesn't need.
+SKIP_ARCHIVE_PARENTS = {"BGM", "WAVE"}
+COPY_ALONGSIDE = {
+    Path("DATA/chr/Object.tbl"),
+    Path("DATA/chr/motion.tbl"),
+}
 
 
 def safe_relpath(name: str) -> Path:
@@ -43,10 +48,6 @@ def write_atomic(path: Path, data: bytes) -> None:
     tmp.replace(path)
 
 
-def is_riff_wave(blob: bytes) -> bool:
-    return len(blob) >= 12 and blob[:4] == b"RIFF" and blob[8:12] == b"WAVE"
-
-
 def extract_archive(
     dir_path: Path,
     arc_path: Path,
@@ -54,7 +55,6 @@ def extract_archive(
     out_root: Path,
     *,
     do_images: bool,
-    do_audio: bool,
 ) -> Counter[str]:
     rel = dir_path.parent.relative_to(game_root)
     archive_out = out_root / rel / dir_path.stem
@@ -76,10 +76,6 @@ def extract_archive(
             png_target.parent.mkdir(parents=True, exist_ok=True)
             Image.frombytes("RGBA", (w, h), pixels).save(png_target, optimize=True)
             stats["png"] += 1
-        elif do_audio and is_riff_wave(blob):
-            target = target.with_suffix(".wav")
-            write_atomic(target, blob)
-            stats["wav"] += 1
         else:
             write_atomic(target, blob)
             stats[ext.lstrip(".") or "(none)"] += 1
@@ -97,14 +93,6 @@ def copy_loose(src_dir: Path, dst_dir: Path, *, suffixes: set[str]) -> Counter[s
             continue
         rel = src.relative_to(src_dir)
         dst = dst_dir / rel
-        # .dec is just a renamed RIFF/WAVE — re-extension for player tools.
-        if src.suffix.lower() == ".dec":
-            blob = src.read_bytes()
-            if is_riff_wave(blob):
-                dst = dst.with_suffix(".wav")
-                write_atomic(dst, blob)
-                stats["wav"] += 1
-                continue
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
         stats[src.suffix.lstrip(".").lower() or "(none)"] += 1
@@ -119,9 +107,6 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", type=Path, default=DEFAULT_OUT, help="output directory")
     p.add_argument(
         "--no-images", action="store_true", help="skip G32 → PNG conversion"
-    )
-    p.add_argument(
-        "--no-audio", action="store_true", help="skip audio (.wav/.dec) extraction"
     )
     args = p.parse_args(argv)
 
@@ -139,37 +124,25 @@ def main(argv: list[str] | None = None) -> int:
     print(f"output: {out}")
 
     do_images = not args.no_images
-    do_audio = not args.no_audio
     overall: Counter[str] = Counter()
 
     pairs = find_pairs(data_root)
-    print(f"\n[archives] {len(pairs)} .arc/.dir pairs")
+    print(f"\n[archives] {len(pairs)} .arc/.dir pairs (skipping audio)")
     for dir_path, arc_path in pairs:
         rel = dir_path.relative_to(game)
+        if rel.parts and rel.parts[1] in SKIP_ARCHIVE_PARENTS:
+            print(f"  {rel} → skipped (audio)")
+            continue
         stats = extract_archive(
             dir_path,
             arc_path,
             game,
             out,
             do_images=do_images,
-            do_audio=do_audio,
         )
         summary = ", ".join(f"{n} {k}" for k, n in sorted(stats.items()))
         print(f"  {rel} → {summary}")
         overall.update(stats)
-
-    if do_audio:
-        for sub in LOOSE_AUDIO_DIRS:
-            src = data_root / sub
-            stats = copy_loose(
-                src, out / "DATA" / sub, suffixes={".wav", ".dec", ".tbl"}
-            )
-            if stats:
-                print(
-                    f"  DATA/{sub} → "
-                    + ", ".join(f"{n} {k}" for k, n in sorted(stats.items()))
-                )
-                overall.update(stats)
 
     for sub in LOOSE_VIDEO_DIRS:
         src = data_root / sub
@@ -180,6 +153,15 @@ def main(argv: list[str] | None = None) -> int:
                 + ", ".join(f"{n} {k}" for k, n in sorted(stats.items()))
             )
             overall.update(stats)
+
+    # loose tables we want to keep alongside archive output
+    for rel in COPY_ALONGSIDE:
+        src = game / rel
+        if src.is_file():
+            dst = out / rel
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+            overall[src.suffix.lstrip(".").lower()] += 1
 
     print("\n[total]")
     for kind, n in sorted(overall.items()):

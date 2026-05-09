@@ -454,6 +454,10 @@ def render_monsters_page(out_root: Path) -> str:
     equips = parse_equip_tbl(equip_path)
     by_id = index_by_id(records)
     monsters = _build_monsters(out_root, records)
+    # Drop monsters with no recorded drop table — these are mostly cinematic
+    # bosses, body parts (Scoltula's Foot), and placeholder rows that don't
+    # function as combat encounters and would just be padding in the page.
+    monsters = [m for m in monsters if parse_drop_table(m.rec.drops)]
     monsters.sort(key=lambda m: m.rec.id)
     areas_for = _build_area_index(out_root)
 
